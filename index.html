@@ -295,7 +295,6 @@ button { font: inherit; color: inherit; }
   background: var(--ink); color: var(--bg); transition: background-color .5s, color .5s;
 }
 .db .ic { width: 22px; height: 22px; }
-.tkr.is-empty .db { background: transparent; color: var(--ink-3); box-shadow: inset 0 0 0 1.5px var(--edge); }
 .tkr h2 { font: 650 15px/1.2 var(--f-display); font-stretch: 106%; }
 .tkr p { margin-top: 3px; font-size: 12px; color: var(--ink-2); }
 .tkr-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
@@ -499,6 +498,18 @@ button { font: inherit; color: inherit; }
   justify-self: start; font: 600 10.5px/1 var(--f-mono); white-space: nowrap; padding: 3px 6px; border-radius: 5px;
   color: var(--red); background: var(--red-soft); border: 1px solid var(--red-line);
 }
+.opt-flag {
+  margin-left: 6px; padding: 2px 6px; border-radius: 5px; vertical-align: 1px;
+  font: 600 10.5px/1.3 var(--f-mono); font-style: normal; color: var(--red); background: var(--red-soft); border: 1px solid var(--red-line);
+}
+.idfail { margin: 0 0 12px; padding: 10px 12px 11px; border-radius: 10px; background: var(--red-soft); border: 1.5px solid var(--red); }
+.idfail-h { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; font-size: 13.5px; font-weight: 700; color: var(--red); }
+.idfail-h .ic { width: 16px; height: 16px; }
+.hits.ids li { grid-template-columns: minmax(0, 1fr) 34px 96px; }
+.hits.ids .want { font: 600 12px var(--f-mono); color: var(--ink); }
+.hits.ids i { margin: 0 6px; font-style: normal; color: var(--red); }
+.hits.ids .no { background: var(--surface); }
+.idfail-n { margin-top: 8px; font-size: 12.5px; line-height: 1.4; color: var(--ink); }
 .verdict { margin-top: 10px; font-size: 12.5px; font-weight: 650; color: var(--red); }
 .code {
   display: inline-block; padding: 5px 8px; border-radius: 7px; font: 500 12px/1.4 var(--f-mono);
@@ -1104,6 +1115,85 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .syn-tiles b { font: 720 20px/1.2 var(--f-display); font-stretch: 104%; }
 .takeaway.is-hidden { visibility: hidden; }
 
+/* ---------- Goals ---------- */
+.goals { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 22px; padding-top: 6px; }
+.g-sec { transition: opacity .4s, visibility .4s; }
+.g-sec.g-hide { opacity: 0; visibility: hidden; }
+.g-goal { display: grid; grid-template-columns: 390px minmax(0, 1fr); gap: 32px; align-items: center; }
+.g-eye { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--accent); }
+.g-eye .ic { width: 16px; height: 16px; }
+.g-title { font: 760 33px/1.12 var(--f-display); font-stretch: 112%; text-wrap: balance; }
+.g-title em { font-style: normal; color: var(--accent); }
+.g-flow { display: grid; grid-template-columns: minmax(0, 1.3fr) 24px 112px 24px minmax(0, 1fr); align-items: center; gap: 8px; }
+.g-arrow { text-align: center; font: 600 20px/1 var(--f-mono); color: var(--ink-3); }
+.g-in .label, .g-out .label { margin-bottom: 9px; }
+.g-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.g-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 8px;
+  background: var(--sunk); font-size: 12.5px; font-weight: 600; white-space: nowrap;
+}
+.g-chip .ic { width: 14px; height: 14px; color: var(--ink-2); }
+.g-prompt { margin-top: 9px; font-size: 13px; color: var(--ink-2); }
+.g-sys { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; font-size: 13px; font-weight: 650; }
+.g-sys-ic {
+  width: 54px; height: 54px; border-radius: 15px; display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 0 6px var(--accent-soft);
+}
+.g-sys-ic .ic { width: 26px; height: 26px; }
+.g-out { border-color: var(--accent); box-shadow: var(--shadow), 0 0 0 3px var(--accent-soft); }
+.g-out h3 { margin: 0 0 9px; font: 680 16px/1.25 var(--f-display); font-stretch: 108%; }
+.g-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 13px; color: var(--ink-2); }
+.g-checks li { display: flex; align-items: center; gap: 7px; }
+.g-checks .ic { width: 14px; height: 14px; stroke-width: 2.4; color: var(--green); }
+
+.g-sh { display: flex; align-items: baseline; gap: 18px; margin-bottom: 12px; }
+.g-sh h3 { flex: none; font: 720 20px/1.2 var(--f-display); font-stretch: 110%; }
+.g-sh p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.g-sh p b { font-weight: 650; color: var(--ink); }
+.g-src {
+  display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; vertical-align: 1px; flex: none;
+  font: 600 10px/1 var(--f-mono); font-style: normal; background: var(--accent); color: var(--accent-ink);
+}
+.g-what-body { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 18px; }
+.g-layers { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.g-layer { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.g-layer + .g-layer::before {
+  content: "\2192"; position: absolute; left: -21px; top: 50%; transform: translateY(-50%);
+  font: 600 16px/1 var(--f-mono); color: var(--ink-3);
+}
+.g-lh { display: flex; align-items: center; gap: 10px; }
+.g-lh b { font: 680 16px/1.2 var(--f-display); font-stretch: 106%; }
+.g-n {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  font: 600 12px/1 var(--f-mono); background: var(--accent); color: var(--accent-ink);
+}
+.g-k { font: 500 11.5px/1.4 var(--f-mono); color: var(--accent); }
+.g-ex { margin-top: auto; padding: 9px 11px; border-radius: 9px; background: var(--sunk); font-size: 12.5px; line-height: 1.5; color: var(--ink-2); }
+.g-valid .label { margin-bottom: 10px; }
+.g-vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.g-v { display: flex; align-items: flex-start; gap: 9px; padding: 9px 11px; border-radius: 10px; background: var(--green-soft); }
+.g-v .ic { width: 17px; height: 17px; margin-top: 1px; color: var(--green); }
+.g-v b { display: block; font-size: 13.5px; font-weight: 700; }
+.g-v span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
+
+.g-why-body { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; }
+.g-needs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.g-need { display: flex; flex-direction: column; gap: 8px; }
+.g-need header { display: flex; align-items: center; gap: 9px; font: 680 15px/1.2 var(--f-display); font-stretch: 106%; }
+.g-need ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.g-need li {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px 4px 5px; border-radius: 7px;
+  background: var(--accent-soft); font-size: 12px; font-weight: 600; white-space: nowrap;
+}
+.g-wrong {
+  display: flex; flex-direction: column; gap: 7px; padding: 14px 16px 15px; border-radius: 14px;
+  background: var(--red-soft); border: 1px solid var(--red-line);
+}
+.g-wrong h4 { margin: 0; display: flex; align-items: center; gap: 8px; font: 700 15px/1.2 var(--f-display); color: var(--red); }
+.g-wrong h4 .ic { width: 17px; height: 17px; }
+.g-wrong p { font-size: 13px; line-height: 1.45; }
+.g-wrong .g-fix { margin-top: auto; font-weight: 700; }
+
 /* ---------- Linking a gap to where it shows up ---------- */
 [data-gaps] { transition: background-color .2s, box-shadow .2s; }
 [data-gaps].lit { background: var(--red-soft) !important; box-shadow: 0 0 0 1.5px var(--red) !important; }
@@ -1171,6 +1261,15 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .fc-take p:not(.label) { font-size: 17px; }
   .fc-body { grid-template-columns: 1fr; gap: 18px; }
   .stat b { font-size: 40px; }
+  .goals { gap: 26px; }
+  .g-sec.g-hide { display: none; }
+  .g-goal, .g-what-body, .g-why-body, .g-flow, .g-layers, .g-needs { grid-template-columns: minmax(0, 1fr); }
+  .g-title { font-size: 26px; }
+  .g-arrow { transform: rotate(90deg); }
+  .g-layer + .g-layer::before { content: "\2193"; left: 50%; top: -22px; transform: translateX(-50%); }
+  .g-sh { flex-direction: column; gap: 4px; }
+  .g-sh h3 { flex: initial; }
+  .g-chip, .g-need li { white-space: normal; }
   .takeaway { flex-direction: column; gap: 6px; margin-top: 0; }
   .takeaway p { font-size: 21px; }
 }
@@ -1279,6 +1378,18 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></symbol>
 <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></symbol>
 <symbol id="i-train-front" viewBox="0 0 24 24"><path d="M8 3.1V7a4 4 0 0 0 8 0V3.1"/><path d="m9 15-1-1"/><path d="m15 15 1-1"/><path d="M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z"/><path d="m8 19-2 3"/><path d="m16 19 2 3"/></symbol>
+<symbol id="i-triangle-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="i-hotel" viewBox="0 0 24 24"><path d="M10 22v-6.57"/><path d="M12 11h.01"/><path d="M12 7h.01"/><path d="M14 15.43V22"/><path d="M15 16a5 5 0 0 0-6 0"/><path d="M16 11h.01"/><path d="M16 7h.01"/><path d="M8 11h.01"/><path d="M8 7h.01"/><rect x="4" y="2" width="16" height="20" rx="2"/></symbol>
+<symbol id="i-ticket-check" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-car-taxi-front" viewBox="0 0 24 24"><path d="M10 2h4"/><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></symbol>
+<symbol id="i-clipboard-check" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+<symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m16 9-5.5 5.5L8 12"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+<symbol id="i-calendar-range" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M16 2v3"/><path d="M3 9h18"/><path d="M8 2v3"/><path d="M17 13h-6"/><path d="M13 17H7"/><path d="M7 13h.01"/><path d="M17 17h.01"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol>
+<symbol id="i-list-ordered" viewBox="0 0 24 24"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></symbol>
 </defs></svg>
 
 <div class="viewport">
@@ -1291,9 +1402,10 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <span class="brand-name">AI Trip Planner</span>
         </div>
         <div class="tabs" role="tablist" aria-label="Views">
-          <button type="button" class="tab" role="tab" id="tab-arch" aria-selected="true" aria-controls="view-arch" data-tab="arch"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg>Architecture</button>
+          <button type="button" class="tab" role="tab" id="tab-goals" aria-selected="true" aria-controls="view-goals" data-tab="goals"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Goals</button>
+          <button type="button" class="tab" role="tab" id="tab-arch" aria-selected="false" aria-controls="view-arch" data-tab="arch"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg>Architecture</button>
           <button type="button" class="tab" role="tab" id="tab-research" aria-selected="false" aria-controls="view-research" data-tab="research"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg>Research</button>
-          <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg>Revised<span class="tab-long">&nbsp;architecture</span></button>
+          <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg><span>Revised<span class="tab-long"> architecture</span></span></button>
         </div>
         <ol class="rail" id="rail-r" aria-label="Papers" hidden></ol>
         <div class="nav">
@@ -1303,7 +1415,121 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         <p class="now" id="now"></p>
       </header>
 
-      <div class="view" id="view-arch" role="tabpanel" aria-labelledby="tab-arch">
+      <!-- ===== Goals: what the system is for ===== -->
+      <div class="view" id="view-goals" role="tabpanel" aria-labelledby="tab-goals">
+        <div class="goals">
+          <section class="g-sec g-goal" data-g="0" aria-label="Goal of the system">
+            <div>
+              <p class="eyebrow g-eye"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Goal of the system</p>
+              <h2 class="g-title">Turn user intent into a <em>personalised</em>, <em>feasible</em> and <em>bookable</em> trip.</h2>
+            </div>
+            <div class="g-flow">
+              <div class="card g-in">
+                <p class="label">User inputs</p>
+                <div class="g-chips">
+                  <span class="g-chip"><svg class="ic" aria-hidden="true"><use href="#i-earth"/></svg>Japan</span>
+                  <span class="g-chip"><svg class="ic" aria-hidden="true"><use href="#i-calendar-days"/></svg>28 Apr – 4 May</span>
+                  <span class="g-chip"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>2 adults from Bengaluru</span>
+                  <span class="g-chip"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg>Budget ₹3.2 L</span>
+                  <span class="g-chip"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg>Food · temples · photography</span>
+                </div>
+                <p class="g-prompt">“Vegetarian, one bad knee, no crowds, old Japan”</p>
+              </div>
+              <span class="g-arrow" aria-hidden="true">→</span>
+              <div class="g-sys"><span class="g-sys-ic"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></span>AI trip planner</div>
+              <span class="g-arrow" aria-hidden="true">→</span>
+              <div class="card g-out">
+                <p class="label">Output</p>
+                <h3>A personalised, bookable itinerary</h3>
+                <ul class="g-checks">
+                  <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Cities, order and dates</li>
+                  <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Stays and day plans</li>
+                  <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Transport between places</li>
+                  <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Live options, ready to book</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="g-sec g-what" data-g="1" aria-label="What is a bookable itinerary">
+            <div class="g-sh">
+              <h3>What is a bookable itinerary?</h3>
+              <p>It resolves every decision needed to transact the trip: <b>where</b> to go, <b>when</b> to go, <b>where to stay</b>, <b>what to do</b> and <b>how to move</b> between places.</p>
+            </div>
+            <div class="g-what-body">
+              <ol class="g-layers">
+                <li class="card g-layer">
+                  <div class="g-lh"><span class="g-n">1</span><b>Trip structure</b></div>
+                  <p class="g-k">Cities · order · dates · duration</p>
+                  <p class="g-ex">Tokyo 2 nights → Kanazawa 2 → Kyoto 2<br>28 Apr – 4 May</p>
+                </li>
+                <li class="card g-layer">
+                  <div class="g-lh"><span class="g-n">2</span><b>Trip execution</b></div>
+                  <p class="g-k">Hotels · activities · timings · routes</p>
+                  <p class="g-ex">Ryokan in Gion · Fushimi Inari at 07:00<br>Shinkansen to Kanazawa, day 3, 10:24</p>
+                </li>
+                <li class="card g-layer">
+                  <div class="g-lh"><span class="g-n">3</span><b>Bookable inventory</b></div>
+                  <p class="g-k">Flights · hotels · trains · activities · transfers</p>
+                  <p class="g-ex">BLR → Tokyo via Bangkok · 3 hotels<br>2 trains · KIX transfer, each with a live price</p>
+                </li>
+              </ol>
+              <div class="card g-valid">
+                <p class="label">A valid output must be</p>
+                <div class="g-vgrid">
+                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-badge-check"/></svg><div><b>Real</b><span>No made-up places, prices or availability</span></div></div>
+                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg><div><b>Feasible</b><span>Constraints, timings and routes work</span></div></div>
+                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><div><b>Consistent</b><span>Every part of the trip fits together</span></div></div>
+                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg><div><b>Measurable</b><span>Quality can be scored objectively</span></div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="g-sec g-why" data-g="2" aria-label="Why the itinerary comes first">
+            <div class="g-sh">
+              <h3>Why plan the itinerary before flights and hotels?</h3>
+              <p>Every booking is a search, and its inputs come from the itinerary: <i class="g-src" title="Trip structure">1</i> trip structure, <i class="g-src" title="Trip execution">2</i> trip execution.</p>
+            </div>
+            <div class="g-why-body">
+              <div class="g-needs">
+            <article class="card g-need">
+              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></span>Flights</header>
+              <p class="label">Needs</p>
+              <ul><li><i class="g-src" title="Trip structure">1</i>Into Tokyo</li><li><i class="g-src" title="Trip structure">1</i>Out of Osaka KIX</li><li><i class="g-src" title="Trip structure">1</i>28 Apr</li><li><i class="g-src" title="Trip structure">1</i>4 May</li><li><i class="g-src" title="Trip structure">1</i>2 adults</li></ul>
+            </article>
+            <article class="card g-need">
+              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-hotel"/></svg></span>Hotels</header>
+              <p class="label">Needs</p>
+              <ul><li><i class="g-src" title="Trip structure">1</i>Tokyo · Kanazawa · Kyoto</li><li><i class="g-src" title="Trip structure">1</i>2 + 2 + 2 nights</li><li><i class="g-src" title="Trip execution">2</i>Ryokan in Gion</li><li><i class="g-src" title="Trip execution">2</i>Step-free room</li></ul>
+            </article>
+            <article class="card g-need">
+              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-train-front"/></svg></span>Trains</header>
+              <p class="label">Needs</p>
+              <ul><li><i class="g-src" title="Trip structure">1</i>Tokyo → Kanazawa</li><li><i class="g-src" title="Trip structure">1</i>Kanazawa → Kyoto</li><li><i class="g-src" title="Trip structure">1</i>Days 3 and 5</li><li><i class="g-src" title="Trip execution">2</i>10:24 departure</li></ul>
+            </article>
+            <article class="card g-need">
+              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-ticket"/></svg></span>Activities</header>
+              <p class="label">Needs</p>
+              <ul><li><i class="g-src" title="Trip execution">2</i>Fushimi Inari</li><li><i class="g-src" title="Trip structure">1</i>3 May</li><li><i class="g-src" title="Trip execution">2</i>07:00, before crowds</li><li><i class="g-src" title="Trip structure">1</i>2 adults</li></ul>
+            </article>
+              </div>
+              <div class="g-wrong">
+                <h4><svg class="ic" aria-hidden="true"><use href="#i-triangle-alert"/></svg>Book the flight first?</h4>
+                <p>A Tokyo round trip gets booked before the route exists. Plan A ends in Kyoto, so the last day loses 2 h 15 riding back to Tokyo.</p>
+                <p>Hotels first has the same problem: nights get fixed before the cities are chosen.</p>
+                <p class="g-fix">Plan first, then search the inventory.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer class="takeaway is-hidden" id="takeaway-g">
+          <span class="label">Takeaway</span>
+          <p>Plan the trip first. Every booking needs the itinerary’s details.</p>
+        </footer>
+      </div>
+
+      <div class="view" id="view-arch" role="tabpanel" aria-labelledby="tab-arch" hidden>
       <section class="canvas" id="canvas" aria-label="Architecture">
         <svg class="wires" id="wires" aria-hidden="true">
           <defs>
@@ -1370,16 +1596,15 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </div>
 
         <!-- Step 2: travel knowledge repository -->
-        <div class="node card tkr clickable" id="n-tkr" data-in="2.1" data-act="tkr" role="button" tabindex="0" aria-label="Travel knowledge repository: how it is built" data-gaps="G1 G3 G10">
+        <div class="node card tkr" id="n-tkr" data-in="2.1" data-gaps="G1 G3 G10">
           <span class="db"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></span>
           <div>
             <h2>Travel knowledge repository</h2>
             <p>Normalized · enriched · indexed</p>
           </div>
           <div class="tkr-side">
-            <span class="state" data-out="2.3">Empty</span>
-            <span class="state full" data-in="2.4">~100k places</span>
-            <span class="job" data-in="2.4">Remember facts</span>
+            <span class="state full">~100k places</span>
+            <span class="job" data-in="2.3">Remember facts</span>
           </div>
         </div>
 
@@ -1412,7 +1637,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </div>
 
         <!-- Step 2: filter, score, select -->
-        <div class="node card proc clickable" id="n-proc" data-in="2.5" data-pop="pop-proc" role="button" tabindex="0" aria-label="Find candidates: how scoring works" data-gaps="G1 G7">
+        <div class="node card proc clickable" id="n-proc" data-in="2.4" data-pop="pop-proc" role="button" tabindex="0" aria-label="Find candidates: how scoring works" data-gaps="G1 G7">
           <header class="node-h">
             <span class="node-ic solid"><svg class="ic" aria-hidden="true"><use href="#i-funnel"/></svg></span>
             <h2>Find candidates</h2>
@@ -1453,12 +1678,12 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               <p data-out="1"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg>with web search</p>
             </div>
           </header>
-          <p class="label" data-out="2.3">Does every job</p>
-          <p class="label" data-in="2.4">Jobs left</p>
+          <p class="label" data-out="2.2">Does every job</p>
+          <p class="label" data-in="2.3">Jobs left</p>
           <ul class="jobs">
             <li class="job">Understand</li>
-            <li class="job" data-out="2.3">Remember facts</li>
-            <li class="job" data-out="2.4">Search</li>
+            <li class="job" data-out="2.2">Remember facts</li>
+            <li class="job" data-out="2.3">Search</li>
             <li class="job">Judge</li>
             <li class="job">Arrange</li>
             <li class="job">Narrate</li>
@@ -1476,14 +1701,14 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               <h2>Itinerary</h2>
               <span class="out-tags" data-gaps="G9"><span class="tag">Prose</span><span class="gx">G9</span></span>
             </header>
-            <ol class="days" data-out="2.4">
+            <ol class="days" data-out="2.3">
               <li class="day" data-gaps="G7 G2"><span class="d">D1</span><span class="city">Tokyo</span><span class="gxs"><span class="gx">G7</span><span class="gx">G2</span></span><span class="what">Senso-ji, Shibuya Crossing</span></li>
               <li class="day" data-gaps="G8"><span class="d">D2</span><span class="city">Tokyo</span><span class="gxs"><span class="gx">G8</span></span><span class="what">Tsukiji, tonkotsu ramen</span></li>
               <li class="day" data-gaps="G6 G8"><span class="d">D3</span><span class="city">Kyoto</span><span class="gxs"><span class="gx">G6</span><span class="gx">G8</span></span><span class="what">Arashiyama → Inari summit → Kinkaku-ji</span></li>
               <li class="day" data-gaps="G1"><span class="d">D4</span><span class="city">Kyoto</span><span class="gxs"><span class="gx">G1</span></span><span class="what">Lunch at Lotus Zen Café</span></li>
               <li class="day rest"><span class="d">D5–7</span><span class="what">Nara, Osaka, fly home</span></li>
             </ol>
-            <ol class="days" data-in="2.5">
+            <ol class="days" data-in="2.4">
               <li class="day" data-gaps="G7 G8"><span class="d">D1</span><span class="city">Tokyo</span><span class="gxs"><span class="gx">G7</span><span class="gx">G8</span></span><span class="what">Yanaka old town, shojin lunch</span></li>
               <li class="day" data-gaps="G1 G2"><span class="d">D2</span><span class="city">Kanazawa</span><span class="gxs"><span class="gx">G1</span><span class="gx">G2</span></span><span class="what">Nishi Chaya teahouses</span></li>
               <li class="day" data-gaps="G6"><span class="d">D3</span><span class="city">Kyoto</span><span class="gxs"><span class="gx">G6</span></span><span class="what">Ohara → Fushimi → Arashiyama</span></li>
@@ -1503,7 +1728,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <div class="opts">
             <button type="button" class="opt" data-opt="rag">
               <span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-scan-search"/></svg></span>
-              <span class="opt-t"><b>RAG</b><span>Embed everything, fetch the nearest matches</span></span>
+              <span class="opt-t"><b>RAG <em class="opt-flag">Fails on exact names and IDs</em></b><span>Embed everything, fetch the nearest matches</span></span>
               <svg class="ic opt-v" aria-hidden="true"><use href="#i-x"/></svg>
             </button>
             <button type="button" class="opt" data-opt="typed">
@@ -1523,13 +1748,22 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             </button>
           </div>
           <div class="why" data-why="rag" hidden>
+            <div class="idfail">
+              <p class="idfail-h"><svg class="ic" aria-hidden="true"><use href="#i-triangle-alert"/></svg>Exact names and IDs get near misses</p>
+              <ol class="hits ids">
+                <li><span><span class="want">Nishi Chaya</span><i>→</i>Higashi Chaya</span><span class="sim">0.95</span><span class="no">wrong district</span></li>
+                <li><span><span class="want">Flight SQ 511</span><i>→</i>SQ 517</span><span class="sim">0.97</span><span class="no">wrong flight</span></li>
+                <li><span><span class="want">Hotel H-20418</span><i>→</i>H-20481</span><span class="sim">0.96</span><span class="no">wrong hotel</span></li>
+              </ol>
+              <p class="idfail-n">Embeddings match meaning, not exact strings. A name, flight number or booking ID that is one character off still scores as a top match.</p>
+            </div>
             <p class="why-q"><span class="label">Query</span>“vegetarian, old Japan, no crowds”</p>
             <ol class="hits">
               <li><span>Ramen alley</span><span class="sim">0.91</span><span class="no">not veg</span></li>
               <li><span>Kinkaku-ji</span><span class="sim">0.89</span><span class="no">peak crowds</span></li>
               <li><span>Machiya café</span><span class="sim">0.88</span><span class="no">closed</span></li>
             </ol>
-            <p class="verdict">Similar is not the same as valid, and nothing flags it.</p>
+            <p class="verdict">Similar is not the same as correct, and nothing flags it.</p>
           </div>
           <div class="why" data-why="typed" hidden>
             <span class="code">veg = yes AND stairs = low</span>
@@ -1591,21 +1825,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <p class="note">It only re-ranks places that already passed the filters. It never removes one.</p>
         </div>
 
-        <div class="pop" id="pop-tkr" role="dialog" aria-labelledby="pop-tkr-h" hidden>
-          <button type="button" class="pop-x" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
-          <h3 id="pop-tkr-h">How the repository gets filled</h3>
-          <ol class="pipe">
-            <li><span class="pipe-ic"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></span><b>Ingest</b><span>Scheduled pulls, stamped with source and time</span></li>
-            <li><span class="pipe-ic"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg></span><b>Normalize</b><span>One schema and taxonomy, stable IDs, duplicates merged</span></li>
-            <li><span class="pipe-ic"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></span><b>Enrich</b><span>Fill gaps like veg-friendly or stairs, with a confidence</span></li>
-            <li><span class="pipe-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><b>Index</b><span>Filters, geo, embeddings, city profiles</span></li>
-          </ol>
-          <div class="record">
-            <div class="rec-h"><span class="rec-id">P-20418</span><b>Nishi Chaya teahouses</b><span>Kanazawa</span></div>
-            <div class="rec-tags"><span>historic street</span><span>stairs: none</span><span>veg nearby: yes · 0.7</span><span>crowds in May: medium</span><span>places feed · 3 days ago</span></div>
-          </div>
-          <p class="note">Fares, rates and weather go stale in minutes, so they are looked up live and never stored.</p>
-        </div>
 
         <div class="pop" id="pop-proc" role="dialog" aria-labelledby="pop-proc-h" hidden>
           <button type="button" class="pop-x" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
@@ -1774,8 +1993,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         { id: '2.1', name: 'Data feeds' },
         { id: '2.2', name: 'How AI reads it', open: 'pop-access' },
         { id: '2.3', name: 'Facts, dials, text' },
-        { id: '2.4', name: 'Fill the repository', open: 'pop-tkr' },
-        { id: '2.5', name: 'Filter, score, rank' },
+        { id: '2.4', name: 'Filter, score, rank' },
       ] },
     { name: 'Step 3' },
     { name: 'Step 4' },
@@ -1791,7 +2009,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     'n-feeds-pd': { '2.1': [713, 0, 340] },
     'n-tkr':      { '2.1': [488, 106, 430] },
     'n-query':    { '2.3': [360, 200, 352] },
-    'n-proc':     { '2.5': [736, 200, 310] },
+    'n-proc':     { '2.4': [736, 200, 310] },
   };
   // Wires between nodes. in/out = first/last beat shown. Nodes use data-in/data-out.
   const WIRES = [
@@ -1806,39 +2024,37 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     { id: 'w-in-query', from: 'n-input', to: 'n-query', label: 'facts', in: '2.3' },
     { id: 'w-in-llm',   from: 'n-input', to: 'n-llm', label: 'prompt', in: '2.3' },
     { id: 'w-llm-query', from: 'n-llm', to: 'n-query', label: 'dials + text', side: true, in: '2.3' },
-    { id: 'w-query-tkr', from: 'n-query', to: 'n-tkr', label: 'query', side: true, in: '2.3', out: '2.4' },
-    { id: 'w-query-proc', from: 'n-query', to: 'n-proc', in: '2.5' },
-    { id: 'w-tkr-proc', from: 'n-tkr', to: 'n-proc', label: 'data', side: true, in: '2.5' },
-    { id: 'w-proc-llm', from: 'n-proc', to: 'n-llm', elbow: true, ty: .42, label: 'ranked lists', in: '2.5' },
+    { id: 'w-query-tkr', from: 'n-query', to: 'n-tkr', label: 'query', side: true, in: '2.3', out: '2.3' },
+    { id: 'w-query-proc', from: 'n-query', to: 'n-proc', in: '2.4' },
+    { id: 'w-tkr-proc', from: 'n-tkr', to: 'n-proc', label: 'data', side: true, in: '2.4' },
+    { id: 'w-proc-llm', from: 'n-proc', to: 'n-llm', elbow: true, ty: .42, label: 'ranked lists', in: '2.4' },
   ];
   // Route the dot travels when a beat opens. Inner arrays run together; "@.5" stops halfway.
   const FLOW = {
     '1':   ['w-in-llm0', 'w-llm-web', 'w-web-llm', 'w-llm-out0'],
     '2.1': [['w-rt-tkr', 'w-pd-tkr'], 'w-broken@.5'],
     '2.3': [['w-in-query', 'w-in-llm'], 'w-llm-query', 'w-query-tkr'],
-    '2.4': [['w-rt-tkr', 'w-pd-tkr']],
-    '2.5': [['w-in-query', 'w-in-llm'], 'w-llm-query', ['w-query-proc', 'w-tkr-proc'], 'w-proc-llm', 'w-llm-out'],
+    '2.4': [['w-in-query', 'w-in-llm'], 'w-llm-query', ['w-query-proc', 'w-tkr-proc'], 'w-proc-llm', 'w-llm-out'],
   };
   // How each gap changes: [beat, state, what the card says from then on].
   const GAPS = {
-    G1:  [['2.5', 'closed', 'Real places with IDs and status']],
-    G2:  [['2.5', 'partial', 'Dates known, hours unchecked']],
-    G3:  [['2.4', 'closed', 'Curated, timestamped feeds']],
-    G7:  [['2.5', 'partial', 'Varied pool, LLM still picks']],
-    G8:  [['2.5', 'partial', 'Filters hold, pacing doesn’t']],
-    G10: [['2.4', 'closed', 'Ingested once, queried fast']],
+    G1:  [['2.4', 'closed', 'Real places with IDs and status']],
+    G2:  [['2.4', 'partial', 'Dates known, hours unchecked']],
+    G3:  [['2.1', 'closed', 'Curated, timestamped feeds']],
+    G7:  [['2.4', 'partial', 'Varied pool, LLM still picks']],
+    G8:  [['2.4', 'partial', 'Filters hold, pacing doesn’t']],
+    G10: [['2.1', 'closed', 'Ingested once, queried fast']],
   };
   // Popover positions [left, top, width] on the canvas.
   const POP_POS = {
-    'pop-access':   [672, 176, 404],
+    'pop-access':   [620, 40, 456],
     'pop-facts':    [690, 186, 380],
     'pop-dials':    [690, 150, 380],
     'pop-residual': [690, 186, 380],
-    'pop-tkr':      [345, 186, 710],
     'pop-proc':     [0, 96, 700],
   };
   // Classes that hold until a beat, and elements that pulse to invite a click.
-  const STATES = [{ id: 'n-tkr', cls: 'is-empty', until: '2.3' }];
+  const STATES = [];
   // Research tab: seven papers and a synthesis, revealed one at a time.
   const VIS = {
     route: `<span class="label">Select + sequence under a time budget</span>
@@ -1971,7 +2187,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       vis: 'split' },
   ];
   const PAPERS = [...PAPER_DATA.map(d => ({ year: d.year, name: d.short })), { year: '', name: 'Our design' }];
-  const HINTS = { '2.3': 'n-tkr', '2.5': 'n-proc' };
+  const HINTS = { '2.4': 'n-proc' };
 
   // ---------- Setup ----------
   const W = 1440, H = 900;
@@ -1983,7 +2199,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   const narrow = matchMedia('(max-width: 999px)');
   const still = matchMedia('(prefers-reduced-motion: reduce)');
   const SVG = 'http://www.w3.org/2000/svg';
-  let cur = -1, tab = 'arch', rev = 0;
+  let cur = -1, tab = 'goals', rev = 0;
 
   const span = (a, b) => [a ? IDX[a] : 0, b ? IDX[b] : Infinity];
   const shownAt = (a, b, i) => { const [lo, hi] = span(a, b); return i >= lo && i <= hi; };
@@ -2145,7 +2361,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
   function act(a) {
     if (a === 'access') cur < IDX['2.2'] ? go(IDX['2.2']) : openPop('pop-access');
-    if (a === 'tkr') cur === IDX['2.3'] ? go(IDX['2.4']) : (openId === 'pop-tkr' ? closePop() : openPop('pop-tkr'));
   }
 
   // ---------- Gaps ----------
@@ -2215,6 +2430,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     if (rv) { const i = +rv.dataset.rev; i <= rev ? showPaper(i) : reveal(i); return; }
     const pk = t.closest('[data-peek]');
     if (pk) { showPaper(+pk.dataset.peek); return; }
+    if (tab === 'goals') return;
     if (tab === 'research') { if (t.closest('#view-research')) researchStep(1); return; }
     if (tab === 'revised') { rclick(t); return; }
     const goEl = t.closest('[data-go]');
@@ -2233,7 +2449,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   stage.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) { e.preventDefault(); e.target.click(); }
   });
-  const step = d => (tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
+  const step = d => (tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
   $('prev').addEventListener('click', () => step(-1));
   $('next').addEventListener('click', () => step(1));
   addEventListener('keydown', e => {
@@ -2285,6 +2501,31 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     if (prev >= 0) flow(beat.id);
   }
 
+  // ---------- Goals tab: three sections revealed in turn ----------
+  const GSTEPS = ['The goal', 'Bookable itinerary', 'Why plan first'];
+  let gcur = -1;
+  function ggo(i) {
+    i = Math.max(0, Math.min(GSTEPS.length - 1, i));
+    if (i === gcur) return;
+    const grow = i > gcur && gcur >= 0;
+    gcur = i;
+    document.querySelectorAll('#view-goals [data-g]').forEach(el => {
+      const on = +el.dataset.g <= i, was = !el.classList.contains('g-hide');
+      el.classList.toggle('g-hide', !on);
+      if (on && !was && grow) { el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter'); }
+    });
+    const tk = $('takeaway-g'), show = i === GSTEPS.length - 1;
+    if (show && grow && tk.classList.contains('is-hidden')) { tk.classList.remove('enter'); void tk.offsetWidth; tk.classList.add('enter'); }
+    tk.classList.toggle('is-hidden', !show);
+    syncNav();
+  }
+  function gsync() {
+    $('prev').disabled = gcur <= 0;
+    $('next').disabled = gcur >= GSTEPS.length - 1;
+    $('next').classList.toggle('hint', gcur === 0);
+    $('now').innerHTML = `Goals · ${gcur + 1} of ${GSTEPS.length}<span class="now-beat">${GSTEPS[gcur]}</span>`;
+  }
+
   // ---------- Research tab ----------
   const railR = $('rail-r');
   railR.innerHTML = PAPERS.map((pp, i) => `<li class="st">
@@ -2305,6 +2546,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         <h3 class="fc-name">${d.name}</h3>
         <p class="fc-title">${d.title} · <b>${d.by}</b></p>
       </header>
+      <section class="fc-sec fc-take"><p class="label">Key takeaway</p><p>${d.take}</p></section>
       <div class="fc-body">
         <div class="fc-col">
           <section class="fc-sec"><p class="label">Problem</p><p>${d.problem}</p></section>
@@ -2313,7 +2555,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </div>
         <div class="fc-col">
           <div class="fc-vis">${VIS[d.vis]}</div>
-          <section class="fc-sec fc-take"><p class="label">Key takeaway</p><p>${d.take}</p></section>
           <section class="fc-sec fc-design"><p class="label">What it means for our design</p><p>${d.design}</p></section>
         </div>
       </div>
@@ -2392,6 +2633,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     reveal(rev + d);
   }
   function syncNav() {
+    if (tab === 'goals') { gsync(); return; }
     if (tab === 'revised') { rsync(); return; }
     const r = tab === 'research';
     $('prev').disabled = r ? rev <= 0 : cur <= 0;
@@ -2406,7 +2648,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         (f.beats.length > 1 ? `<span class="now-beat">${beat.id} · ${beat.name}</span>` : '');
     }
   }
-  const VIEWS = { arch: 'view-arch', research: 'view-research', revised: 'view-revised' };
+  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised' };
   function setTab(t) {
     if (t === tab || !VIEWS[t]) return;
     tab = t;
@@ -3263,10 +3505,11 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   narrow.addEventListener('change', fit);
 
   go(0);
-  if (location.hash === '#research') setTab('research');
-  if (location.hash === '#revised') setTab('revised');
+  ggo(0);
+  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised' };
+  if (HASH[location.hash]) setTab(HASH[location.hash]);
   fit();
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); flow(BEATS[cur].id); });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); if (tab === 'arch') flow(BEATS[cur].id); });
 })();
 </script>
 </body>

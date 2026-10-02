@@ -6,7 +6,7 @@ The project is a single interactive HTML page (`index.html`). The user will pres
 interview-style walkthrough with a product person and an engineer. It explains the architecture of an
 AI trip planner. Scope is **plan, validate, edit**. Booking and payment are out of scope.
 
-Status on 2 Oct 2026: three tabs are built. The user likes the current state and has said they still
+Status on 2 Oct 2026: four tabs are built (Goals was added last, on the far left). The user likes the current state and has said they still
 want "some changes", without saying which yet. **Ask them what to change next. Don't guess.**
 
 ## Where things are
@@ -48,7 +48,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Icons are Lucide `<symbol>`s in the sprite at the top of `<body>`. Use them as `<svg class="ic"><use href="#i-NAME"/></svg>`, or `ic('NAME')` in the revised-tab content. Add new ones with `tools/sprite.py`.
 
 **Navigation**
-- Three tabs with deep links: `#architecture`, `#research`, `#revised`.
+- Four tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised`.
 - ← → keys (or PageUp/PageDown, or the round buttons top right) step through the current tab. Each tab remembers its position.
 - `#now` is the step label, shown in narrow mode only.
 
@@ -56,10 +56,19 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - One IIFE at the end of the file.
 - Shared: `setTab`, `syncNav`, `step`, `fit`, plus `box`/`geom` for wire geometry.
 - Architecture: `go`, `layout`, `flow`, `paintGaps`.
+- Goals: `ggo`, `gsync` (sections with `data-g` reveal one per step).
 - Research: `reveal`, `renderResearch`, `showPaper`.
 - Revised: `rrender`, `renderFocus`, `rlayout`, `rstep`, `rclick`, `rsync`.
 
-### Tab 1: Architecture (two flows, beats 1 and 2.1–2.5)
+### Tab 0: Goals (three steps)
+
+Built from the user's goal slide. Each → reveals one section; earlier ones stay.
+- **Step 1, the goal:** "Turn user intent into a personalised, feasible and bookable trip." User inputs → AI trip planner → a bookable itinerary.
+- **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. Beside them: a valid output must be Real, Feasible, Consistent, Measurable.
+- **Step 3, why plan first:** Flights, Hotels, Trains, Activities each list what their search needs, tagged ① structure or ② execution. A red card shows what goes wrong if the flight is booked first (Tokyo round trip vs Plan A ending in Kyoto).
+- Takeaway: "Plan the trip first. Every booking needs the itinerary's details."
+
+### Tab 1: Architecture (two flows, beats 1 and 2.1–2.4)
 
 **Flow 1, "Basic AI Search" (beat 1)**
 - Left: the trip input card. Middle: an LLM with web search. Right: a prose itinerary.
@@ -67,13 +76,12 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Takeaway: "AI needs factual data to plan and act."
 
 **Flow 2, "AI armed with data" (beats 2.1–2.5)**
-- 2.1: Data feeds (real-time: flights, hotels, weather; periodic: POIs, maps, festivals) flow into the travel knowledge repository.
-- 2.2: A broken link between the repository and the LLM opens four options: RAG (shows why it fails), typed constraints, agentic search, and "the right way".
+- 2.1: Data feeds (real-time: flights, hotels, weather; periodic: POIs, maps, festivals) flow into the travel knowledge repository. The repository is shown already filled (~100k places); there is no "empty" state and no click-through on how it is filled (removed on request). G3 and G10 close here.
+- 2.2: A broken link between the repository and the LLM opens four options: RAG (shows why it fails), typed constraints, agentic search, and "the right way". RAG carries a red "Fails on exact names and IDs" flag, and its panel leads with a highlighted block of near misses (Nishi Chaya → Higashi Chaya, SQ 511 → SQ 517, H-20418 → H-20481).
 - 2.3: The right way adds a query box with Trip facts, Trip dials and Residual text, each with a popover.
-- 2.4: The repository fills (popover: Ingest → Normalize → Enrich → Index, plus an example record).
-- 2.5: "Find candidates" (100k → 5k → 800 → 200, weighted score) returns ranked cities and activities to the LLM.
+- 2.4: "Find candidates" (100k → 5k → 800 → 200, weighted score) returns ranked cities and activities to the LLM.
 - Takeaway: "Filters make candidates valid, ranking makes them few."
-- Gaps after Flow 2: closed G1, G3, G10; partial G2, G7, G8; open G4, G5, G6, G9 ("4 open · 3 partial · 3 closed").
+- Gaps after Flow 2: closed G1, G3, G10 (G3, G10 at 2.1); partial G2, G7, G8; open G4, G5, G6, G9 ("4 open · 3 partial · 3 closed").
 
 **Config at the top of the script**
 - `FLOWS`: flows and their beats.
@@ -87,6 +95,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 
 ### Tab 2: Research
 
+- Each paper card shows the Key takeaway as a full-width band right under the title (moved to the top on request).
 - The tab is blank at first. Each → brings the next paper in as a large focus card, and earlier papers shrink into a timeline on the left (click one to reopen it).
 - `PAPER_DATA` has seven papers:
   - 2014 Tourist Trip Design survey (Gavalas et al.)
