@@ -1089,40 +1089,33 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 
 .syn-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
 .syn-llm, .syn-core { min-width: 0; display: flex; flex-direction: column; gap: 20px; padding: 24px 26px; border-radius: 16px; }
-.syn-llm { background: var(--sunk); }
-.syn-core { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 0 6px var(--accent-soft); }
+.syn-llm, .syn-core { background: var(--sunk); }
 .syn-h { display: flex; align-items: center; gap: 14px; }
 .syn-ic { flex: none; width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); }
-.syn-core .syn-ic { background: var(--accent-ink); color: var(--accent); }
 .syn-ic .ic { width: 27px; height: 27px; }
 .syn-h h4 { margin: 4px 0 0; font: 720 22px/1.25 var(--f-display); font-stretch: 106%; text-wrap: balance; }
-.syn-core .label { color: var(--accent-ink); opacity: .85; }
 .syn-not { display: flex; flex-wrap: wrap; gap: 8px; }
 .syn-not span {
   display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 8px; border-radius: 999px;
   font-size: 13.5px; font-weight: 650; color: var(--red); background: var(--red-soft);
 }
+.syn-not.is span { color: var(--green); background: var(--green-soft); }
 .syn-not .ic { width: 15px; height: 15px; stroke-width: 2.2; }
 .syn-jobs { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
 .syn-jobs li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 16px; line-height: 1.45; }
+.syn-jobs b { display: block; font-weight: 700; }
 .syn-jobs .ic { width: 19px; height: 19px; margin-top: 2px; color: var(--accent); stroke-width: 2.2; }
-.syn-tiles { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.syn-tiles div {
-  display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 18px;
-  border-radius: 12px; background: color-mix(in srgb, var(--accent-ink) 14%, transparent);
-}
-.syn-tiles .ic { width: 28px; height: 28px; }
-.syn-tiles b { font: 720 20px/1.2 var(--f-display); font-stretch: 104%; }
 .takeaway.is-hidden { visibility: hidden; }
 
 /* ---------- Goals ---------- */
-.goals { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 22px; padding-top: 6px; }
+.goals { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 48px; padding-bottom: 24px; }
 .g-sec { transition: opacity .4s, visibility .4s; }
 .g-sec.g-hide { opacity: 0; visibility: hidden; }
 .g-goal { display: grid; grid-template-columns: 390px minmax(0, 1fr); gap: 32px; align-items: center; }
 .g-eye { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--accent); }
 .g-eye .ic { width: 16px; height: 16px; }
 .g-title { font: 760 33px/1.12 var(--f-display); font-stretch: 112%; text-wrap: balance; }
+.g-sub { margin-top: 14px; font-size: 15px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
 .g-title em { font-style: normal; color: var(--accent); }
 .g-flow { display: grid; grid-template-columns: minmax(0, 1.3fr) 24px 112px 24px minmax(0, 1fr); align-items: center; gap: 8px; }
 .g-arrow { text-align: center; font: 600 20px/1 var(--f-mono); color: var(--ink-3); }
@@ -1150,10 +1143,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .g-sh h3 { flex: none; font: 720 20px/1.2 var(--f-display); font-stretch: 110%; }
 .g-sh p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
 .g-sh p b { font-weight: 650; color: var(--ink); }
-.g-src {
-  display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; vertical-align: 1px; flex: none;
-  font: 600 10px/1 var(--f-mono); font-style: normal; background: var(--accent); color: var(--accent-ink);
-}
 .g-what-body { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 18px; }
 .g-layers { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
 .g-layer { position: relative; display: flex; flex-direction: column; gap: 8px; }
@@ -1176,23 +1165,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .g-v b { display: block; font-size: 13.5px; font-weight: 700; }
 .g-v span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
 
-.g-why-body { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; }
-.g-needs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.g-need { display: flex; flex-direction: column; gap: 8px; }
-.g-need header { display: flex; align-items: center; gap: 9px; font: 680 15px/1.2 var(--f-display); font-stretch: 106%; }
-.g-need ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
-.g-need li {
-  display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px 4px 5px; border-radius: 7px;
-  background: var(--accent-soft); font-size: 12px; font-weight: 600; white-space: nowrap;
-}
-.g-wrong {
-  display: flex; flex-direction: column; gap: 7px; padding: 14px 16px 15px; border-radius: 14px;
-  background: var(--red-soft); border: 1px solid var(--red-line);
-}
-.g-wrong h4 { margin: 0; display: flex; align-items: center; gap: 8px; font: 700 15px/1.2 var(--f-display); color: var(--red); }
-.g-wrong h4 .ic { width: 17px; height: 17px; }
-.g-wrong p { font-size: 13px; line-height: 1.45; }
-.g-wrong .g-fix { margin-top: auto; font-weight: 700; }
 
 /* ---------- Linking a gap to where it shows up ---------- */
 [data-gaps] { transition: background-color .2s, box-shadow .2s; }
@@ -1257,19 +1229,18 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .fc-name { font-size: 23px; }
   .fc-sec > p:not(.label), .fc-design p:not(.label), .fc-points li, .syn-jobs li { font-size: 14px; }
   .syn-body { grid-template-columns: 1fr; }
-  .syn-tiles b { font-size: 17px; }
   .fc-take p:not(.label) { font-size: 17px; }
   .fc-body { grid-template-columns: 1fr; gap: 18px; }
   .stat b { font-size: 40px; }
   .goals { gap: 26px; }
   .g-sec.g-hide { display: none; }
-  .g-goal, .g-what-body, .g-why-body, .g-flow, .g-layers, .g-needs { grid-template-columns: minmax(0, 1fr); }
+  .g-goal, .g-what-body, .g-flow, .g-layers { grid-template-columns: minmax(0, 1fr); }
   .g-title { font-size: 26px; }
   .g-arrow { transform: rotate(90deg); }
   .g-layer + .g-layer::before { content: "\2193"; left: 50%; top: -22px; transform: translateX(-50%); }
   .g-sh { flex-direction: column; gap: 4px; }
   .g-sh h3 { flex: initial; }
-  .g-chip, .g-need li { white-space: normal; }
+  .g-chip { white-space: normal; }
   .takeaway { flex-direction: column; gap: 6px; margin-top: 0; }
   .takeaway p { font-size: 21px; }
 }
@@ -1422,6 +1393,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             <div>
               <p class="eyebrow g-eye"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Goal of the system</p>
               <h2 class="g-title">Turn user intent into a <em>personalised</em>, <em>feasible</em> and <em>bookable</em> trip.</h2>
+              <p class="g-sub">From a few trip facts and a free-text wish, the system builds a day-by-day plan that fits the traveller’s constraints and taste, uses only real, available inventory, and can be booked as it stands, with no re-planning by hand.</p>
             </div>
             <div class="g-flow">
               <div class="card g-in">
@@ -1486,46 +1458,10 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             </div>
           </section>
 
-          <section class="g-sec g-why" data-g="2" aria-label="Why the itinerary comes first">
-            <div class="g-sh">
-              <h3>Why plan the itinerary before flights and hotels?</h3>
-              <p>Every booking is a search, and its inputs come from the itinerary: <i class="g-src" title="Trip structure">1</i> trip structure, <i class="g-src" title="Trip execution">2</i> trip execution.</p>
-            </div>
-            <div class="g-why-body">
-              <div class="g-needs">
-            <article class="card g-need">
-              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></span>Flights</header>
-              <p class="label">Needs</p>
-              <ul><li><i class="g-src" title="Trip structure">1</i>Into Tokyo</li><li><i class="g-src" title="Trip structure">1</i>Out of Osaka KIX</li><li><i class="g-src" title="Trip structure">1</i>28 Apr</li><li><i class="g-src" title="Trip structure">1</i>4 May</li><li><i class="g-src" title="Trip structure">1</i>2 adults</li></ul>
-            </article>
-            <article class="card g-need">
-              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-hotel"/></svg></span>Hotels</header>
-              <p class="label">Needs</p>
-              <ul><li><i class="g-src" title="Trip structure">1</i>Tokyo · Kanazawa · Kyoto</li><li><i class="g-src" title="Trip structure">1</i>2 + 2 + 2 nights</li><li><i class="g-src" title="Trip execution">2</i>Ryokan in Gion</li><li><i class="g-src" title="Trip execution">2</i>Step-free room</li></ul>
-            </article>
-            <article class="card g-need">
-              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-train-front"/></svg></span>Trains</header>
-              <p class="label">Needs</p>
-              <ul><li><i class="g-src" title="Trip structure">1</i>Tokyo → Kanazawa</li><li><i class="g-src" title="Trip structure">1</i>Kanazawa → Kyoto</li><li><i class="g-src" title="Trip structure">1</i>Days 3 and 5</li><li><i class="g-src" title="Trip execution">2</i>10:24 departure</li></ul>
-            </article>
-            <article class="card g-need">
-              <header><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-ticket"/></svg></span>Activities</header>
-              <p class="label">Needs</p>
-              <ul><li><i class="g-src" title="Trip execution">2</i>Fushimi Inari</li><li><i class="g-src" title="Trip structure">1</i>3 May</li><li><i class="g-src" title="Trip execution">2</i>07:00, before crowds</li><li><i class="g-src" title="Trip structure">1</i>2 adults</li></ul>
-            </article>
-              </div>
-              <div class="g-wrong">
-                <h4><svg class="ic" aria-hidden="true"><use href="#i-triangle-alert"/></svg>Book the flight first?</h4>
-                <p>A Tokyo round trip gets booked before the route exists. Plan A ends in Kyoto, so the last day loses 2 h 15 riding back to Tokyo.</p>
-                <p>Hotels first has the same problem: nights get fixed before the cities are chosen.</p>
-                <p class="g-fix">Plan first, then search the inventory.</p>
-              </div>
-            </div>
-          </section>
         </div>
         <footer class="takeaway is-hidden" id="takeaway-g">
           <span class="label">Takeaway</span>
-          <p>Plan the trip first. Every booking needs the itinerary’s details.</p>
+          <p>The output is not a suggestion. It is a trip that can be booked as is.</p>
         </footer>
       </div>
 
@@ -2502,7 +2438,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
 
   // ---------- Goals tab: three sections revealed in turn ----------
-  const GSTEPS = ['The goal', 'Bookable itinerary', 'Why plan first'];
+  const GSTEPS = ['The goal', 'Bookable itinerary'];
   let gcur = -1;
   function ggo(i) {
     i = Math.max(0, Math.min(GSTEPS.length - 1, i));
@@ -2563,13 +2499,19 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   function synthesisCard() {
     const ic = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
     const jobs = [
-      'Converts natural-language intent into a structured preference and constraint model',
-      'Asks high-value clarification questions',
-      'Generates candidate strategies',
-      'Interprets changes',
-      'Explains the optimizer’s output',
+      ['Understand', 'Turns a free-text wish into typed constraints and preferences'],
+      ['Clarify', 'Asks only the questions that would change the plan'],
+      ['Propose', 'Suggests candidate strategies for the solver to test'],
+      ['Edit', 'Turns follow-ups into precise changes to the plan'],
+      ['Explain', 'Narrates the chosen plan and its trade-offs from solver output'],
     ];
-    const core = [['database', 'Factual grounding'], ['circle-check', 'Feasibility'], ['route', 'Routing'], ['lock', 'Hard constraints']];
+    const core = [
+      ['Ground', 'Places, prices and availability come from verified data with IDs'],
+      ['Enforce', 'Dates, budget, diet and walking limits are met exactly, never traded off'],
+      ['Optimize', 'Cities, days and routes are chosen by an explicit trip score'],
+      ['Validate', 'Every plan is checked end to end before anyone sees it'],
+    ];
+    const items = a => `<ul class="syn-jobs">${a.map(([b, t]) => `<li>${ic('check')}<span><b>${b}</b>${t}</span></li>`).join('')}</ul>`;
     return `<article class="fcard">
       <header>
         <div class="fc-meta"><span class="pp-year">Synthesis</span></div>
@@ -2580,12 +2522,13 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <div class="syn-h"><span class="syn-ic">${ic('brain-circuit')}</span>
             <div><p class="label">The LLM</p><h4>Semantic interface and search partner</h4></div></div>
           <p class="syn-not"><span>${ic('x')}Not the source of truth</span><span>${ic('x')}Not the constraint solver</span></p>
-          <ul class="syn-jobs">${jobs.map(j => `<li>${ic('check')}<span>${j}</span></li>`).join('')}</ul>
+          ${items(jobs)}
         </section>
         <section class="syn-core">
           <div class="syn-h"><span class="syn-ic">${ic('cpu')}</span>
             <div><p class="label">What our design depends on</p><h4>Deterministic tools and optimization algorithms</h4></div></div>
-          <div class="syn-tiles">${core.map(([n, t]) => `<div>${ic(n)}<b>${t}</b></div>`).join('')}</div>
+          <p class="syn-not is"><span>${ic('check')}Same input, same answer</span><span>${ic('check')}Every result traceable</span></p>
+          ${items(core)}
         </section>
       </div>
     </article>`;

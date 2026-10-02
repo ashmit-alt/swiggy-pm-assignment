@@ -60,13 +60,13 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Research: `reveal`, `renderResearch`, `showPaper`.
 - Revised: `rrender`, `renderFocus`, `rlayout`, `rstep`, `rclick`, `rsync`.
 
-### Tab 0: Goals (three steps)
+### Tab 0: Goals (two steps)
 
 Built from the user's goal slide. Each → reveals one section; earlier ones stay.
-- **Step 1, the goal:** "Turn user intent into a personalised, feasible and bookable trip." User inputs → AI trip planner → a bookable itinerary.
+- **Step 1, the goal:** "Turn user intent into a personalised, feasible and bookable trip." plus a short supporting paragraph (`.g-sub`). User inputs → AI trip planner → a bookable itinerary.
 - **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. Beside them: a valid output must be Real, Feasible, Consistent, Measurable.
-- **Step 3, why plan first:** Flights, Hotels, Trains, Activities each list what their search needs, tagged ① structure or ② execution. A red card shows what goes wrong if the flight is booked first (Tokyo round trip vs Plan A ending in Kyoto).
-- Takeaway: "Plan the trip first. Every booking needs the itinerary's details."
+- The "Why plan the itinerary before flights and hotels?" section was removed on request.
+- Takeaway: "The output is not a suggestion. It is a trip that can be booked as is."
 
 ### Tab 1: Architecture (two flows, beats 1 and 2.1–2.4)
 
@@ -105,13 +105,10 @@ Built from the user's goal slide. Each → reveals one section; earlier ones sta
   - 2025 Formal verification (Hao et al.): 93.9% on TravelPlanner, in their setup
   - 2025 AoT+ structured search (Sel, Jia & Jin)
   - 2026 TravelBench (Cheng et al.): 1,100 tasks
-- The last step is the synthesis card, built by `synthesisCard()`. It uses the user's exact text:
-  > Use LLM as the semantic interface and search partner, not as the source of truth or the constraint
-  > solver. It converts natural-language intent into a structured preference and constraint model, asks
-  > high-value clarification questions, generates candidate strategies, interprets changes, and explains
-  > the optimizer's output. Deterministic tools and optimization algorithms handle factual grounding,
-  > feasibility, routing and hard constraints.
-- The highlighted block reads "What our design depends on: Deterministic tools and optimization algorithms", with tiles for Factual grounding, Feasibility, Routing and Hard constraints.
+- The last step is the synthesis card, built by `synthesisCard()`. Two boxes styled the same (no highlighted box, on request), each a list of verb + one line:
+  - **The LLM: semantic interface and search partner.** Pills: not the source of truth, not the constraint solver. Understand, Clarify, Propose, Edit, Explain.
+  - **What our design depends on: deterministic tools and optimization algorithms.** Pills: same input same answer, every result traceable. Ground, Enforce, Optimize, Validate.
+  - The user asked for these sharper points in place of their original wording; keep them short.
 - A bottom takeaway appears at the end: "The LLM handles meaning. Data, solvers and validators handle guarantees."
 
 ### Tab 3: Revised architecture (where the recent work is)
