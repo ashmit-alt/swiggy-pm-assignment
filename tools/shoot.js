@@ -3,7 +3,7 @@
 //
 // Usage: node tools/shoot.js <architecture|research|revised> <out-dir> [step ...] [--dark] [--phone]
 //   A step is the number of → presses from the tab's first state.
-//   Revised tab: 0 = start, 1-27 = component parts, 28 = all components.
+//   Revised tab: 0 = start, 1-37 = component parts, 38 = all components.
 //   With no steps, the revised tab checks every step and screenshots only the ones listed.
 //
 // Needs Playwright with Chromium. In Claude Code cloud containers it lives in /opt/node-tools,
@@ -41,7 +41,7 @@ const file = 'file://' + path.resolve(__dirname, '..', 'index.html') + '#' + tab
   await page.goto(file, { waitUntil: 'networkidle' });
   await page.waitForTimeout(600);
 
-  const last = tab === 'revised' && !steps.length ? 28 : Math.max(0, ...steps);
+  const last = tab === 'revised' && !steps.length ? 38 : Math.max(0, ...steps);
   const suffix = (dark ? '-dark' : '') + (phone ? '-phone' : '');
   for (let n = 0, at = 0; n <= last; n++) {
     while (at < n) { await page.keyboard.press('ArrowRight'); at++; }

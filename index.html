@@ -40,6 +40,10 @@
   --t-transit-soft: #E2EEF8;
   --t-stay: #A33A7E;
   --t-stay-soft: #F7E5F0;
+  --llm: #7A3FC4;
+  --llm-ink: #FFFFFF;
+  --llm-soft: #F1EAFB;
+  --llm-line: #D3BFF0;
   --shadow: 0 1px 2px rgb(20 26 49 / .05), 0 6px 18px rgb(20 26 49 / .06);
   --pop-shadow: 0 2px 6px rgb(20 26 49 / .08), 0 16px 44px rgb(20 26 49 / .18);
   --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -55,6 +59,7 @@
     --green: #52D08F; --green-soft: #0E2A1C; --green-line: #1D573A;
     --amber: #FFA65C; --amber-soft: #2D1C0F; --amber-line: #6B4019; --accent-2: #4A56B0;
     --t-transit: #73B6F5; --t-transit-soft: #10243A; --t-stay: #EE90CC; --t-stay-soft: #2E1427;
+    --llm: #C3A0F5; --llm-ink: #1A1030; --llm-soft: #261A3A; --llm-line: #4E3878;
     --shadow: 0 1px 2px rgb(0 0 0 / .35), 0 6px 18px rgb(0 0 0 / .22);
     --pop-shadow: 0 2px 6px rgb(0 0 0 / .4), 0 16px 44px rgb(0 0 0 / .5);
     color-scheme: dark;
@@ -68,6 +73,7 @@
   --green: #52D08F; --green-soft: #0E2A1C; --green-line: #1D573A;
   --amber: #FFA65C; --amber-soft: #2D1C0F; --amber-line: #6B4019; --accent-2: #4A56B0;
     --t-transit: #73B6F5; --t-transit-soft: #10243A; --t-stay: #EE90CC; --t-stay-soft: #2E1427;
+    --llm: #C3A0F5; --llm-ink: #1A1030; --llm-soft: #261A3A; --llm-line: #4E3878;
   --shadow: 0 1px 2px rgb(0 0 0 / .35), 0 6px 18px rgb(0 0 0 / .22);
   --pop-shadow: 0 2px 6px rgb(0 0 0 / .4), 0 16px 44px rgb(0 0 0 / .5);
   color-scheme: dark;
@@ -623,11 +629,6 @@ button { font: inherit; color: inherit; }
 #r-output .out-card { min-height: 420px; }
 
 /* Kind of work and trip-score terms, used in chips, headers and examples */
-.kind { flex: none; padding: 4px 6px; border-radius: 5px; font: 600 9.5px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; }
-.kind.llm { color: var(--accent-ink); background: var(--accent); }
-.kind.code { color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--edge); }
-.kind.data { color: var(--ink-3); box-shadow: inset 0 0 0 1px var(--line); }
-.kind.state { color: var(--ink-2); background: var(--sunk); box-shadow: inset 0 0 0 1px var(--line); }
 .terms { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .terms .label { margin-right: 2px; }
 .term { display: inline-flex; align-items: center; padding: 2px 6px; border-radius: 5px; font: 600 10.5px/1.35 var(--f-mono); white-space: nowrap; color: var(--tc); background: var(--tb); }
@@ -639,7 +640,7 @@ button { font: inherit; color: inherit; }
 
 /* Chips */
 .rk {
-  position: absolute; z-index: 2; margin: 0; padding: 0 14px; overflow: hidden; text-align: left;
+  position: absolute; z-index: 2; margin: 0; padding: 0 12px; overflow: hidden; text-align: left;
   display: flex; flex-direction: column; font: inherit; color: var(--ink);
   border-radius: 12px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow);
   transition: left .7s var(--ease), top .7s var(--ease), width .7s var(--ease), height .7s var(--ease),
@@ -649,15 +650,15 @@ button.rk { appearance: none; cursor: pointer; }
 button.rk:hover { border-color: var(--edge); }
 button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .rk.off { opacity: 0; visibility: hidden; pointer-events: none; }
-.rk.is-llm { background: var(--accent-soft); }
+.rk.is-llm { background: var(--llm-soft); border-color: var(--llm-line); }
+.rk.is-llm .rk-code { background: var(--llm); color: var(--llm-ink); }
 .rk.is-data { background: var(--sunk); }
 .rk.is-out { border-style: dashed; box-shadow: none; }
-.rk-h { flex: none; height: 48px; display: flex; align-items: center; gap: 9px; min-width: 0; }
+.rk-h { flex: none; height: 46px; display: flex; align-items: center; gap: 9px; min-width: 0; }
 .rk-h .ic { width: 17px; height: 17px; color: var(--ink-2); }
 .rk-code { flex: none; padding: 5px 7px; border-radius: 6px; font: 700 12px/1 var(--f-mono); color: var(--bg); background: var(--ink); transition: background-color .3s, color .3s; }
-.rk-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 650 15px/1.2 var(--f-display); }
+.rk-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 650 14px/1.2 var(--f-display); }
 .rk-more { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding-bottom: 10px; opacity: 0; transition: opacity .25s; }
-.rk-kinds { display: flex; gap: 4px; }
 .rk-role { font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
 .rk-subs, .rk-feeds { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .rk-subs i, .rk-feeds i { font: 500 10.5px/1 var(--f-mono); font-style: normal; padding: 3px 5px; border-radius: 5px; color: var(--ink-2); background: var(--sunk); }
@@ -666,6 +667,19 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .rk-feeds b { margin: 0 2px 0 6px; font: 600 10px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
 .rk-feeds b:first-child { margin-left: 0; }
 .rmap.is-over .rk-more { opacity: 1; transition: opacity .4s .35s; }
+.rmap.is-band .rk-h { height: 38px; }
+#rk-5 .rk-more { max-width: 270px; }
+.rlegend {
+  position: absolute; z-index: 3; margin: 0; padding: 0; list-style: none; display: flex; gap: 6px 14px;
+  font: 500 10.5px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2);
+  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+}
+.rlegend li { display: flex; align-items: center; gap: 6px; }
+.rlegend i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); }
+.rlegend .lg-llm { background: var(--llm-soft); border-color: var(--llm-line); }
+.rlegend .lg-data { background: var(--sunk); }
+.rmap.is-band .rlegend { left: 0; top: 64px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
+.rmap.is-over .rlegend { left: 0; top: 724px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
 .rk.is-focus { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow); }
 .rk.is-focus .rk-code { color: var(--accent); background: var(--accent-ink); }
 
@@ -679,7 +693,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 
 /* Focus card */
 .fk {
-  position: absolute; left: 0; right: 0; top: 232px; bottom: 0; z-index: 4;
+  position: absolute; left: 0; right: 0; top: 226px; bottom: 0; z-index: 4;
   display: flex; flex-direction: column; gap: 14px; padding: 16px 24px 18px;
   border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
   transition: opacity .35s, transform .35s, visibility .35s;
@@ -694,7 +708,8 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .fk-code { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; font: 700 15px/1 var(--f-mono); color: var(--accent-ink); background: var(--accent); }
 .fk-t { flex: 1; min-width: 0; }
 .fk-t h3 { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font: 760 23px/1.15 var(--f-display); font-stretch: 112%; text-wrap: balance; }
-.fk-t h3 .kind { font-stretch: 100%; }
+.fk.is-llm .fk-code { background: var(--llm); color: var(--llm-ink); }
+.fk.is-llm::before { border-bottom-color: var(--llm); }
 .fk-t p { margin-top: 5px; font-size: 14.5px; color: var(--ink-2); }
 .fk-io { flex: none; width: 450px; margin: 0; display: grid; gap: 4px; }
 .fk-io div { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 8px; align-items: baseline; }
@@ -717,6 +732,10 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .stab.is-on em { color: var(--ink-2); }
 .stab.is-obj { border-style: dashed; }
 .stab-arr { flex: none; display: grid; place-items: center; color: var(--edge); }
+.stabs.many { gap: 5px; }
+.stabs.many .stab { padding-right: 10px; }
+.stabs.many .stab em { display: none; }
+.stabs.many .stab b { font-size: 13px; }
 .stab-arr .ic { width: 17px; height: 17px; }
 .stab-gap { flex: none; width: 1px; height: 34px; margin: 0 6px; background: var(--line); }
 .stabs-r { margin-left: auto; }
@@ -932,6 +951,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .rules { margin: 0; padding: 11px 13px; border-radius: 10px; background: var(--sunk); font: 500 12px/1.75 var(--f-mono); color: var(--ink); white-space: pre; overflow-x: auto; }
 .rules .c { color: var(--ink-3); }
 .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cases.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .case { display: flex; flex-direction: column; gap: 7px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); font-size: 13px; line-height: 1.45; }
 .case-h { display: flex; align-items: center; gap: 8px; font-size: 14px; }
 .case-h b { font-weight: 650; }
@@ -1869,11 +1889,14 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             </defs>
             <g id="wire-layer-r"></g>
           </svg>
-          <p class="lane" style="top:2px"><b>Conversation</b><span>Meaning: the LLM’s job</span></p>
-          <i class="lane-rule" style="top:292px"></i>
-          <p class="lane" style="top:300px"><b>Planning</b><span>Guarantees: code and solvers</span></p>
-          <i class="lane-rule" style="top:584px"></i>
-          <p class="lane" style="top:592px"><b>Data</b><span>Facts with a source and a time</span></p>
+          <p class="lane" style="top:0"><b>Conversation</b><span>and the trip state</span></p>
+          <i class="lane-rule" style="top:224px"></i>
+          <p class="lane" style="top:232px"><b>Judgement</b><span>The LLM, wherever code needs a call</span></p>
+          <i class="lane-rule" style="top:428px"></i>
+          <p class="lane" style="top:436px"><b>Planning</b><span>Guarantees: code and solvers</span></p>
+          <i class="lane-rule" style="top:648px"></i>
+          <p class="lane" style="top:656px"><b>Data</b><span>Facts with a source and a time</span></p>
+          <ul class="rlegend" aria-label="Legend"><li><i class="lg-llm"></i>Uses the LLM</li><li><i></i>Code</li><li><i class="lg-data"></i>Data and state</li></ul>
 
           <article class="node card" id="r-input">
             <header class="node-h">
@@ -2499,10 +2522,10 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   function synthesisCard() {
     const ic = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
     const jobs = [
-      ['Understand', 'Turns a free-text wish into typed constraints and preferences'],
+      ['Understand', 'Turns a free-text wish into typed updates to the trip state'],
       ['Clarify', 'Asks only the questions that would change the plan'],
-      ['Propose', 'Suggests candidate strategies for the solver to test'],
-      ['Edit', 'Turns follow-ups into precise changes to the plan'],
+      ['Judge', 'Scores fuzzy wishes like “old Japan”, with a reason'],
+      ['Resolve', 'Reads why code got stuck, then fixes it or asks the traveller'],
       ['Explain', 'Narrates the chosen plan and its trade-offs from solver output'],
     ];
     const core = [
@@ -2612,8 +2635,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   // ---------- Revised architecture: one component in focus, the rest minimized ----------
   // Small builders for the deep-dive content.
   const ic = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
-  const KIND = { llm: 'LLM', code: 'Code', data: 'Data', state: 'State' };
-  const kp = k => `<span class="kind ${k}">${KIND[k]}</span>`;
   const TERM = { fit: 'Fit', cost: 'Cost', transit: 'Transit', stay: 'Stay', score: 'Trip score' };
   const T = (k, s = TERM[k]) => `<span class="term ${k}">${s}</span>`;
   const fx = s => `<div class="fx">${s}</div>`;
@@ -2681,51 +2702,48 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   // The eight components. Every example follows the same trip from the Architecture tab.
   // seq: the parts run in order. obj: the first part is the objective the others serve.
   const RK = [
-    { id: 1, code: 'C1', name: 'Dialogue & trip state manager', short: 'Dialogue & trip state', kinds: ['llm', 'state'], cls: 'is-llm', seq: true,
-      role: 'Understands the traveller and keeps one typed trip state.',
-      in: 'The trip form and every chat message',
-      out: 'Trip state → C2, C4 · questions → traveller · changes → C8',
+    { id: 1, code: 'C1', name: 'Dialogue manager', short: 'Dialogue manager', cls: 'is-llm', seq: true,
+      role: 'Talks to the traveller, updates the trip state, and asks when unsure.',
+      in: 'The trip form · every chat message · decisions from C5',
+      out: 'Typed updates → C2 · questions and options → traveller',
       subs: [
-        { n: 'Intent classifier', d: 'Message → request type', t: 'Intent', kind: 'llm',
+        { n: 'Understand input', d: 'Message → intent and details', t: 'Understand', kind: 'llm',
           lead: 'Reads each message and decides what the system should do with it.',
           how: [
             '<b>Classify</b> it: new trip, change, question or out of scope',
             '<b>Extract</b> the details as a typed patch',
             '<b>Ask</b> instead of guessing when unsure',
-            '<b>Route</b> it: plan to C2, change to C8, question to C7',
+            '<b>Route</b> it: plan or change to C2, question to C9',
           ],
           ex: `<div class="msgs g2">
             ${msg('We’re vegetarian, one of us has a bad knee, we hate crowds…', 'New trip', 'plan it', '0.97', 'C2', 'diet: vegetarian · max_walk_km: 4 · stairs: low · crowd_tolerance: low · residual: “feel like old Japan”')}
-            ${msg('Can day 6 be lighter?', 'Change', 'edit day 6', '0.91', 'C8', 'days[6].pace: lower')}
-            ${msg('Why isn’t Kinkaku-ji in the plan?', 'Question', 'explain a choice', '0.88', 'C7', 'answer from: trade-off log')}
+            ${msg('Can day 6 be lighter?', 'Change', 'edit day 6', '0.91', 'C2', 'days[6].pace: lower')}
+            ${msg('Why isn’t Kinkaku-ji in the plan?', 'Question', 'explain a choice', '0.88', 'C9', 'answer from: trade-off log')}
             ${msg('Book the Kyoto hotel for us.', 'Out of scope', 'booking', '0.95', 'reply', 'We compare options. Booking happens on the provider’s site.')}
           </div>${note('P is how sure the classifier is. Below 0.75 it asks one short question instead of guessing.')}` },
-        { n: 'Trip state manager', d: 'One typed record of the trip', t: 'State', kind: 'state',
-          lead: 'Keeps one typed record of the trip. Every component reads it.',
+        { n: 'Update trip state', d: 'Typed patches, never free text', t: 'Update', kind: 'llm',
+          lead: 'Writes what it understood into the trip state, as typed patches.',
           how: [
-            '<b>Hard constraints</b> are never traded off',
-            '<b>Trip dials</b> are soft preferences, from 0 to 1',
-            '<b>Trip context</b>: who, from where, how long',
-            '<b>Residual text</b> feeds semantic search',
+            '<b>Map</b> each detail to a field',
+            '<b>Mark</b> it stated, inferred or default',
+            '<b>Confirm</b> before changing a hard constraint',
+            '<b>Never overwrite</b>: every patch is a new version in C2',
           ],
-          ex: `<div class="ts4">
-            <div class="tsc"><p class="label">${ic('lock')}Hard constraints</p>
-              <ul class="kv"><li><span>Dates</span><b>28 Apr – 4 May</b></li><li><span>Diet</span><b>vegetarian, no dashi</b></li>
-              <li><span>Walking</span><b>≤ 4 km a day</b></li><li><span>Stairs</span><b>low</b></li><li><span>Budget</span><b>≤ ₹3.2 L, asked</b></li></ul></div>
-            <div class="tsc"><p class="label">${ic('sliders-horizontal')}Trip dials · soft preferences</p>
-              ${dials([['crowd_tolerance', .14, 'stated'], ['pace', .30, 'inferred'], ['temples', .80, 'stated'], ['food', .80, 'stated'], ['photography', .70, 'stated'], ['hidden_gem_share', .30, 'default']])}</div>
-            <div class="tsc"><p class="label">${ic('users')}Trip context</p>
-              <ul class="kv"><li><span>Who</span><b>2 adults</b></li><li><span>From</span><b>Bengaluru</b></li><li><span>Length</span><b>7 days, 6 nights</b></li><li><span>First visit</span><b>unknown</b></li></ul></div>
-            <div class="tsc"><p class="label">${ic('text-search')}Residual text</p>
-              <p class="res">“feel like old Japan”</p><p class="vec">→ embedding, matched against place descriptions in C2</p></div>
-          </div>${note('“Hate crowds” moved crowd_tolerance from the default 0.5 to 0.14. Inferred values stay unsure until the traveller confirms them.')}` },
+          ex: `<div class="ex2"><div>${eh('One message, four fields')}${tb(['The traveller said', 'Field', 'Kind'], [
+              ['“vegetarian”', 'diet = vegetarian, no dashi', pl('hard', 'acc')],
+              ['“a bad knee”', 'max_walk_km = 4 · stairs = low', pl('hard', 'acc')],
+              ['“we hate crowds”', 'crowd_tolerance = 0.14', pl('dial', 'mute')],
+              ['“feel like old Japan”', 'residual text', pl('text', 'mute')],
+            ])}${note('Hard fields come only from what the traveller said or confirmed. Guesses stay soft dials.')}</div>
+            <div>${eh('The patch C2 receives')}${json({ op: 'set', path: 'hard.max_walk_km', value: 4, source: 'stated: “bad knee”', confidence: 0.8 })}
+              ${note('C2 stores it as a new version. C1 never edits a plan directly.')}</div></div>` },
         { n: 'Clarify & offer options', d: 'Only questions that matter', t: 'Clarify', kind: 'llm',
-          lead: 'Asks few questions, and turns C4’s trade-offs into clear choices.',
+          lead: 'Asks few questions, and turns C5’s decisions into clear choices.',
           how: [
             '<b>List</b> missing and unsure details',
             '<b>Ask</b> only the one or two that change the plan',
             '<b>Default</b> the rest, and say so',
-            '<b>Offer options</b> when C4 needs a decision',
+            '<b>Offer options</b> when C5 needs the traveller to decide',
           ],
           ex: `<div class="ex2"><div>${eh('Open questions, most useful first')}${tb(['Question', '#Sure', '#Impact', 'Then'], [
               { c: ['Total budget?', '0.0', '0.45', pl('Ask', 'acc')], cls: 'hi' },
@@ -2733,17 +2751,62 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ['A ryokan night?', '0.5', '0.12', pl('Default: 1 night', 'mute')],
               ['Early starts OK?', '0.6', '0.10', pl('Default: yes', 'mute')],
             ])}${note('Impact is how much the best plan would change with the answer.')}</div>
-            <div>${eh('When C4 needs a decision')}<div class="offer">
+            <div>${eh('When C5 needs a decision')}<div class="offer">
               <p class="offer-h">${ic('scale')}<span>The traveller said ₹2.5 L. Golden Week fares push every plan past it.</span></p>
               <ol><li class="is-pick"><b>Raise to ₹3.2 L</b><span>Keeps Tokyo, Kanazawa and Kyoto</span></li>
               <li><b>Keep ₹2.5 L</b><span>Travel 10–16 May, when fares are about 30% lower</span></li></ol>
-            </div>${note('The traveller picks the first. “Budget ≤ ₹3.2 L” becomes a hard constraint.')}</div></div>` },
+            </div>${note('The traveller picks the first. “Budget ≤ ₹3.2 L” becomes a hard constraint in C2.')}</div></div>` },
       ] },
 
-    { id: 2, code: 'C2', name: 'Candidate generator', short: 'Candidate generator', kinds: ['code'], seq: true,
+    { id: 2, code: 'C2', name: 'Trip state', short: 'Trip state', cls: 'is-data', seq: false,
+      role: 'One typed, versioned record of the trip. The single source of truth.',
+      in: 'Typed updates from C1 · approved changes from C5',
+      out: 'Read by C3, C5, C6 and C8 · new versions → C10',
+      subs: [
+        { n: 'Hard constraints', d: 'Never traded off', t: 'Hard', kind: 'state',
+          lead: 'The rules every plan must meet. Code enforces them exactly.',
+          how: [
+            '<b>Typed</b>: dates, diet, walking, stairs, budget',
+            '<b>Set</b> only from what the traveller said or confirmed',
+            '<b>Become</b> filters in C3 and checks in C8',
+            '<b>Changed</b> only with the traveller’s yes',
+          ],
+          ex: `<div class="ex2"><div><div class="tsc"><p class="label">${ic('lock')}Hard constraints</p>
+              <ul class="kv"><li><span>Dates</span><b>28 Apr – 4 May</b></li><li><span>Diet</span><b>vegetarian, no dashi</b></li>
+              <li><span>Walking</span><b>≤ 4 km a day</b></li><li><span>Stairs</span><b>low</b></li><li><span>Budget</span><b>≤ ₹3.2 L, confirmed</b></li></ul></div></div><div><div class="tsc"><p class="label">${ic('users')}Trip context</p>
+              <ul class="kv"><li><span>Who</span><b>2 adults</b></li><li><span>From</span><b>Bengaluru</b></li><li><span>Length</span><b>7 days, 6 nights</b></li><li><span>First visit</span><b>unknown</b></li></ul></div>
+            ${note('Context is not a rule, but every component reads it: rooms for 2, flights from Bengaluru.')}</div></div>` },
+        { n: 'Dials & residual text', d: 'Soft preferences', t: 'Dials', kind: 'state',
+          lead: 'Soft preferences, each from 0 to 1, plus the wish no field can hold.',
+          how: [
+            '<b>Dials</b> set the weights in C3 and C6',
+            '<b>Each</b> records its source: stated, inferred or default',
+            '<b>Residual text</b> is judged by C5',
+          ],
+          ex: `<div class="ex2 wide"><div><div class="tsc"><p class="label">${ic('sliders-horizontal')}Trip dials · soft preferences</p>
+              ${dials([['crowd_tolerance', .14, 'stated'], ['pace', .30, 'inferred'], ['temples', .80, 'stated'], ['food', .80, 'stated'], ['photography', .70, 'stated'], ['hidden_gem_share', .30, 'default']])}</div></div>
+            <div><div class="tsc"><p class="label">${ic('text-search')}Residual text</p>
+              <p class="res">“feel like old Japan”</p><p class="vec">→ C5 judges each place against it, for C3</p></div>
+              ${note('“Hate crowds” moved crowd_tolerance from the default 0.5 to 0.14. Inferred values stay unsure until the traveller confirms them.')}</div></div>` },
+        { n: 'Versions', d: 'Every change, who and why', t: 'Versions', kind: 'state',
+          lead: 'Every change is a new version, so plans can be compared, explained and undone.',
+          how: [
+            '<b>Log</b> who changed what, and why',
+            '<b>Diff</b> versions to find what a re-plan must touch',
+            '<b>Undo</b> any change',
+          ],
+          ex: `${tb(['v', 'Change', 'By', 'Why'], [
+              ['1', 'Trip created from the form and first message', 'C1', 'the traveller'],
+              ['2', 'Budget ₹2.5 L → ₹3.2 L', 'C1', 'the traveller picked an option C5 offered'],
+              ['3', 'Day 6: at most 4 active hours', 'C1', '“Day 6 is too much for my knee”'],
+              { c: ['4', 'Arrival 28 → 29 Apr', 'C5', 'flight cancelled, the traveller confirmed'], cls: 'hi' },
+            ])}${note('C10 compares version 4 with the plan to find what to re-plan. Nothing else writes to the trip state.')}` },
+      ] },
+
+    { id: 3, code: 'C3', name: 'Candidate generator', short: 'Candidate generator', seq: true,
       role: 'Turns the trip state into short ranked lists of cities and places.',
-      in: 'Trip state from C1 · places and cities from C3',
-      out: 'Ranked shortlists of cities and places → C4',
+      in: 'Trip state from C2 · places and cities from C4 · judgements from C5',
+      out: 'Ranked shortlists of cities and places → C6',
       subs: [
         { n: 'Hard-constraint filter', d: 'The plannable universe', t: 'Filter', kind: 'code',
           lead: 'Removes everything that cannot be part of a valid trip.',
@@ -2763,11 +2826,26 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               <li><b>Ramen alley, Kyoto</b><span>no veg option</span></li>
               <li><b>Machiya café</b><span>closed on these dates</span></li>
               <li class="kept"><b>Fushimi Inari lower gates</b><span>kept · gentle path</span></li></ul></div></div>` },
-        { n: 'Preference ranker', d: 'Dials + semantic match', t: 'Rank', kind: 'code',
+        { n: 'Semantic match', d: 'Fuzzy wishes, judged by C5', t: 'Semantic', kind: 'llm',
+          lead: 'Some wishes have no field. C3 asks C5 to judge them.',
+          how: [
+            '<b>Embed</b> the wish and the place descriptions',
+            '<b>Pull</b> the 200 nearest by meaning',
+            '<b>Ask C5</b> to score each one, with a reason',
+            '<b>Re-rank only</b>: it never removes a place',
+          ],
+          ex: `<div class="ex2 wide"><div>${eh('“Feel like old Japan”, scored by C5')}${tb(['Place', '#Score', 'C5’s reason'], [
+              { c: ['Nishi Chaya teahouses', '0.86', 'Edo-era teahouse street, wooden lattices'], cls: 'hi' },
+              { c: ['Yanaka walk', '0.83', 'Pre-war lanes, temples, small shops'], cls: 'hi' },
+              ['Kinkaku-ji', '0.65', 'Old style, but rebuilt in 1955, and busy'],
+              { c: ['Old Tokyo ramen street', '0.24', 'Only the name is old: a 2019 food hall'], cls: 'mute' },
+            ])}</div>
+            <div>${eh('Why not embeddings alone?')}<ul class="whynot"><li>“Old Tokyo ramen street” sits close to “old Japan” on words alone</li><li>An embedding cannot say why, so the ranking cannot be explained</li><li>C5 reads the record and gives a reason C9 can quote</li></ul></div></div>` },
+        { n: 'Preference ranker', d: 'Dials + Old Japan score', t: 'Rank', kind: 'code',
           lead: 'Ranks what is left by how well it fits this traveller.',
           how: [
             '<b>Score</b> each place against the trip dials',
-            '<b>Match</b> “old Japan” by meaning, not keywords',
+            '<b>Use</b> C5’s score as the Old Japan column',
             '<b>Judge crowds</b> for the actual dates',
           ],
           ex: `<div class="ex2 wide"><div>${eh('Three places, scored')}${tb(['Place', '#Interests<br>×.30', '#Old Japan<br>×.15', '#Quality<br>×.20', '#Price<br>×.10', '#Crowd<br>×.20', '#Distance<br>×.05', '#Score'], [
@@ -2775,15 +2853,15 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ['Yanaka walk', '.80', '.83', '.75', '1.0', '.85', '.90', '<b>0.83</b>'],
               ['Kinkaku-ji', '.80', '.65', '.90', '.60', '<span class="bad">.06</span>', '.50', '<b>0.61</b>'],
             ])}${note('Crowd is judged for the trip dates. Golden Week sinks Kinkaku-ji.')}</div>
-            <div>${eh('“Feel like old Japan”, matched by meaning')}${rbars([['Nishi Chaya teahouses', .86], ['Yanaka walk', .83], ['Kinkaku-ji', .65], ['Shibuya Sky deck', .21, 1]])}
+            <div>${eh('Old Japan scores, from the semantic match')}${rbars([['Nishi Chaya teahouses', .86], ['Yanaka walk', .83], ['Kinkaku-ji', .65], ['Shibuya Sky deck', .21, 1]])}
               ${note('This match is the Old Japan column. It re-ranks places; it never removes one.')}</div></div>` },
-        { n: 'Shortlist builder', d: 'Variety, then hand-off to C4', t: 'Shortlist', kind: 'code',
+        { n: 'Shortlist builder', d: 'Variety, then hand-off to C6', t: 'Shortlist', kind: 'code',
           lead: 'Turns the ranking into short, varied lists for the planner.',
           how: [
             '<b>Keep variety</b>: skip near-duplicates',
             '<b>Reserve slots</b> for hidden gems',
             '<b>Roll up</b> place scores into city scores',
-            '<b>Hand</b> about 30 places per city to C4',
+            '<b>Hand</b> about 30 places per city to C6',
           ],
           ex: `<div class="ex2"><div>${eh('Kyoto, after Fushimi Inari is picked')}${tb(['Candidate', '#Score', '#Like what’s picked', 'Order'], [
               { c: ['Shojin lunch', '0.70', '0.15', pl('next', 'acc')], cls: 'hi' },
@@ -2791,13 +2869,13 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ['Kennin-ji', '0.76', '0.80', pl('later', 'mute')],
             ])}${note('Kennin-ji has the highest score alone, but it is the most like what is already picked.')}</div>
             <div>${eh('Ranked cities')}${rbars([['Kanazawa', .81], ['Kyoto', .77], ['Tokyo', .72], ['Takayama', .70], ['Nara', .66, 1]])}
-              ${note('The top 4 cities go to C4, with about 30 places each.')}</div></div>` },
+              ${note('The top 4 cities go to C6, with about 30 places each.')}</div></div>` },
       ] },
 
-    { id: 3, code: 'C3', name: 'Data feeds & knowledge repository', short: 'Data feeds & repository', kinds: ['data'], cls: 'is-data', seq: true,
+    { id: 4, code: 'C4', name: 'Data feeds & knowledge repository', short: 'Data feeds & repository', cls: 'is-data', seq: true,
       role: 'Facts with a source and a time. Plans never rest on the LLM’s memory.',
       in: 'Airline, hotel, weather, places, maps and events providers',
-      out: 'Repository → C2, C4 · live data → C5, C6, C8',
+      out: 'Repository → C3, C6 · live data → C7, C8, C10',
       subs: [
         { n: 'Real-time & periodic feeds', d: 'Minutes vs days to months', t: 'Feeds', kind: 'data',
           lead: 'Two kinds of feed, split by how fast the truth changes.',
@@ -2811,7 +2889,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               <li>${ic('plane')}<b>Flights</b><span>fares, seats, status</span></li>
               <li>${ic('bed-double')}<b>Hotels</b><span>rates, rooms left</span></li>
               <li>${ic('cloud-sun')}<b>Weather</b><span>forecasts, warnings</span></li></ul>
-              <p class="fg-n">Looked up live when C5, C6 or C8 need them. Never stored.</p></div>
+              <p class="fg-n">Looked up live when C7, C8 or C10 need them. Never stored.</p></div>
             <div class="fg"><p class="fg-h">${ic('refresh-cw')}Periodic<span>days to months</span></p><ul>
               <li>${ic('map-pin')}<b>POIs</b><span>hours, access, prices</span></li>
               <li>${ic('map')}<b>Maps</b><span>routes, travel times</span></li>
@@ -2837,10 +2915,76 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             ${note('“Kinkaku-ji”, “Golden Pavilion” and “Rokuon-ji” arrive from three feeds and become one place ID.')}` },
       ] },
 
-    { id: 4, code: 'C4', name: 'Itinerary optimizer', short: 'Itinerary optimizer', kinds: ['code'], seq: true, obj: true,
+    { id: 5, code: 'C5', name: 'Judgement LLM', short: 'Judgement LLM', cls: 'is-llm', seq: true,
+      role: 'Makes the calls code can’t. Code reports, it decides, code checks.',
+      in: 'Fuzzy questions from C3 · failure reports from C6, C7, C8 · changes from C10',
+      out: 'Scores → C3 · questions → C1 · approved changes → C2',
+      subs: [
+        { n: 'Semantic judge', d: 'Meaning, not keywords', t: 'Judge', kind: 'llm',
+          lead: 'Scores fuzzy wishes that no field can hold.',
+          how: [
+            '<b>Read</b> the wish and each place’s record',
+            '<b>Score</b> the match from 0 to 1, with a reason',
+            '<b>Judge only</b> the records it is given',
+            '<b>Cache</b> by place and wish, so runs repeat',
+          ],
+          ex: `<div class="ex2"><div>${eh('Asked by C3')}${json({ task: 'match', wish: 'feel like old Japan', place: 'P-20418 Nishi Chaya teahouses', fields: 'history, streetscape, era' })}</div>
+            <div>${eh('Answer')}${json({ score: 0.86, reason: 'Edo-era teahouse street, wooden lattices', confidence: 0.9 })}
+              ${note('Same service, other questions: is this ryokan step-free, going by its description? Is this café vegetarian, going by its menu?')}</div></div>` },
+        { n: 'Failure interpreter', d: 'Why code got stuck', t: 'Interpret', kind: 'llm',
+          lead: 'Reads a failure report from code and works out what it means for the trip.',
+          how: [
+            '<b>Read</b> what failed, and by how much',
+            '<b>Trace</b> it to the trip state field behind it',
+            '<b>List</b> the changes that would fix it, with their cost',
+          ],
+          ex: `<div class="ex2"><div>${eh('Reports it reads')}${tb(['From', 'Report', 'What it means'], [
+              { c: ['C6', 'No plan ≤ ₹2.5 L. Cheapest ₹3.15 L', 'Budget and Golden Week clash'], cls: 'hi' },
+              ['C7', 'Shojin lunch full at 10:45, 3 May', 'A small timing problem'],
+              ['C8', 'Plan C: no Takayama rooms, 1 May', 'One plan lost, two left'],
+            ])}</div>
+            <div>${eh('Fixes for the budget clash')}${tb(['Fix', 'Cost', 'Touches'], [
+              ['Raise the budget to ₹3.2 L', '+₹0.7 L', pl('hard rule', 'warn')],
+              ['Travel 10–16 May', 'new dates', pl('hard rule', 'warn')],
+              ['Drop Kanazawa', 'fit −0.12', pl('plan only', 'mute')],
+            ])}${note('Dropping Kanazawa still costs ₹2.9 L, so it does not fix the clash.')}</div></div>` },
+        { n: 'Fix or ask', d: 'Who decides', t: 'Decide', kind: 'llm',
+          lead: 'Decides whether to fix a problem quietly or ask the traveller.',
+          how: [
+            '<b>Fix</b> when the change stays inside what the traveller allowed',
+            '<b>Ask</b> via C1 when it touches a hard rule or a real trade-off',
+            '<b>Drop</b> an option when good ones remain',
+            '<b>Never</b> loosens a hard constraint on its own',
+          ],
+          ex: `<div class="cases c3">
+              <div class="case"><p class="case-h">${pl('Ask', 'warn')}<b>Budget clash</b></p><p>₹2.5 L cannot hold in Golden Week.</p>
+                <p class="case-fix">${ic('arrow-right')}<span>C1 offers two options: raise to ₹3.2 L, or travel 10–16 May.</span></p></div>
+              <div class="case"><p class="case-h">${pl('Fix', 'ok')}<b>Lunch is full</b></p><p>Shojin lunch is full at 10:45 on 3 May.</p>
+                <p class="case-fix">${ic('arrow-right')}<span>Moved to 11:30, still inside day 6’s pace. Logged for C9 to mention.</span></p></div>
+              <div class="case"><p class="case-h">${pl('Drop', 'mute')}<b>Plan C</b></p><p>No Takayama rooms on 1 May.</p>
+                <p class="case-fix">${ic('arrow-right')}<span>A and B remain, so C is dropped. No question for the traveller.</span></p></div>
+            </div>` },
+        { n: 'Change writer', d: 'Typed patches, checked by code', t: 'Write', kind: 'llm',
+          lead: 'Turns each decision into a typed patch. Code checks it before it lands.',
+          how: [
+            '<b>Write</b> the decision as a typed patch',
+            '<b>Check</b> it in code against the schema and the hard rules',
+            '<b>Apply</b> it to C2, after the traveller’s yes if needed',
+            '<b>Log</b> the reason, for C9 and for evaluation',
+          ],
+          ex: `<div class="ex2"><div>${eh('The traveller picked “raise to ₹3.2 L”')}${json({ op: 'set', path: 'hard.budget_max', value: '₹3.2 L', reason: 'Golden Week fares', approved: 'traveller, via C1' })}</div>
+            <div>${eh('Checked in code')}${tb(['Check', ''], [
+              ['Known field, right type', yes],
+              ['Hard rule changed only with approval', yes],
+              ['Within the allowed range', yes],
+              ['Logged with a reason', yes],
+            ])}${note('A patch that fails a check goes back to the LLM once, then to C1 as a question.')}</div></div>` },
+      ] },
+
+    { id: 6, code: 'C6', name: 'Itinerary optimizer', short: 'Itinerary optimizer', seq: true, obj: true,
       role: 'Builds whole itineraries with the best trip score.',
-      in: 'Shortlists (C2) · trip state (C1) · travel times (C3)',
-      out: 'Top-K plans → C5 · trade-off log → C7 · decisions → C1',
+      in: 'Shortlists (C3) · trip state (C2) · travel times (C4)',
+      out: 'Top-K plans → C7 · trade-off log → C9 · no-solution reports → C5',
       subs: [
         { n: 'Trip score', d: 'The objective', t: 'Score', kind: 'code', terms: ['score'],
           lead: 'One number to compare any two itineraries. Hard constraints are never in it.',
@@ -2919,7 +3063,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ['Gion, ryokan', '4.1 h', '25 min', '₹23k', '0.067'],
             ])}${note('The lowest penalty wins: travel time and room price, minus a small bonus for a ryokan.')}</div>
             <div>${eh('Why not the Gion ryokan?')}<ul class="whynot"><li>25 minutes to the station, with bags and a bad knee</li><li>₹16k more for the two nights</li><li>The old-Japan bonus does not cover the gap</li></ul>
-              ${note('The miss goes to the trade-off log, so C7 can offer it back.')}</div></div>` },
+              ${note('The miss goes to the trade-off log, so C9 can offer it back.')}</div></div>` },
         { n: 'Day scheduler', d: 'Order, timing, crowds', t: 'Schedule', kind: 'code', terms: ['fit', 'transit'],
           lead: 'Orders and times each day around opening hours, crowds and the knee.',
           how: [
@@ -2945,7 +3089,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             '<b>Assemble</b> full plans from the steps above',
             '<b>Keep</b> the 3 best that really differ',
             '<b>Log</b> every rejection with its reason',
-            '<b>Ask C1</b> when nothing fits or two plans tie',
+            '<b>Report</b> to C5 when two plans tie',
           ],
           ex: `<div class="ex2"><div>${eh('Top-K, K = 3')}${tb(['Plan', 'Cities and nights', '#Trip score'], [
               { c: ['A · Classic, slow', 'Tokyo 2 · Kanazawa 2 · Kyoto 2', '<b>0.47</b>'], cls: 'hi' },
@@ -2957,13 +3101,28 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ['Inari summit', 'Schedule', 'Steep stairs, a hard rule', '–'],
               ['Gion ryokan', 'Base', '₹16k more, far from station', '0.01'],
               ['21st Century Museum', 'Activities', 'No hours left in Kanazawa', '0.01'],
-            ])}${note('C7 explains these. C1 asks about any the traveller may want back.')}</div></div>` },
+            ])}${note('C9 explains these. C1 asks about any the traveller may want back.')}</div></div>` },
+        { n: 'No-solution report', d: 'Why nothing fits', t: 'Report', kind: 'code',
+          lead: 'When no plan meets every hard rule, it says exactly why, instead of guessing.',
+          how: [
+            '<b>Find</b> the smallest set of rules that clash',
+            '<b>Measure</b> how far the best plan is from fitting',
+            '<b>Send</b> the report to C5, never a guess to the traveller',
+          ],
+          ex: `<div class="ex2"><div>${eh('First run, budget ₹2.5 L')}${json({ status: 'no solution', clash: 'budget ↔ dates', best_plan: 'A', best_cost: '₹3.15 L', limit: '₹2.5 L', driver: 'Golden Week flights +₹70k' })}</div>
+            <div>${eh('What happens next')}${tb(['#', 'Who', 'What'], [
+              ['1', 'C6', 'Reports the clash'],
+              ['2', 'C5', 'Lists fixes and decides to ask'],
+              ['3', 'C1', 'Offers: raise to ₹3.2 L, or travel 10–16 May'],
+              ['4', 'C2', 'Budget ≤ ₹3.2 L, confirmed'],
+              { c: ['5', 'C6', 'Plans again: A, B and C'], cls: 'hi' },
+            ])}</div></div>` },
       ] },
 
-    { id: 5, code: 'C5', name: 'Booking option search', short: 'Booking search', kinds: ['code'], seq: true,
+    { id: 7, code: 'C7', name: 'Booking option search', short: 'Booking search', seq: true,
       role: 'Finds real options for every slot in each plan. Search only, no booking.',
-      in: 'Top-K itineraries from C4 · live fares and rooms from C3',
-      out: 'Bundles of options for each itinerary → C6',
+      in: 'Top-K itineraries from C6 · live fares and rooms from C4',
+      out: 'Bundles of options → C8 · no-inventory reports → C5',
       subs: [
         { n: 'Slot builder', d: 'Needs + time windows', t: 'Slots', kind: 'code',
           lead: 'Turns each plan into typed searches with time windows.',
@@ -3000,7 +3159,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             ])}${note('Time is valued at ₹1,200 an hour per person, and each connection adds ₹5k for the knee. Bangkok wins: Delhi is cheaper, Singapore is faster.')}</div>
             <div>${eh('Rail: pass or single tickets?')}<div class="cmp2"><div><span>7-day JR Pass</span><b>¥50,000</b></div>
               <div class="is-pick"><span>Single tickets</span><b>≈ ¥25,800</b></div></div>${note('Per person, approximate fares for Plan A’s three train legs. Single tickets win.')}</div></div>` },
-        { n: 'Bundle assembler', d: 'Consistent sets → C6', t: 'Bundle', kind: 'code', terms: ['cost', 'transit'],
+        { n: 'Bundle assembler', d: 'Consistent sets → C8', t: 'Bundle', kind: 'code', terms: ['cost', 'transit'],
           lead: 'Builds consistent sets of options for each plan, ready to check.',
           how: [
             '<b>Combine</b> options slot by slot',
@@ -3016,12 +3175,23 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               <i style="flex:115;background:var(--accent)"></i><i style="flex:88;background:var(--accent-2)"></i><i style="flex:29;background:var(--t-transit)"></i><i style="flex:6;background:var(--amber)"></i></div>
               <div class="stack-l"><span style="--k:var(--accent)">Flights <b>₹1.15 L</b></span><span style="--k:var(--accent-2)">Hotels <b>₹0.88 L</b></span><span style="--k:var(--t-transit)">Rail <b>₹0.29 L</b></span><span style="--k:var(--amber)">Tickets <b>₹0.06 L</b></span></div>
               ${note('Add ₹0.77 L of daily spend and the trip comes to ₹3.15 L, just inside the ₹3.2 L budget.')}</div></div>` },
+        { n: 'No-inventory report', d: 'Empty slots, nearest options', t: 'Report', kind: 'code',
+          lead: 'When a slot has nothing that fits, it reports the nearest options.',
+          how: [
+            '<b>Flag</b> the empty slot and its window',
+            '<b>Search</b> just outside the window',
+            '<b>Send</b> both to C5 to decide',
+          ],
+          ex: `<div class="ex2"><div>${eh('Plan A, day 6')}${json({ slot: 'Shojin lunch, 3 May', window: '10:45', status: 'full', nearest: '11:30 same place · 12:15 Tenryu-ji, 40 min away' })}</div>
+            <div>${eh('C5’s call')}<div class="tiles"><div class="tile is-pick"><strong>11:30, same place</strong><b>Fix</b><span>Day 6 still fits the pace</span></div>
+              <div class="tile"><strong>Tenryu-ji</strong><b>No</b><span>40 minutes away, more walking</span></div></div>
+              ${note('A small fix inside the traveller’s dials, so no question is asked. C9 mentions it.')}</div></div>` },
       ] },
 
-    { id: 6, code: 'C6', name: 'Feasibility validator', short: 'Feasibility validator', kinds: ['code'], seq: true,
+    { id: 8, code: 'C8', name: 'Feasibility validator', short: 'Feasibility validator', seq: true,
       role: 'Re-checks every plan on live data, then scores it again.',
-      in: 'Bundles from C5 · fresh facts from C3',
-      out: 'Scored plans → C7 · repairs → C4 · rejections → log',
+      in: 'Bundles from C7 · fresh facts from C4',
+      out: 'Scored plans → C9 · repairs → C6 · rejections → C5',
       subs: [
         { n: 'Constraint checks', d: 'On real times and prices', t: 'Check', kind: 'code',
           lead: 'Checks every rule in code, on quoted times and prices.',
@@ -3053,14 +3223,14 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
         { n: 'Repair or reject', d: 'Fix locally, or drop', t: 'Repair', kind: 'code',
           lead: 'Fixes small failures locally and drops the rest, with a reason.',
           how: [
-            '<b>One bad day</b>: back to C4 to fix it',
+            '<b>One bad day</b>: back to C6 to fix it',
             '<b>A bigger problem</b>: reject the plan',
             '<b>Two failed repairs</b>: reject',
-            '<b>Every rejection</b> goes to the log',
+            '<b>Every rejection</b> goes to C5, with its reason',
           ],
           ex: `<div class="cases">
               <div class="case"><p class="case-h">${pl('Repair', 'warn')}<b>Plan B · day 5</b></p><p>Walking is 4.6 km, over the 4 km limit.</p>
-                <p class="case-fix">${ic('arrow-right')}<span>C4 swaps a 1.2 km walk for a 6-minute taxi. Walking drops to 3.4 km, for ₹1.2k.</span></p>
+                <p class="case-fix">${ic('arrow-right')}<span>C6 swaps a 1.2 km walk for a 6-minute taxi. Walking drops to 3.4 km, for ₹1.2k.</span></p>
                 <p class="case-r">${pl('Valid', 'ok')}after one round</p></div>
               <div class="case"><p class="case-h">${pl('Reject', 'bad')}<b>Plan C · Takayama</b></p><p>No rooms on 1 May. The nearest are 40 minutes away by bus.</p>
                 <p class="case-fix">${ic('arrow-right')}<span>That adds 1.3 h of transit and a new base, which is too big to repair.</span></p>
@@ -3072,7 +3242,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
             '<b>Swap</b> estimates for real quotes',
             '<b>Re-score</b> with the same trip score',
             '<b>Re-rank</b> plans and bundles',
-            '<b>Send</b> the best bundle per plan to C7',
+            '<b>Send</b> the best bundle per plan to C9',
           ],
           ex: `<div class="ex2 wide"><div>${eh('Every plan and bundle, scored again')}${tb(['Plan · bundle', '#Estimate', '#Final', 'What changed'], [
               { c: ['A · 1 · Bangkok, Karasuma', '0.47', '<b>0.46</b>', 'Fares ₹22k over the estimate'], cls: 'hi' },
@@ -3082,15 +3252,15 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
               ['B · 2 · Delhi', '0.43', '0.42', 'Same long flight as A · 2'],
               { c: ['C · all bundles', '0.35', '–', 'Rejected: no rooms in Takayama'], cls: 'mute' },
             ])}</div>
-            <div>${eh('Sent to C7')}<div class="tiles">
+            <div>${eh('Sent to C9')}<div class="tiles">
               <div class="tile is-pick"><strong>A · Classic, slow</strong><b>0.46</b><span>Bundle 1 · ₹3.15 L</span></div>
               <div class="tile"><strong>B · Fewer moves</strong><b>0.43</b><span>Bundle 1 · ₹2.69 L</span></div></div>
-              ${note('The best bundle of each valid plan moves on. A stays first, but by less than C4 estimated.')}</div></div>` },
+              ${note('The best bundle of each valid plan moves on. A stays first, but by less than C6 estimated.')}</div></div>` },
       ] },
 
-    { id: 7, code: 'C7', name: 'Plan presenter & narrator', short: 'Presenter & narrator', kinds: ['llm'], cls: 'is-llm', seq: false,
+    { id: 9, code: 'C9', name: 'Plan presenter & narrator', short: 'Plan presenter', cls: 'is-llm', seq: false,
       role: 'Explains the plans using only what is in them.',
-      in: 'Valid plans (C6) · trade-off log (C4, C6) · trip state (C1)',
+      in: 'Valid plans (C8) · trade-off log (C6, C8) · trip state (C2)',
       out: 'Itinerary and narration → traveller · follow-ups → C1',
       subs: [
         { n: 'Grounded narration', d: 'Every claim cited', t: 'Narrate', kind: 'llm',
@@ -3138,31 +3308,31 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
               { c: ['<b>Trip score</b>', '<b>0.46</b>', '<b>0.43</b>', '<b>A</b>'], cls: 'tot' },
             ])}</div>
             <div>${eh('Headline, from the biggest difference')}<p class="say">“A suits you better, with Kanazawa’s quiet old streets. B is ₹45k cheaper and has one hotel change fewer.”</p>
-              ${eh('Follow-ups go through C1')}<ul class="fwd"><li><q>Can we add Nara?</q><span>C1: change</span><span>→ C8</span></li>
-              <li><q>Why Karasuma and not Gion?</q><span>C1: question</span><span>→ C7 reads the log</span></li></ul></div></div>` },
+              ${eh('Follow-ups go through C1')}<ul class="fwd"><li><q>Can we add Nara?</q><span>C1: change</span><span>→ C2 → C10</span></li>
+              <li><q>Why Karasuma and not Gion?</q><span>C1: question</span><span>→ C9 reads the log</span></li></ul></div></div>` },
       ] },
 
-    { id: 8, code: 'C8', name: 'Re-planning loop', short: 'Re-planning loop', kinds: ['llm', 'code'], seq: true,
+    { id: 10, code: 'C10', name: 'Re-planning loop', short: 'Re-planning loop', seq: true,
       role: 'Changes the plan without starting over.',
-      in: 'Change requests (C1) · alerts such as flight status (C3)',
-      out: 'A partial re-plan → C4, then C5, C6 and C7',
+      in: 'New trip state versions (C2) · alerts such as flight status (C4)',
+      out: 'A partial re-plan → C6, then C7, C8 and C9',
       subs: [
         { n: 'Change triggers', d: 'Traveller or the world', t: 'Trigger', kind: 'code',
           lead: 'Changes come from two places: the traveller and the world.',
           how: [
-            '<b>Traveller</b>: a change request, via C1',
-            '<b>World</b>: an alert from C3',
+            '<b>Traveller</b>: a new trip state version, via C1 and C2',
+            '<b>World</b>: an alert from C4',
             '<b>Act</b> only on alerts that touch the plan',
           ],
           ex: `<div class="trig">
-              <div class="tg"><p class="tg-h">${ic('user')}Traveller</p><q>Day 6 is too much for my knee.</q><p class="tg-r">C1: change · P 0.93 → C8</p></div>
-              <div class="tg"><p class="tg-h">${ic('zap')}World</p><p class="tg-q">Flight status: BLR → Tokyo via Bangkok, 28 Apr, cancelled. The next seat lands 29 Apr at 07:40.</p><p class="tg-r">Matches Plan A’s first flight → C8</p></div>
+              <div class="tg"><p class="tg-h">${ic('user')}Traveller</p><q>Day 6 is too much for my knee.</q><p class="tg-r">C1: change · P 0.93 → C2 → C10</p></div>
+              <div class="tg"><p class="tg-h">${ic('zap')}World</p><p class="tg-q">Flight status: BLR → Tokyo via Bangkok, 28 Apr, cancelled. The next seat lands 29 Apr at 07:40.</p><p class="tg-r">Matches Plan A’s first flight → C10</p></div>
               <div class="tg is-skip"><p class="tg-h">${ic('zap')}World, ignored</p><p class="tg-q">Weather: heavy rain in Sapporo on 2 May.</p><p class="tg-r">Not in the plan → no action</p></div>
             </div>${note('Thousands of alerts a day come down to a handful that touch any one plan.')}` },
         { n: 'Change interpreter', d: 'Words → typed edit', t: 'Interpret', kind: 'llm',
-          lead: 'Turns a change into a typed edit that code can apply.',
+          lead: 'Asks C5 to turn a change into a typed edit that code can apply.',
           how: [
-            '<b>Classify</b> the change',
+            '<b>C5 classifies</b> the change',
             '<b>Write</b> it as a typed edit',
             '<b>Confirm</b> costly or unclear edits',
           ],
@@ -3193,9 +3363,9 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
         { n: 'Partial re-planner', d: 'Re-solve only that', t: 'Re-plan', kind: 'code', terms: ['score'],
           lead: 'Re-solves only what changed, and keeps the rest.',
           how: [
-            '<b>Re-run</b> only the C4 steps needed',
+            '<b>Re-run</b> only the C6 steps needed',
             '<b>Prefer</b> small changes',
-            '<b>Re-check</b> with C5 and C6, explain with C7',
+            '<b>Re-check</b> with C7 and C8, explain with C9',
           ],
           ex: `<div class="ex2"><div>${eh('Tokyo, before and after')}<div class="ba">
               <div><p class="label">Before</p><ol><li><b>Day 1</b>Yanaka walk · shojin lunch</li><li><b>Day 2</b>Senso-ji at 07:30 · Kiyosumi garden</li></ol></div>
@@ -3204,36 +3374,44 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
             <div>${eh('Why partial')}<div class="tiles">
               <div class="tile is-pick"><strong>Partial re-plan</strong><b>6 changes</b><span>Trip score 0.46 → 0.43</span></div>
               <div class="tile"><strong>Full re-plan</strong><b>25 changes</b><span>Trip score 0.44</span></div></div>
-              ${note('A full re-plan scores a little higher but rewrites most of the trip. Stability wins, and C7 explains only what changed.')}</div></div>` },
+              ${note('A full re-plan scores a little higher but rewrites most of the trip. Stability wins, and C9 explains only what changed.')}</div></div>` },
       ] },
   ];
   const RSTEPS = [{ k: 0, s: 0 }];
   RK.forEach(c => c.subs.forEach((x, s) => RSTEPS.push({ k: c.id, s })));
-  RSTEPS.push({ k: 9, s: 0 });
+  const OVER = RK.length + 1;
+  RSTEPS.push({ k: OVER, s: 0 });
   // Chip boxes [left, top, width, height]: a band above the open component, a spread-out map at the end.
   const RPOS = {
-    band: { in: [0, 0, 150, 50], 1: [186, 0, 220, 50], 8: [442, 0, 220, 50], 7: [954, 0, 220, 50], out: [1226, 0, 150, 50],
-            2: [186, 78, 220, 50], 4: [442, 78, 220, 50], 5: [698, 78, 220, 50], 6: [954, 78, 220, 50], 3: [186, 156, 988, 50] },
-    over: { in: [0, 46, 150, 170], 1: [186, 46, 220, 170], 8: [442, 46, 220, 170], 7: [954, 46, 220, 170], out: [1226, 46, 150, 170],
-            2: [186, 328, 220, 170], 4: [442, 328, 220, 170], 5: [698, 328, 220, 170], 6: [954, 328, 220, 170], 3: [186, 620, 988, 130] },
+    band: { in: [0, 0, 150, 40], 1: [186, 0, 210, 40], 2: [424, 0, 210, 40], 10: [662, 0, 210, 40], out: [900, 0, 210, 40], 9: [1138, 0, 210, 40],
+            5: [186, 54, 1162, 40], 3: [424, 108, 210, 40], 6: [662, 108, 210, 40], 7: [900, 108, 210, 40], 8: [1138, 108, 210, 40], 4: [186, 162, 1162, 40] },
+    over: { in: [0, 36, 150, 150], 1: [186, 36, 210, 150], 2: [424, 36, 210, 150], 10: [662, 36, 210, 150], out: [900, 36, 210, 150], 9: [1138, 36, 210, 150],
+            5: [186, 262, 1162, 128], 3: [424, 466, 210, 150], 6: [662, 466, 210, 150], 7: [900, 466, 210, 150], 8: [1138, 466, 210, 150], 4: [186, 680, 1162, 100] },
   };
   // Wires: `n` is the component that reveals them; `over` ones only show on the spread-out map, as do all labels.
   const RW = [
     { a: 'in', b: 1, n: 1 },
-    { a: 1, b: 2, n: 2, dx: -56, label: 'trip state' },
-    { a: 3, b: 2, n: 3, label: 'places, cities' },
-    { a: 2, b: 4, n: 4, label: 'shortlists' },
-    { a: 3, b: 4, n: 4, label: 'travel times' },
-    { a: 4, b: 1, n: 4, over: 1, diag: 1, both: 1, dashed: 1, label: 'decisions' },
-    { a: 4, b: 5, n: 5, label: 'top-K plans' },
-    { a: 3, b: 5, n: 5, label: 'live fares, rooms' },
-    { a: 5, b: 6, n: 6, label: 'bundles' },
-    { a: 3, b: 6, n: 6, label: 'fresh facts' },
-    { a: 6, b: 7, n: 7, label: 'valid, scored' },
-    { a: 7, b: 'out', n: 7 },
-    { a: 7, b: 1, n: 7, over: 1, arc: 1, both: 1, dashed: 1, label: 'follow-ups' },
-    { a: 1, b: 8, n: 8 },
-    { a: 8, b: 4, n: 8, label: 'partial re-plan' },
+    { a: 1, b: 2, n: 2, label: 'updates' },
+    { a: 2, b: 3, n: 3, dx: -40, label: 'trip state' },
+    { a: 4, b: 3, n: 4, label: 'places, cities' },
+    { a: 3, b: 5, n: 5, both: 1, dashed: 1, label: 'semantic match' },
+    { a: 5, b: 1, n: 5, label: 'ask the traveller' },
+    { a: 5, b: 2, n: 5, dx: 40, label: 'approved changes' },
+    { a: 3, b: 6, n: 6, label: 'shortlists' },
+    { a: 4, b: 6, n: 6, label: 'travel times' },
+    { a: 6, b: 5, n: 6, both: 1, dashed: 1, label: 'no solution' },
+    { a: 6, b: 7, n: 7, label: 'top-K plans' },
+    { a: 4, b: 7, n: 7, label: 'live fares, rooms' },
+    { a: 7, b: 5, n: 7, both: 1, dashed: 1, label: 'no inventory' },
+    { a: 7, b: 8, n: 8, label: 'bundles' },
+    { a: 4, b: 8, n: 8, label: 'fresh facts' },
+    { a: 8, b: 5, n: 8, dx: 40, both: 1, dashed: 1, label: 'rejections' },
+    { a: 8, b: 9, n: 9, dx: -40, label: 'valid, scored' },
+    { a: 9, b: 'out', n: 9 },
+    { a: 9, b: 1, n: 9, over: 1, arc: 1, both: 1, dashed: 1, label: 'follow-ups' },
+    { a: 2, b: 10, n: 10, label: 'changes' },
+    { a: 10, b: 5, n: 10, dx: 40, both: 1, dashed: 1, label: 'interpret change' },
+    { a: 10, b: 6, n: 10, dx: -40, label: 'partial re-plan' },
   ];
   const rmap = $('rmap'), rlayer = $('wire-layer-r'), fk = $('fk');
   let rcur = 0, rpeek = null;
@@ -3242,6 +3420,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   function addChip(key, k, cls, html) {
     const el = document.createElement(k ? 'button' : 'div');
     if (k) { el.type = 'button'; el.dataset.rk = k; }
+    el.id = 'rk-' + key;
     el.className = 'rk off ' + cls;
     el.innerHTML = html;
     rmap.insertBefore(el, fk);
@@ -3252,11 +3431,11 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   addChip('in', 0, '', `<span class="rk-h">${ic('user')}<span class="rk-name">Trip request</span></span>
     <span class="rk-more"><span class="rk-role">Japan · 2 adults · 7 days · vegetarian · bad knee · no crowds</span></span>`);
   RK.forEach(c => addChip(c.id, c.id, c.cls || '', `<span class="rk-h"><span class="rk-code">${c.code}</span><span class="rk-name">${c.short}</span></span>
-    <span class="rk-more"><span class="rk-kinds">${c.kinds.map(kp).join('')}</span><span class="rk-role">${c.role}</span>${c.id === 3
+    <span class="rk-more"><span class="rk-role">${c.role}</span>${c.id === 4
       ? '<span class="rk-feeds"><b>Real-time</b><i>Flights</i><i>Hotels</i><i>Weather</i><b>Periodic</b><i>POIs</i><i>Maps</i><i>Festivals</i></span>'
       : subTags(c)}</span>`));
   addChip('out', 0, 'is-out', `<span class="rk-h">${ic('scroll-text')}<span class="rk-name">Itinerary</span></span>
-    <span class="rk-more"><span class="rk-role">Top plans with narration, from C7</span></span>`);
+    <span class="rk-more"><span class="rk-role">Top plans with narration, from C9</span></span>`);
 
   const rwires = RW.map(w => {
     const p = document.createElementNS(SVG, 'path');
@@ -3296,9 +3475,9 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   }
   function rstate() {
     const st = RSTEPS[rcur];
-    if (rpeek) return { mode: 'band', shown: st.k === 9 ? 8 : st.k, k: rpeek.k, s: rpeek.s };
+    if (rpeek) return { mode: 'band', shown: Math.min(st.k, RK.length), k: rpeek.k, s: rpeek.s };
     if (st.k === 0) return { mode: 'start', shown: 0, k: 0, s: 0 };
-    if (st.k === 9) return { mode: 'over', shown: 8, k: 0, s: 0 };
+    if (st.k === OVER) return { mode: 'over', shown: RK.length, k: 0, s: 0 };
     return { mode: 'band', shown: st.k, k: st.k, s: st.s };
   }
   function rlayout() {
@@ -3332,7 +3511,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   }
   function subView(x) {
     const terms = x.terms ? `<span class="terms"><span class="label">Optimizes</span>${x.terms.map(k => T(k)).join('')}</span>` : '';
-    return `<div class="sv-h"><p>${x.lead}</p>${kp(x.kind)}${terms}</div>
+    return `<div class="sv-h"><p>${x.lead}</p>${terms}</div>
       <div class="sv-g${x.math ? ' has-math' : ''}">
         <section class="sv-col"><p class="label">How it works</p><ol class="how">${x.how.map(h => `<li><span>${h}</span></li>`).join('')}</ol></section>
         ${x.math ? `<section class="sv-col"><p class="label">The maths</p>${x.math}</section>` : ''}
@@ -3343,12 +3522,13 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     const c = RK[S.k - 1];
     if (fk.dataset.k !== String(S.k)) {
       fk.dataset.k = S.k;
+      fk.classList.toggle('is-llm', c.cls === 'is-llm');
       fk.dataset.s = '';
       fk.innerHTML = `<header class="fk-h"><span class="fk-code">${c.code}</span>
-          <div class="fk-t"><h3>${c.name}${c.kinds.map(kp).join('')}</h3><p>${c.role}</p></div>
+          <div class="fk-t"><h3>${c.name}</h3><p>${c.role}</p></div>
           <dl class="fk-io"><div><dt>In</dt><dd>${c.in}</dd></div><div><dt>Out</dt><dd>${c.out}</dd></div>
             <div><dt>Example</dt><dd>Japan trip, 28 Apr – 4 May · illustrative numbers</dd></div></dl></header>
-        <div class="stabs" aria-label="Parts of ${c.code}">${subChips(c)}<span class="stabs-r"></span></div>
+        <div class="stabs${c.subs.length > 6 ? ' many' : ''}" aria-label="Parts of ${c.code}">${subChips(c)}<span class="stabs-r"></span></div>
         <div class="sv"></div>`;
       restart(fk, 'enter');
     }
@@ -3358,7 +3538,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     });
     const st = RSTEPS[rcur];
     fk.querySelector('.stabs-r').innerHTML = rpeek
-      ? `<button type="button" class="fk-back" data-rclose>${ic('chevron-left')}Back to ${st.k === 9 ? 'all components' : `${RK[st.k - 1].code} · ${RK[st.k - 1].subs[st.s].n}`}</button>` : '';
+      ? `<button type="button" class="fk-back" data-rclose>${ic('chevron-left')}Back to ${st.k === OVER ? 'all components' : `${RK[st.k - 1].code} · ${RK[st.k - 1].subs[st.s].n}`}</button>` : '';
     const sv = fk.querySelector('.sv');
     if (fk.dataset.s !== String(S.s)) { fk.dataset.s = S.s; sv.innerHTML = subView(c.subs[S.s]); restart(sv, 'enter'); }
     const p = RPOS.band[S.k];
