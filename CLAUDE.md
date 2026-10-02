@@ -181,7 +181,7 @@ ones that depend on it.
 - Interests: food, temples, photography.
 - Prompt: "We're vegetarian, one of us has a bad knee, we hate crowds, and we want it to feel like old Japan."
 
-**C3 trip state**
+**C2 trip state**
 - Hard constraints: dates; vegetarian with no dashi; walking ≤ 4 km a day; stairs low; budget ≤ ₹3.2 L.
 - How the budget got there: the traveller said ₹2.5 L, C6 found that Golden Week fares don't fit, C5 decided to ask, and C1 offered "raise to ₹3.2 L" or "travel 10–16 May".
 - Dials: crowd_tolerance 0.14, pace 0.30, temples 0.80, food 0.80, photography 0.70, hidden_gem_share 0.30.
