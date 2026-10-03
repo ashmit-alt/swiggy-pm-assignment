@@ -1186,6 +1186,42 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .g-v span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
 
 
+/* ---------- Trip State ---------- */
+.xbtn {
+  flex: none; display: inline-flex; align-items: center; gap: 7px; height: 36px; margin-left: -12px; padding: 0 13px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 600;
+}
+.xbtn .ic { width: 15px; height: 15px; color: var(--accent); }
+.xbtn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.xbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.xbtn:disabled { color: var(--ink-3); cursor: default; }
+.xbtn:disabled .ic { color: var(--ink-3); }
+.ts-head { flex: none; display: flex; align-items: baseline; gap: 18px; }
+.ts-head h2 { flex: none; font: 740 22px/1.2 var(--f-display); font-stretch: 110%; }
+.ts-head p { font-size: 14px; color: var(--ink-2); }
+.ts-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.ts-card { min-height: 0; display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 14px; }
+.ts-h { display: flex; align-items: center; gap: 10px; }
+.ts-h h3 { margin: 0; font: 680 16px/1.2 var(--f-display); font-stretch: 108%; }
+.ts-h p { margin-top: 2px; font-size: 12.5px; color: var(--ink-2); }
+.ts-keys { display: flex; flex-wrap: wrap; gap: 5px; }
+.ts-keys button {
+  appearance: none; cursor: pointer; padding: 3px 7px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface);
+  font: 500 11px/1.3 var(--f-mono); color: var(--ink-2);
+}
+.ts-keys button:hover { border-color: var(--accent); color: var(--accent); }
+.ts-keys button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ts-json {
+  flex: 1; min-height: 0; margin: 0; padding: 12px 14px; overflow: auto; border-radius: 10px; background: var(--sunk);
+  font: 500 12px/1.6 var(--f-mono); color: var(--ink); white-space: pre; tab-size: 2;
+}
+.ts-json:focus-visible { outline: 2px solid var(--accent); }
+.ts-json .k { color: var(--accent); }
+.ts-json .s { color: var(--green); }
+.ts-json .n { color: var(--amber); }
+.ts-json .b { color: var(--t-stay); }
+.ts-json .hl { display: inline-block; min-width: 100%; background: var(--accent-soft); border-radius: 4px; transition: background-color 1.2s; }
+
 /* ---------- Linking a gap to where it shows up ---------- */
 [data-gaps] { transition: background-color .2s, box-shadow .2s; }
 [data-gaps].lit { background: var(--red-soft) !important; box-shadow: 0 0 0 1.5px var(--red) !important; }
@@ -1203,7 +1239,8 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .brand { width: auto; flex: 1; }
   .nav { order: 2; }
   .tabs { order: 3; flex-basis: 100%; }
-  .tab { flex: 1; padding-inline: 6px; }
+  .tabs { flex-wrap: wrap; min-width: 0; }
+  .tab { flex: 1 1 auto; padding-inline: 8px; }
   .tab-long { display: none; }
   .rail { order: 4; flex-basis: 100%; }
   .st-name, .st-beat, .tick { display: none; }
@@ -1254,6 +1291,10 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .stat b { font-size: 40px; }
   .goals { gap: 26px; }
   .g-sec.g-hide { display: none; }
+  .ts-head { flex-direction: column; gap: 4px; }
+  .ts-grid { grid-template-columns: minmax(0, 1fr); }
+  .ts-json { max-height: 70vh; }
+  .xbtn { order: 2; margin-left: 0; }
   .g-goal, .g-what-body, .g-flow, .g-layers { grid-template-columns: minmax(0, 1fr); }
   .g-title { font-size: 26px; }
   .g-arrow { transform: rotate(90deg); }
@@ -1381,6 +1422,8 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
 <symbol id="i-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol>
 <symbol id="i-list-ordered" viewBox="0 0 24 24"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></symbol>
+<symbol id="i-maximize-2" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></symbol>
+<symbol id="i-file-json" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"/><path d="M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"/></symbol>
 </defs></svg>
 
 <div class="viewport">
@@ -1396,9 +1439,11 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <button type="button" class="tab" role="tab" id="tab-goals" aria-selected="true" aria-controls="view-goals" data-tab="goals"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Goals</button>
           <button type="button" class="tab" role="tab" id="tab-arch" aria-selected="false" aria-controls="view-arch" data-tab="arch"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg>Architecture</button>
           <button type="button" class="tab" role="tab" id="tab-research" aria-selected="false" aria-controls="view-research" data-tab="research"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg>Research</button>
-          <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg><span>Revised<span class="tab-long"> architecture</span></span></button>
+          <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg><span>Revised<span class="tab-long"> Architecture</span></span></button>
+          <button type="button" class="tab" role="tab" id="tab-state" aria-selected="false" aria-controls="view-state" data-tab="state"><svg class="ic" aria-hidden="true"><use href="#i-file-json"/></svg>Trip State</button>
         </div>
         <ol class="rail" id="rail-r" aria-label="Papers" hidden></ol>
+        <button type="button" class="xbtn" id="expand" hidden><svg class="ic" aria-hidden="true"><use href="#i-maximize-2"/></svg>Expand all</button>
         <div class="nav">
           <button type="button" class="navbtn" id="prev" aria-label="Previous"><svg class="ic" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
           <button type="button" class="navbtn" id="next" aria-label="Next"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
@@ -1889,7 +1934,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             </defs>
             <g id="wire-layer-r"></g>
           </svg>
-          <p class="lane" style="top:0"><b>Conversation</b><span>and the trip state</span></p>
+          <p class="lane" style="top:0"><b>Interface &amp; state</b><span>Faces the traveller</span></p>
           <i class="lane-rule" style="top:224px"></i>
           <p class="lane" style="top:232px"><b>Judgement</b><span>The LLM, wherever code needs a call</span></p>
           <i class="lane-rule" style="top:428px"></i>
@@ -1935,6 +1980,26 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <!-- Chips for the input, C1–C8 and the itinerary are added by the script, before the focus card -->
           <div class="fk off" id="fk" aria-live="polite"></div>
         </section>
+      </div>
+
+      <!-- ===== Trip State: the trip state and the final itinerary, as data ===== -->
+      <div class="view" id="view-state" role="tabpanel" aria-labelledby="tab-state" hidden>
+        <div class="ts-head">
+          <h2>The trip as data</h2>
+          <p>What C2 holds after the traveller confirmed the budget, and the itinerary C8 validates and C9 presents. Japan trip, illustrative numbers.</p>
+        </div>
+        <div class="ts-grid">
+          <section class="card ts-card" aria-labelledby="ts-a">
+            <header class="ts-h"><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></span><div><h3 id="ts-a">Trip state</h3><p>C2 · version 2 · the input every component reads</p></div></header>
+            <div class="ts-keys" data-for="json-state"></div>
+            <pre class="ts-json" id="json-state" tabindex="0"></pre>
+          </section>
+          <section class="card ts-card" aria-labelledby="ts-b">
+            <header class="ts-h"><span class="node-ic"><svg class="ic" aria-hidden="true"><use href="#i-scroll-text"/></svg></span><div><h3 id="ts-b">Final itinerary</h3><p>Plan A · bundle 1 · validated by C8, narrated by C9</p></div></header>
+            <div class="ts-keys" data-for="json-itin"></div>
+            <pre class="ts-json" id="json-itin" tabindex="0"></pre>
+          </section>
+        </div>
       </div>
     </main>
   </div>
@@ -2390,6 +2455,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     const pk = t.closest('[data-peek]');
     if (pk) { showPaper(+pk.dataset.peek); return; }
     if (tab === 'goals') return;
+    if (tab === 'state') { const j = t.closest('[data-jump]'); if (j) jump(j.dataset.jump); return; }
     if (tab === 'research') { if (t.closest('#view-research')) researchStep(1); return; }
     if (tab === 'revised') { rclick(t); return; }
     const goEl = t.closest('[data-go]');
@@ -2408,7 +2474,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   stage.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) { e.preventDefault(); e.target.click(); }
   });
-  const step = d => (tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
+  const step = d => (tab === 'state' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
   $('prev').addEventListener('click', () => step(-1));
   $('next').addEventListener('click', () => step(1));
   addEventListener('keydown', e => {
@@ -2484,6 +2550,198 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     $('next').classList.toggle('hint', gcur === 0);
     $('now').innerHTML = `Goals · ${gcur + 1} of ${GSTEPS.length}<span class="now-beat">${GSTEPS[gcur]}</span>`;
   }
+
+  // ---------- Trip State tab: the trip state and the final itinerary as JSON ----------
+  const dial = (value, source, phrase, confidence, extra = {}) => ({ value, strictness: 'soft', source, phrase, confidence, ...extra });
+  const TRIP_STATE = {
+    trip_id: 'TRP-2026-0428-BLR-JP',
+    version: 2,
+    updated_at: '2026-10-02T11:42:10+05:30',
+    status: 'planning',
+    traveller: {
+      party: { adults: 2, children: 0 },
+      origin: { city: 'Bengaluru', airport: 'BLR' },
+      currency: 'INR',
+      language: 'en',
+      first_visit: null,
+    },
+    hard_constraints: {
+      destination: { country: 'JP', regions: 'any' },
+      dates: { start: '2026-04-28', end: '2026-05-04', days: 7, nights: 6, flexible: false, source: 'form' },
+      budget: { max_total_inr: 320000, includes: ['flights', 'hotels', 'rail', 'tickets', 'daily_spend'], source: 'traveller, confirmed', set_in_version: 2, was_inr: 250000 },
+      diet: { type: 'vegetarian', exclude: ['dashi', 'fish sauce', 'bonito'], meals_required: ['lunch', 'dinner'], source: 'stated: “We’re vegetarian”' },
+      mobility: { max_walk_km_per_day: 4, stairs: 'low', max_active_hours_per_day: 6, rest_break_hours_min: 2, reason: 'one traveller has a bad knee', source: 'stated: “a bad knee”' },
+      rooms: { count: 1, occupancy: 2, lift_or_ground_floor: true },
+      connections: { max_flight_stops: 1, min_buffer_minutes: 30 },
+    },
+    dials: {
+      crowd_tolerance: dial(0.14, 'stated', 'we hate crowds', 0.7, { default: 0.5 }),
+      pace: dial(0.30, 'inferred', 'bad knee + hate crowds', 0.6, { default: 0.5 }),
+      temples: dial(0.80, 'stated', 'interests: temples', 0.9),
+      food: dial(0.80, 'stated', 'interests: food', 0.9),
+      photography: dial(0.70, 'stated', 'interests: photography', 0.9),
+      hidden_gem_share: dial(0.30, 'default', null, 0.5),
+      ryokan_nights: dial(1, 'default', null, 0.4, { note: 'asked later only if the budget allows' }),
+    },
+    residual_text: {
+      text: 'feel like old Japan',
+      judged_by: 'C5 semantic judge, for C3',
+      cache_key: 'wish:old-japan',
+    },
+    derived: {
+      season_flags: ['golden_week'],
+      ranking_weights: { interests: 0.30, old_japan: 0.15, quality: 0.20, price: 0.10, crowd: 0.20, distance: 0.05 },
+      trip_score_weights: { cost: 0.15, transit_per_hour: 0.016, stay: 0.02, transit_multiplier: 2, transit_multiplier_reason: 'bad knee' },
+      cities_considered: 11,
+    },
+    open_questions: [
+      { id: 'Q2', text: 'Are about 100 steps OK for the knee?', impact: 0.30, status: 'asked', asked_by: 'C1' },
+      { id: 'Q3', text: 'A ryokan night?', impact: 0.12, status: 'defaulted', default: '1 night, if within budget' },
+      { id: 'Q4', text: 'Early starts OK?', impact: 0.10, status: 'defaulted', default: 'yes' },
+    ],
+    decisions: [
+      {
+        id: 'D1',
+        raised_by: 'C6 no-solution report',
+        decided_by: 'C5: ask, it touches a hard rule',
+        question: 'Golden Week fares push every plan past ₹2.5 L',
+        options: ['Raise the budget to ₹3.2 L', 'Keep ₹2.5 L and travel 10–16 May'],
+        picked: 'Raise the budget to ₹3.2 L',
+        applied_in_version: 2,
+      },
+    ],
+    versions: [
+      { v: 1, at: '2026-10-02T11:31:02+05:30', by: 'C1', change: 'Trip created from the form and the first message', patches: 14 },
+      { v: 2, at: '2026-10-02T11:42:10+05:30', by: 'C1', change: 'hard_constraints.budget.max_total_inr 250000 → 320000', reason: 'the traveller picked option 1 of D1' },
+    ],
+    writers: { allowed: ['C1', 'C5'], rule: 'hard constraints change only with the traveller’s yes' },
+  };
+  const stop = (start, end, name, extra = {}) => ({ start, end, name, ...extra });
+  const ITINERARY = {
+    itinerary_id: 'ITN-TRP-2026-0428-A1',
+    trip_id: 'TRP-2026-0428-BLR-JP',
+    based_on_state_version: 2,
+    plan: { id: 'A', name: 'Classic, slow', bundle: 1 },
+    status: 'valid',
+    validated_by: 'C8',
+    validated_at: '2026-10-02T11:44:37+05:30',
+    score: {
+      trip_score: 0.46,
+      estimate_before_quotes: 0.47,
+      terms: { fit: 0.88, cost: -0.15, transit: -0.15, stay: -0.12 },
+      rank: '1 of 2 valid plans',
+    },
+    cost_inr: {
+      bookable: 238000,
+      breakdown: { flights: 115000, hotels: 88000, rail: 29000, tickets: 6000 },
+      daily_spend_estimate: 77000,
+      total: 315000,
+      budget: 320000,
+      headroom: 5000,
+    },
+    cities: [
+      { order: 1, city: 'Tokyo', nights: 2, check_in: '2026-04-28', check_out: '2026-04-30', base: 'Ueno' },
+      { order: 2, city: 'Kanazawa', nights: 2, check_in: '2026-04-30', check_out: '2026-05-02', base: 'Higashi Chaya' },
+      { order: 3, city: 'Kyoto', nights: 2, check_in: '2026-05-02', check_out: '2026-05-04', base: 'Karasuma-Shijo' },
+    ],
+    legs: [
+      { id: 'L1', mode: 'flight', from: 'BLR', to: 'Tokyo', date: '2026-04-28', route: 'via Bangkok', stops: 1, arrive_by: '14:00', duration: '12h30', booking: 'B-FL1' },
+      { id: 'L2', mode: 'rail', from: 'Tokyo', to: 'Kanazawa', date: '2026-04-30', depart: '10:24', duration: '2h30', service: 'Shinkansen, reserved seats', booking: 'B-RL1' },
+      { id: 'L3', mode: 'rail', from: 'Kanazawa', to: 'Kyoto', date: '2026-05-02', depart: '10:00', duration: '2h10', service: 'via Tsuruga', booking: 'B-RL2' },
+      { id: 'L4', mode: 'rail', from: 'Kyoto', to: 'KIX', date: '2026-05-04', depart: '08:40', duration: '1h20', service: 'Haruka', booking: 'B-RL3' },
+      { id: 'L5', mode: 'flight', from: 'KIX', to: 'BLR', date: '2026-05-04', depart_after: '13:00', route: 'via Bangkok', stops: 1, booking: 'B-FL2' },
+    ],
+    days: [
+      { day: 1, date: '2026-04-28', city: 'Tokyo', theme: 'Arrive, slow evening', walk_km: 2.1, active_hours: 2.5,
+        stops: [stop('14:00', '15:30', 'Land, train to Ueno, check in'), stop('16:30', '18:30', 'Yanaka walk', { crowd: 0.30, place_id: 'P-11873' }), stop('18:45', '20:00', 'Shojin dinner, dashi-free', { meal: 'dinner', veg: true })] },
+      { day: 2, date: '2026-04-29', city: 'Tokyo', theme: 'Old Tokyo, early', walk_km: 3.8, active_hours: 5.5,
+        stops: [stop('07:30', '09:00', 'Senso-ji before the crowds', { crowd: 0.22 }), stop('11:00', '12:30', 'Veg lunch, Asakusa', { meal: 'lunch', veg: true }), stop('13:00', '15:00', 'Rest at the hotel'), stop('15:30', '17:30', 'Kiyosumi garden', { crowd: 0.35 }), stop('19:00', '20:15', 'Veg dinner, Ueno', { meal: 'dinner', veg: true })] },
+      { day: 3, date: '2026-04-30', city: 'Kanazawa', theme: 'Train day, teahouses', walk_km: 3.2, active_hours: 4.5,
+        stops: [stop('10:24', '12:54', 'Shinkansen to Kanazawa', { leg: 'L2' }), stop('13:30', '14:30', 'Veg lunch, dashi-free', { meal: 'lunch', veg: true }), stop('15:00', '16:30', 'Nishi Chaya teahouses', { crowd: 0.25, old_japan: 0.86, place_id: 'P-20418' }), stop('17:00', '19:00', 'Higashi Chaya district', { crowd: 0.40 }), stop('19:30', '20:30', 'Veg dinner', { meal: 'dinner', veg: true })] },
+      { day: 4, date: '2026-05-01', city: 'Kanazawa', theme: 'Gardens and samurai lanes', walk_km: 3.9, active_hours: 6.0,
+        stops: [stop('08:00', '10:00', 'Kenroku-en garden', { crowd: 0.30 }), stop('10:30', '12:00', 'Nagamachi samurai lanes'), stop('12:15', '13:15', 'Veg lunch', { meal: 'lunch', veg: true }), stop('13:30', '15:30', 'Rest at the hotel'), stop('16:00', '17:30', 'D.T. Suzuki Museum'), stop('19:00', '20:00', 'Veg dinner', { meal: 'dinner', veg: true })] },
+      { day: 5, date: '2026-05-02', city: 'Kyoto', theme: 'Train day, quiet garden', walk_km: 2.6, active_hours: 4.0,
+        stops: [stop('10:00', '12:10', 'Train to Kyoto, via Tsuruga', { leg: 'L3' }), stop('12:45', '13:45', 'Veg lunch near Karasuma', { meal: 'lunch', veg: true }), stop('15:00', '16:30', 'Shoren-in temple garden', { crowd: 0.20, replaces: 'Kinkaku-ji' }), stop('19:00', '20:00', 'Veg dinner', { meal: 'dinner', veg: true })] },
+      { day: 6, date: '2026-05-03', city: 'Kyoto', theme: 'Inari at dawn', walk_km: 3.6, active_hours: 5.0,
+        stops: [stop('07:00', '08:30', 'Fushimi Inari, lower gates', { crowd: 0.16, note: 'summit path skipped: stairs' }), stop('08:45', '10:15', 'Tofuku-ji', { crowd: 0.30 }), stop('11:30', '13:00', 'Shojin lunch, dashi-free', { meal: 'lunch', veg: true, changed_by: 'C5 fix: 10:45 slot full' }), stop('13:15', '16:00', 'Rest at the hotel'), stop('16:30', '18:30', 'Gion lanes at golden hour', { crowd: 0.55 }), stop('19:00', '20:00', 'Veg dinner', { meal: 'dinner', veg: true })] },
+      { day: 7, date: '2026-05-04', city: 'Kyoto → home', theme: 'Fly home', walk_km: 0.8, active_hours: 1.5,
+        stops: [stop('08:40', '10:00', 'Haruka to KIX', { leg: 'L4' }), stop('13:00', null, 'Flight to Bengaluru', { leg: 'L5' })] },
+    ],
+    bookings: [
+      { id: 'B-FL1', type: 'flight', what: 'BLR → Tokyo, via Bangkok, 28 Apr', pax: 2, price_inr: 71000, quoted_at: '2026-10-02T11:43:05+05:30', availability: 'seats left: 4', alternatives: 2 },
+      { id: 'B-FL2', type: 'flight', what: 'KIX → BLR, via Bangkok, 4 May', pax: 2, price_inr: 44000, quoted_at: '2026-10-02T11:43:05+05:30', availability: 'seats left: 7', alternatives: 2 },
+      { id: 'B-HT1', type: 'hotel', what: 'Tokyo, Ueno · 2 nights · lift', rooms: 1, price_inr: 26000, refundable_until: '2026-04-21', alternatives: 2 },
+      { id: 'B-HT2', type: 'hotel', what: 'Kanazawa, Higashi Chaya · 2 nights · lift', rooms: 1, price_inr: 32000, refundable_until: '2026-04-23', alternatives: 2 },
+      { id: 'B-HT3', type: 'hotel', what: 'Kyoto, Karasuma-Shijo · 2 nights · lift', rooms: 1, price_inr: 30000, refundable_until: '2026-04-25', alternatives: 2 },
+      { id: 'B-RL1', type: 'rail', what: 'Tokyo → Kanazawa, 30 Apr 10:24', pax: 2, price_jpy: 28400 },
+      { id: 'B-RL2', type: 'rail', what: 'Kanazawa → Kyoto, 2 May 10:00', pax: 2, price_jpy: 15000 },
+      { id: 'B-RL3', type: 'rail', what: 'Kyoto → KIX, 4 May 08:40', pax: 2, price_jpy: 8200 },
+      { id: 'B-TK1', type: 'ticket', what: 'Shojin lunch, 3 May 11:30', pax: 2, price_inr: 6000, note: 'moved from 10:45, which was full' },
+    ],
+    rail_choice: { picked: 'single tickets', total_jpy: 51600, vs_jr_pass_jpy: 100000, total_inr: 29000 },
+    checks: {
+      opening_hours: 'pass',
+      connections_and_buffers: 'pass',
+      walk_km_max_day: { value: 3.9, limit: 4, result: 'pass' },
+      stairs_low_every_stop: 'pass',
+      veg_meal_lunch_and_dinner: 'pass',
+      total_within_budget: { value: 315000, limit: 320000, result: 'pass' },
+      facts_within_freshness: 'pass',
+      rooms_and_seats_free: 'pass',
+    },
+    trade_offs: [
+      { item: 'Kinkaku-ji', step: 'C3 rank', reason: 'Golden Week crowds all day', score_lost: 0.03, replaced_by: 'Shoren-in' },
+      { item: 'Fushimi Inari summit', step: 'C6 schedule', reason: 'steep stairs, a hard rule', score_lost: null },
+      { item: 'Gion ryokan', step: 'C6 base', reason: '₹16k more, 25 min from the station', score_lost: 0.01, offer_back: true },
+      { item: '21st Century Museum', step: 'C6 activities', reason: 'no hours left in Kanazawa', score_lost: 0.01 },
+    ],
+    fixes_applied: [
+      { by: 'C5', report: 'C7 no-inventory: shojin lunch full at 10:45', action: 'moved to 11:30', asked_traveller: false },
+    ],
+    alternatives: [
+      { plan: 'B', name: 'Fewer moves', cities: 'Tokyo 3 · Kyoto 3', trip_score: 0.43, total_inr: 269000, repaired: 'day 5 walk 4.6 → 3.4 km with a taxi' },
+      { plan: 'C', name: 'Mountain towns', status: 'rejected', reason: 'no Takayama rooms on 1 May' },
+    ],
+    narration: {
+      headline: 'A suits you better, with Kanazawa’s quiet old streets. B is ₹45k cheaper and has one hotel change fewer.',
+      claims: 5,
+      claims_matched: 5,
+      by: 'C9',
+    },
+    provenance: { flights_and_hotels: 'live, quoted 11:43', places: 'repository, refreshed 3 days ago', rail_times: 'timetable feed', all_numbers: 'illustrative' },
+  };
+  function jsonHTML(obj) {
+    const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return JSON.stringify(obj, null, 2).split('\n').map(line => {
+      const top = line.match(/^ {2}"([a-z_]+)":/);
+      const html = esc(line).replace(/("(?:\\.|[^"\\])*")(\s*:)?|\b(true|false|null)\b|(-?\d+(?:\.\d+)?)/g, (m, str, colon, b, n) =>
+        str ? (colon ? `<span class="k">${str}</span>${colon}` : `<span class="s">${str}</span>`) : b ? `<span class="b">${b}</span>` : `<span class="n">${n}</span>`);
+      return top ? `<span data-key="${top[1]}">${html}</span>` : html;
+    }).join('\n');
+  }
+  [['json-state', TRIP_STATE], ['json-itin', ITINERARY]].forEach(([id, obj]) => {
+    $(id).innerHTML = jsonHTML(obj);
+    document.querySelector(`.ts-keys[data-for="${id}"]`).innerHTML = Object.keys(obj).filter(k => obj[k] && typeof obj[k] === 'object')
+      .map(k => `<button type="button" data-jump="${id}:${k}">${k}</button>`).join('');
+  });
+  function jump(spec) {
+    const [id, key] = spec.split(':'), pre = $(id), el = pre.querySelector(`[data-key="${key}"]`);
+    if (!el) return;
+    pre.scrollTo({ top: el.offsetTop - pre.offsetTop - 12, behavior: 'smooth' });
+    el.classList.add('hl');
+    setTimeout(() => el.classList.remove('hl'), 1400);
+  }
+
+  // ---------- Expand all: jump to the final state of the current architecture tab ----------
+  function xsync() {
+    const x = $('expand');
+    x.hidden = tab !== 'arch' && tab !== 'revised';
+    x.disabled = tab === 'arch' ? cur >= BEATS.length - 1 : !rpeek && rcur >= RSTEPS.length - 1;
+  }
+  $('expand').addEventListener('click', () => {
+    if (tab === 'arch') { closePop(); go(BEATS.length - 1); }
+    else if (tab === 'revised') rgo(RSTEPS.length - 1);
+  });
 
   // ---------- Research tab ----------
   const railR = $('rail-r');
@@ -2599,6 +2857,13 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     reveal(rev + d);
   }
   function syncNav() {
+    xsync();
+    if (tab === 'state') {
+      $('prev').disabled = $('next').disabled = true;
+      $('next').classList.remove('hint');
+      $('now').innerHTML = 'Trip State<span class="now-beat">The trip state and the final itinerary, as JSON</span>';
+      return;
+    }
     if (tab === 'goals') { gsync(); return; }
     if (tab === 'revised') { rsync(); return; }
     const r = tab === 'research';
@@ -2614,7 +2879,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         (f.beats.length > 1 ? `<span class="now-beat">${beat.id} · ${beat.name}</span>` : '');
     }
   }
-  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised' };
+  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state' };
   function setTab(t) {
     if (t === tab || !VIEWS[t]) return;
     tab = t;
@@ -2629,7 +2894,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     pinned = [];
     light(pinned);
     if (t === 'research') reveal(rev); else { syncNav(); layout(); rlayout(); }
-    try { history.replaceState(null, '', '#' + (t === 'arch' ? 'architecture' : t)); } catch (err) { /* not allowed here */ }
+    try { history.replaceState(null, '', '#' + ({ arch: 'architecture', state: 'trip-state' }[t] || t)); } catch (err) { /* not allowed here */ }
   }
 
   // ---------- Revised architecture: one component in focus, the rest minimized ----------
@@ -3629,7 +3894,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
 
   go(0);
   ggo(0);
-  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised' };
+  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state' };
   if (HASH[location.hash]) setTab(HASH[location.hash]);
   fit();
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); if (tab === 'arch') flow(BEATS[cur].id); });

@@ -48,7 +48,8 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Icons are Lucide `<symbol>`s in the sprite at the top of `<body>`. Use them as `<svg class="ic"><use href="#i-NAME"/></svg>`, or `ic('NAME')` in the revised-tab content. Add new ones with `tools/sprite.py`.
 
 **Navigation**
-- Four tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised`.
+- Five tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#trip-state`.
+- **Expand all** button in the top bar, after the tabs, shown only on Architecture and Revised Architecture: jumps straight to the final state (last beat / spread-out map). Disabled once there (`xsync`).
 - ← → keys (or PageUp/PageDown, or the round buttons top right) step through the current tab. Each tab remembers its position.
 - `#now` is the step label, shown in narrow mode only.
 
@@ -67,6 +68,13 @@ Built from the user's goal slide. Each → reveals one section; earlier ones sta
 - **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. Beside them: a valid output must be Real, Feasible, Consistent, Measurable.
 - The "Why plan the itinerary before flights and hotels?" section was removed on request.
 - Takeaway: "The output is not a suggestion. It is a trip that can be booked as is."
+
+### Tab 4: Trip State
+
+- Two cards side by side, each a scrollable, syntax-coloured JSON block with jump chips for the top-level keys (`data-jump`).
+- **Trip state** (`TRIP_STATE`): C2 at version 2, after the budget was raised to ₹3.2 L. Traveller, hard constraints, dials (value, source, phrase, confidence), residual text, derived weights, open questions, decision D1, versions, writers.
+- **Final itinerary** (`ITINERARY`): Plan A, bundle 1, score 0.46, ₹3.15 L of ₹3.2 L. Cities, legs, all 7 days with timed stops, bookings with prices, rail choice, validator checks, trade-offs, C5's fix (lunch 10:45 → 11:30), alternatives (B, rejected C), narration, provenance.
+- Every number matches the running example below; change both together.
 
 ### Tab 1: Architecture (two flows, beats 1 and 2.1–2.4)
 
@@ -117,7 +125,7 @@ Built from the user's goal slide. Each → reveals one section; earlier ones sta
 **Steps**
 - **Step 0:** only the trip input card and an empty itinerary.
 - **Steps 1–37:** one part of one component at a time. A compact map band on top (chips; the open one highlighted), the focus card below: code, name, role, In / Out / Example, part chips, then "How it works" and "Example".
-- **Step 38:** all components on a spread-out map in four lanes: Conversation (and the trip state), Judgement, Planning, Data. A legend sits bottom-left.
+- **Step 38:** all components on a spread-out map in four lanes: Interface & state (renamed from Conversation on request, since the trip state is not conversation), Judgement, Planning, Data. A legend sits bottom-left.
 - No LLM / Code / Data badges anywhere (removed on request). Instead chips are tinted: LLM components violet (`--llm*` tokens, `is-llm`), data and state grey (`is-data`), code white. The focus card's code square turns violet for LLM components.
 - Components with more than 6 parts (C6) show compact part chips (`.stabs.many`).
 
