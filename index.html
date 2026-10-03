@@ -678,8 +678,9 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .rlegend i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); }
 .rlegend .lg-llm { background: var(--llm-soft); border-color: var(--llm-line); }
 .rlegend .lg-data { background: var(--sunk); }
+.rlegend .lg-tip { margin-top: 6px; text-transform: none; letter-spacing: 0; font: 600 11.5px/1.35 var(--f-body); color: var(--accent); }
 .rmap.is-band .rlegend { left: 0; top: 64px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
-.rmap.is-over .rlegend { left: 0; top: 724px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
+.rmap.is-over .rlegend { left: 0; top: 520px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
 .rk.is-focus { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow); }
 .rk.is-focus .rk-code { color: var(--accent); background: var(--accent-ink); }
 
@@ -689,7 +690,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .lane span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
 .lane-rule { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed var(--line); opacity: 0; transition: opacity .3s; }
 .rmap.is-over .lane, .rmap.is-over .lane-rule { opacity: 1; visibility: visible; transition: opacity .4s .35s, visibility .4s .35s; }
-.rmap .elabel { white-space: nowrap; }
+.rmap .elabel { white-space: nowrap; pointer-events: none; }
 
 /* Focus card */
 .fk {
@@ -1192,7 +1193,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .ai-map .lane { opacity: 1; visibility: visible; }
 .ai-map .elabel { z-index: 3; }
 .elabel.lside { transform: translate(-100%, -50%); }
-.stage[data-tab="research"] .tab-long { display: none; }
+.stage[data-view="research"] .tab-long { display: none; }
 .ai-n {
   position: absolute; z-index: 2; margin: 0; display: flex; flex-direction: column; gap: 6px; padding: 10px 14px 12px; overflow: hidden;
   border-radius: 12px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow);
@@ -1995,7 +1996,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <p class="lane" style="top:436px"><b>Planning</b><span>Guarantees: code and solvers</span></p>
           <i class="lane-rule" style="top:648px"></i>
           <p class="lane" style="top:656px"><b>Data</b><span>Facts with a source and a time</span></p>
-          <ul class="rlegend" aria-label="Legend"><li><i class="lg-llm"></i>Uses the LLM</li><li><i></i>Code</li><li><i class="lg-data"></i>Data and state</li></ul>
+          <ul class="rlegend" aria-label="Legend"><li><i class="lg-llm"></i>Uses the LLM</li><li><i></i>Code</li><li><i class="lg-data"></i>Data and state</li><li class="lg-tip">Click a component<br>for its details</li></ul>
 
           <article class="node card" id="r-input">
             <header class="node-h">
@@ -2843,12 +2844,11 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   // ---------- Expand all: jump to the final state of the current architecture tab ----------
   function xsync() {
     const x = $('expand');
-    x.hidden = tab !== 'arch' && tab !== 'revised';
-    x.disabled = tab === 'arch' ? cur >= BEATS.length - 1 : !rpeek && rcur >= RSTEPS.length - 1;
+    x.hidden = tab !== 'arch';
+    x.disabled = cur >= BEATS.length - 1;
   }
   $('expand').addEventListener('click', () => {
     if (tab === 'arch') { closePop(); go(BEATS.length - 1); }
-    else if (tab === 'revised') rgo(RSTEPS.length - 1);
   });
 
   // ---------- Research tab ----------
@@ -2997,7 +2997,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   function setTab(t) {
     if (t === tab || !VIEWS[t]) return;
     tab = t;
-    stage.dataset.tab = t;
+    stage.dataset.view = t;
     Object.entries(VIEWS).forEach(([k, id]) => {
       $(id).hidden = k !== t;
       $('tab-' + k).setAttribute('aria-selected', String(k === t));
@@ -3757,10 +3757,9 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
               ${note('A full re-plan scores a little higher but rewrites most of the trip. Stability wins, and C9 explains only what changed.')}</div></div>` },
       ] },
   ];
-  const RSTEPS = [{ k: 0, s: 0 }];
-  RK.forEach(c => c.subs.forEach((x, s) => RSTEPS.push({ k: c.id, s })));
+  // The tab opens on the full map. Any component chip opens its parts; ←/→ walk through every part in order.
   const OVER = RK.length + 1;
-  RSTEPS.push({ k: OVER, s: 0 });
+  const RSTEPS = [{ k: OVER, s: 0 }];
   // Chip boxes [left, top, width, height]: a band above the open component, a spread-out map at the end.
   const RPOS = {
     band: { in: [0, 0, 150, 40], 1: [186, 0, 210, 40], 2: [424, 0, 210, 40], 10: [662, 0, 210, 40], out: [900, 0, 210, 40], 9: [1138, 0, 210, 40],
@@ -3944,17 +3943,13 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     rfollow(900);
     syncNav();
   }
-  function rgo(i) {
-    i = Math.max(0, Math.min(RSTEPS.length - 1, i));
-    if (i === rcur && !rpeek) return;
-    rcur = i;
-    rpeek = null;
-    rrender();
-  }
   function rstep(d) {
-    if (!rpeek) { rgo(rcur + d); return; }
-    const s = rpeek.s + d;
-    rpeek = s >= 0 && s < RK[rpeek.k - 1].subs.length ? { k: rpeek.k, s } : null;
+    if (!rpeek) { if (d > 0) { rpeek = { k: 1, s: 0 }; rrender(); } return; }
+    let { k, s } = rpeek;
+    s += d;
+    if (s < 0) { k--; s = k >= 1 ? RK[k - 1].subs.length - 1 : 0; }
+    else if (s >= RK[k - 1].subs.length) { k++; s = 0; }
+    rpeek = k >= 1 && k <= RK.length ? { k, s } : null;
     rrender();
   }
   function rclick(t) {
@@ -3980,11 +3975,11 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   }
   function rsync() {
     const S = rstate(), c = RK[S.k - 1];
-    $('prev').disabled = !rpeek && rcur <= 0;
-    $('next').disabled = !rpeek && rcur >= RSTEPS.length - 1;
-    $('next').classList.toggle('hint', !rpeek && rcur === 0);
+    $('prev').disabled = !rpeek;
+    $('next').disabled = false;
+    $('next').classList.toggle('hint', !rpeek);
     $('now').innerHTML = S.mode === 'start' ? 'Revised · press next to start'
-      : S.mode === 'over' ? 'Revised · all components'
+      : S.mode === 'over' ? 'Revised · all components<span class="now-beat">Click a component for details</span>'
       : `Revised · <span class="st-code">${c.code}</span>${c.name}<span class="now-beat">${S.s + 1} of ${c.subs.length} · ${c.subs[S.s].n}</span>`;
   }
   rrender();

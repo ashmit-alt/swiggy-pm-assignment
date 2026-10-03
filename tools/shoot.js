@@ -3,7 +3,7 @@
 //
 // Usage: node tools/shoot.js <architecture|research|revised> <out-dir> [step ...] [--dark] [--phone]
 //   A step is the number of → presses from the tab's first state.
-//   Revised tab: 0 = start, 1-37 = component parts, 38 = all components.
+//   Revised tab: 0 = the full map; each → opens the next part (1-37 = C1 to C10 parts, 38 = back to the map).
 //   With no steps, the revised tab checks every step and screenshots only the ones listed.
 //
 // Needs Playwright with Chromium. In Claude Code cloud containers it lives in /opt/node-tools,

@@ -48,7 +48,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Icons are Lucide `<symbol>`s in the sprite at the top of `<body>`. Use them as `<svg class="ic"><use href="#i-NAME"/></svg>`, or `ic('NAME')` in the revised-tab content. Add new ones with `tools/sprite.py`.
 
 **Navigation**
-- Six tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#ai-native`, `#trip-state`. On the Research tab the Revised tab shows a short label so the paper timeline fits (`.stage[data-tab]`).
+- Six tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#ai-native`, `#trip-state`. On the Research tab the Revised tab shows a short label so the paper timeline fits (`.stage[data-view]`; never use `data-tab` on a container, the click handler treats any `[data-tab]` ancestor as a tab button).
 - **Expand all** button in the top bar, after the tabs, shown only on Architecture and Revised Architecture: jumps straight to the final state (last beat / spread-out map). Disabled once there (`xsync`).
 - ← → keys (or PageUp/PageDown, or the round buttons top right) step through the current tab. Each tab remembers its position.
 - `#now` is the step label, shown in narrow mode only.
@@ -129,12 +129,14 @@ Answer to "what if the interviewer thinks AI can do most of the planning?". The 
 
 ### Tab 3: Revised architecture (where the recent work is)
 
-**Steps**
-- **Step 0:** only the trip input card and an empty itinerary.
-- **Steps 1–37:** one part of one component at a time. A compact map band on top (chips; the open one highlighted), the focus card below: code, name, role, In / Out / Example, part chips, then "How it works" and "Example".
-- **Step 38:** all components on a spread-out map in four lanes: Interface & state (renamed from Conversation on request, since the trip state is not conversation), Judgement, Planning, Data. A legend sits bottom-left.
+**Opening view (no step-by-step reveal any more, on request)**
+- The tab opens on the full map: all components in four lanes, Interface & state, Judgement, Planning, Data. The legend bottom-left says "Click a component for its details".
+- Clicking a chip opens its focus card (the map shrinks to the band on top): code, name, role, In / Out / Example, part chips, then "How it works" and "Example". These are the same details as the old sequential flow.
+- `RSTEPS` is just the overview. → from the overview opens C1 part 1; ←/→ then walk every part of every component in order (crossing into the next component), and past the last part go back to the map. Esc or "Back to all components" also returns.
+- Expand all is shown only on the Architecture tab now.
 - No LLM / Code / Data badges anywhere (removed on request). Instead chips are tinted: LLM components violet (`--llm*` tokens, `is-llm`), data and state grey (`is-data`), code white. The focus card's code square turns violet for LLM components.
 - Components with more than 6 parts (C6) show compact part chips (`.stabs.many`).
+- Wire labels are `pointer-events: none` so they never block clicks on the Judgement LLM bar.
 
 **Interaction**
 - Click any revealed chip to open that component ("peek"). ←/→ move through its parts; Esc or "Back to …" returns.
@@ -254,7 +256,7 @@ ones that depend on it.
 
 ```bash
 python3 -c "s=open('index.html').read(); open('/tmp/page.js','w').write(s[s.index('<script>')+8:s.index('</script>')])" && node --check /tmp/page.js
-node tools/shoot.js revised /tmp/shots 9 38            # light; prints every step, flags overflow
+node tools/shoot.js revised /tmp/shots 9 38            # 0 = map, then each → is one part; flags overflow
 node tools/shoot.js revised /tmp/shots 9 --dark
 node tools/shoot.js revised /tmp/shots 9 --phone       # also prints horizontal overflow
 node tools/shoot.js architecture /tmp/shots 0 5
@@ -262,7 +264,7 @@ node tools/shoot.js architecture /tmp/shots 0 5
 
 - `shoot.js` presses → to reach each listed step, saves `<tab>-<step>.png`, and on the revised tab reports any focus-card column or table that spills.
 - The workflow used so far: one screenshot pass, one round of fixes, then publish.
-- The last run was clean on all 39 revised steps, with no console errors. A rare "too wide" flag mid-animation does not reproduce on a re-run.
+- The last run was clean on the map and all 37 parts, with no console errors. A rare "too wide" flag mid-animation does not reproduce on a re-run.
 
 ## Publishing
 
