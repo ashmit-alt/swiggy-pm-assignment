@@ -48,7 +48,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Icons are Lucide `<symbol>`s in the sprite at the top of `<body>`. Use them as `<svg class="ic"><use href="#i-NAME"/></svg>`, or `ic('NAME')` in the revised-tab content. Add new ones with `tools/sprite.py`.
 
 **Navigation**
-- Five tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#trip-state`.
+- Six tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#ai-native`, `#trip-state`. On the Research tab the Revised tab shows a short label so the paper timeline fits (`.stage[data-tab]`).
 - **Expand all** button in the top bar, after the tabs, shown only on Architecture and Revised Architecture: jumps straight to the final state (last beat / spread-out map). Disabled once there (`xsync`).
 - ← → keys (or PageUp/PageDown, or the round buttons top right) step through the current tab. Each tab remembers its position.
 - `#now` is the step label, shown in narrow mode only.
@@ -68,6 +68,13 @@ Built from the user's goal slide. Each → reveals one section; earlier ones sta
 - **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. Beside them: a valid output must be Real, Feasible, Consistent, Measurable.
 - The "Why plan the itinerary before flights and hotels?" section was removed on request.
 - Takeaway: "The output is not a suggestion. It is a trip that can be booked as is."
+
+### Tab: AI-native (static, no steps)
+
+Answer to "what if the interviewer thinks AI can do most of the planning?". The agent proposes, code verifies (LLM-Modulo).
+- Hand-placed diagram (`.ai-map`, fixed coordinates in the HTML, wires as SVG paths, labels as `.elabel`): Traveller ↔ Conversational agent (was C1 + C9) → Trip state (C2) → Planner agent (was C3, C5, C6, C10: draft → critique → revise, at most 3 rounds, city sub-agents) ⇄ Critics (was C8: hard, soft, fact, LLM judge) → Itinerary. Both call a typed Tool layer (searches plus solvers, with today's optimizer as a fallback), which reads Data feeds (C4) and Booking search & pricing (C7).
+- A strip below runs the Japan trip in 5 steps: Understand, Draft, Critique, Revise or ask, Present.
+- Talking points (not on the page): latency and cost caps, replayable runs for G9, an eval set of ~20 trips, and the dial from code-plans to agent-plans as critic pass rates hold.
 
 ### Tab 4: Trip State
 

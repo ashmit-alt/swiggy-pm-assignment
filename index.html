@@ -1186,6 +1186,52 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .g-v span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
 
 
+/* ---------- AI-native ---------- */
+.ai-map { position: relative; flex: none; height: 660px; }
+.ai-map .wires { width: 100%; height: 100%; }
+.ai-map .lane { opacity: 1; visibility: visible; }
+.ai-map .elabel { z-index: 3; }
+.elabel.lside { transform: translate(-100%, -50%); }
+.stage[data-tab="research"] .tab-long { display: none; }
+.ai-n {
+  position: absolute; z-index: 2; margin: 0; display: flex; flex-direction: column; gap: 6px; padding: 10px 14px 12px; overflow: hidden;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow);
+}
+.ai-n.is-llm { background: var(--llm-soft); border-color: var(--llm-line); }
+.ai-n.is-data { background: var(--sunk); }
+.ai-n.is-out { border-style: dashed; box-shadow: none; }
+.ai-n header { display: flex; align-items: center; gap: 8px; }
+.ai-n h3 { margin: 0; flex: 1; min-width: 0; font: 680 15px/1.2 var(--f-display); font-stretch: 106%; }
+.ai-n.ai-big h3 { font-size: 17px; }
+.ai-ic { order: -1; display: grid; place-items: center; color: var(--ink-2); }
+.ai-ic .ic { width: 17px; height: 17px; }
+.ai-rep { flex: none; padding: 3px 6px; border-radius: 5px; font: 500 10px/1 var(--f-mono); color: var(--ink-3); box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
+.ai-sub { font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+.ai-tags, .ai-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.ai-tags i, .ai-tools code { font: 500 10.5px/1 var(--f-mono); font-style: normal; padding: 4px 6px; border-radius: 5px; color: var(--ink-2); background: var(--sunk); }
+.ai-n.is-llm .ai-tags i, .ai-n.is-data .ai-tags i { background: var(--surface); }
+.ai-tools code.sv { background: var(--t-transit-soft); color: var(--t-transit); }
+.ai-tools b { margin: 0 2px 0 8px; font: 600 10px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
+.ai-loop { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.ai-loop span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 9px; background: var(--surface); font-size: 13px; font-weight: 650; }
+.ai-loop .ic { width: 15px; height: 15px; color: var(--llm); }
+.ai-loop i { font-style: normal; color: var(--ink-3); }
+.ai-subs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: auto; }
+.ai-subs .label { flex-basis: 100%; margin: 0; }
+.ai-subs span { padding: 5px 9px; border-radius: 8px; border: 1px dashed var(--llm-line); background: var(--surface); font-size: 12.5px; font-weight: 600; }
+.ai-subs em { font-style: normal; font-size: 12px; color: var(--ink-2); }
+.ai-crits { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: auto; }
+.ai-crit { display: flex; flex-direction: column; gap: 2px; padding: 7px 10px; border-radius: 9px; background: var(--sunk); }
+.ai-crit.is-llm { background: var(--llm-soft); box-shadow: inset 0 0 0 1px var(--llm-line); }
+.ai-crit b { font-size: 12.5px; font-weight: 700; }
+.ai-crit span { font-size: 11.5px; line-height: 1.35; color: var(--ink-2); }
+.ai-legend { left: 0 !important; top: 380px !important; flex-direction: column; align-items: flex-start; opacity: 1 !important; visibility: visible !important; }
+.ai-run { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.ai-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.ai-steps li { display: flex; gap: 10px; }
+.ai-steps b { font-size: 13.5px; font-weight: 700; }
+.ai-steps p { margin-top: 2px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+
 /* ---------- Trip State ---------- */
 .xbtn {
   flex: none; display: inline-flex; align-items: center; gap: 7px; height: 36px; margin-left: -12px; padding: 0 13px; border-radius: 10px; cursor: pointer;
@@ -1291,6 +1337,11 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .stat b { font-size: 40px; }
   .goals { gap: 26px; }
   .g-sec.g-hide { display: none; }
+  .ai-map { height: auto; display: flex; flex-direction: column; gap: 10px; }
+  .ai-map .wires, .ai-map .elabel, .ai-map .lane { display: none; }
+  .ai-n { position: relative; left: auto !important; top: auto !important; width: auto !important; height: auto !important; }
+  .ai-legend { position: static; }
+  .ai-crits, .ai-steps { grid-template-columns: minmax(0, 1fr); }
   .ts-head { flex-direction: column; gap: 4px; }
   .ts-grid { grid-template-columns: minmax(0, 1fr); }
   .ts-json { max-height: 70vh; }
@@ -1424,6 +1475,8 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 <symbol id="i-list-ordered" viewBox="0 0 24 24"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></symbol>
 <symbol id="i-maximize-2" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></symbol>
 <symbol id="i-file-json" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"/><path d="M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></symbol>
 </defs></svg>
 
 <div class="viewport">
@@ -1440,6 +1493,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <button type="button" class="tab" role="tab" id="tab-arch" aria-selected="false" aria-controls="view-arch" data-tab="arch"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg>Architecture</button>
           <button type="button" class="tab" role="tab" id="tab-research" aria-selected="false" aria-controls="view-research" data-tab="research"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg>Research</button>
           <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg><span>Revised<span class="tab-long"> Architecture</span></span></button>
+          <button type="button" class="tab" role="tab" id="tab-ai" aria-selected="false" aria-controls="view-ai" data-tab="ai"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>AI-native</button>
           <button type="button" class="tab" role="tab" id="tab-state" aria-selected="false" aria-controls="view-state" data-tab="state"><svg class="ic" aria-hidden="true"><use href="#i-file-json"/></svg>Trip State</button>
         </div>
         <ol class="rail" id="rail-r" aria-label="Papers" hidden></ol>
@@ -1982,6 +2036,60 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </section>
       </div>
 
+      <!-- ===== AI-native: the agent plans, code checks ===== -->
+      <div class="view" id="view-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
+        <section class="ai-map" aria-label="AI-native architecture">
+          <svg class="wires" aria-hidden="true" viewBox="0 0 1376 660" preserveAspectRatio="none">
+            <defs><marker id="arrow-ai" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="arrowhead" d="M2 1.5 8.5 5 2 8.5"/></marker></defs>
+            <path class="wire" d="M343 90L378 90" marker-end="url(#arrow-ai)" marker-start="url(#arrow-ai)"/><path class="wire" d="M702 90L757 90" marker-end="url(#arrow-ai)"/><path class="wire" d="M790 153L790 202" marker-end="url(#arrow-ai)"/><path class="wire dashed" d="M545 202L545 153" marker-end="url(#arrow-ai)"/><path class="wire" d="M833 265L887 265" marker-end="url(#arrow-ai)"/><path class="wire" d="M887 345L833 345" marker-end="url(#arrow-ai)"/><path class="wire" d="M1220 202L1220 153" marker-end="url(#arrow-ai)"/><path class="wire dashed" d="M1120 28L1120 16Q1120 8 1112 8L678 8Q670 8 670 16L670 27" marker-end="url(#arrow-ai)"/><path class="wire" d="M510 408L510 457" marker-end="url(#arrow-ai)" marker-start="url(#arrow-ai)"/><path class="wire" d="M1130 408L1130 457" marker-end="url(#arrow-ai)" marker-start="url(#arrow-ai)"/><path class="wire" d="M480 556L480 597" marker-end="url(#arrow-ai)"/><path class="wire" d="M1088 556L1088 597" marker-end="url(#arrow-ai)"/>
+          </svg>
+          <p class="lane" style="top:34px"><b>Interface &amp; state</b><span>Faces the traveller</span></p><p class="lane" style="top:209px"><b>Planning loop</b><span>The agent proposes, code verifies</span></p><p class="lane" style="top:464px"><b>Tools</b><span>Exact answers on demand</span></p><p class="lane" style="top:604px"><b>Facts &amp; prices</b><span>Never generated</span></p>
+          <article class="ai-n is-in" style="left:190px;top:30px;width:150px;height:120px">
+            <header><h3>Traveller</h3><span class="ai-ic"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span></header>
+            <p class="ai-sub">Japan · 2 adults · 7 days · veg · bad knee</p>
+          </article>
+          <article class="ai-n is-llm" style="left:380px;top:30px;width:320px;height:120px">
+            <header><h3>Conversational agent</h3><span class="ai-rep">was C1 + C9</span></header>
+            <p class="ai-sub">One agent understands, clarifies, presents and handles follow-ups.</p><span class="ai-tags"><i>Understand</i><i>Clarify</i><i>Present</i><i>Follow-ups</i></span>
+          </article>
+          <article class="ai-n is-data" style="left:760px;top:30px;width:280px;height:120px">
+            <header><h3>Trip state</h3><span class="ai-rep">C2</span></header>
+            <p class="ai-sub">The contract between agents and code. Hard rules change only with a yes.</p><span class="ai-tags"><i>Hard rules</i><i>Dials</i><i>Wish</i><i>Versions</i></span>
+          </article>
+          <article class="ai-n is-out" style="left:1080px;top:30px;width:296px;height:120px">
+            <header><h3>Itinerary</h3><span class="ai-ic"><svg class="ic" aria-hidden="true"><use href="#i-scroll-text"/></svg></span></header>
+            <p class="ai-sub">Same JSON as the Trip State tab. Every claim cites a tool result.</p>
+          </article>
+          <article class="ai-n is-llm ai-big" style="left:190px;top:205px;width:640px;height:200px">
+            <header><h3>Planner agent</h3><span class="ai-rep">was C3, C5, C6, C10</span></header>
+            <p class="ai-sub">Drafts whole itineraries, reads the critics’ feedback and revises. At most 3 rounds.</p><div class="ai-loop"><span><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg>Draft</span><i>→</i><span><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg>Critique</span><i>→</i><span><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg>Revise</span></div>
+            <div class="ai-subs"><p class="label">City sub-agents, in parallel</p><span>Tokyo</span><span>Kanazawa</span><span>Kyoto</span><em>The planner stitches the days and picks the bases</em></div>
+          </article>
+          <article class="ai-n ai-big" style="left:890px;top:205px;width:486px;height:200px">
+            <header><h3>Critics</h3><span class="ai-rep">was C8</span></header>
+            <p class="ai-sub">Code that checks every draft and sends back precise errors.</p><div class="ai-crits"><div class="ai-crit "><b>Hard</b><span>Walking, stairs, veg, hours, budget, rooms</span></div><div class="ai-crit "><b>Soft</b><span>Trip score, crowds, pace: a grade, not pass/fail</span></div><div class="ai-crit "><b>Fact</b><span>Every ID, price and time traced to a tool</span></div><div class="ai-crit is-llm"><b>LLM judge</b><span>“Feels like old Japan?” checked against human ratings</span></div></div>
+          </article>
+          <article class="ai-n " style="left:190px;top:460px;width:1186px;height:94px">
+            <header><h3>Tool layer</h3><span class="ai-ic"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></span></header>
+            <p class="ai-sub">Typed and deterministic. The agents call these; they never make facts up.</p><span class="ai-tools"><code>search_places</code><code>travel_time</code><code>opening_hours</code><code>crowd_forecast</code><code>search_flights</code><code>search_hotels</code><code>check_rooms</code><b>Solvers</b><code class="sv">optimize_day_order</code><code class="sv">best_base_for</code><code class="sv">fallback_optimizer</code></span>
+          </article>
+          <article class="ai-n is-data" style="left:190px;top:600px;width:580px;height:58px">
+            <header><h3>Data feeds & repository</h3><span class="ai-rep">C4</span></header>
+            <p class="ai-sub">Places, maps, events: facts with a source and a time.</p>
+          </article>
+          <article class="ai-n is-data" style="left:800px;top:600px;width:576px;height:58px">
+            <header><h3>Booking search & pricing</h3><span class="ai-rep">C7</span></header>
+            <p class="ai-sub">Live fares and rooms. Prices are never generated.</p>
+          </article>
+          <span class="elabel" style="left:360px;top:118px">chat</span><span class="elabel" style="left:730px;top:118px">writes</span><span class="elabel side" style="left:800px;top:178px">reads</span><span class="elabel side" style="left:555px;top:178px">ask the traveller</span><span class="elabel" style="left:860px;top:252px">drafts</span><span class="elabel" style="left:860px;top:360px">feedback</span><span class="elabel lside" style="left:1210px;top:178px">passes every hard critic</span><span class="elabel" style="left:895px;top:8px">present &amp; explain</span><span class="elabel side" style="left:520px;top:433px">tool calls</span><span class="elabel side" style="left:1140px;top:433px">check against tools</span><span class="elabel side" style="left:490px;top:577px">facts</span><span class="elabel side" style="left:1098px;top:577px">live prices, rooms</span>
+          <ul class="rlegend ai-legend" aria-label="Legend"><li><i class="lg-llm"></i>Uses the LLM</li><li><i></i>Code</li><li><i class="lg-data"></i>Data and state</li></ul>
+        </section>
+        <section class="ai-run" aria-label="One run, the Japan trip">
+          <p class="label">One run · the Japan trip</p>
+          <ol class="ai-steps"><li><span class="g-n">1</span><div><b>Understand</b><p>The conversational agent writes the trip state and asks one question: steps for the knee.</p></div></li><li><span class="g-n">2</span><div><b>Draft</b><p>Golden Week, so favour Kanazawa, early starts and few moves. Drafts plans A, B and C.</p></div></li><li><span class="g-n">3</span><div><b>Critique</b><p>C: no Takayama rooms on 1 May. B, day 5: 4.6 km. All plans: ₹3.15 L against ₹2.5 L.</p></div></li><li><span class="g-n">4</span><div><b>Revise or ask</b><p>Drops C, fixes B with a taxi. The budget is a hard rule, so it asks: ₹3.2 L, or 10–16 May?</p></div></li><li><span class="g-n">5</span><div><b>Present</b><p>Every hard critic passes. Plan A, 0.46, ₹3.15 L, every claim cited.</p></div></li></ol>
+        </section>
+      </div>
+
       <!-- ===== Trip State: the trip state and the final itinerary, as data ===== -->
       <div class="view" id="view-state" role="tabpanel" aria-labelledby="tab-state" hidden>
         <div class="ts-head">
@@ -2454,7 +2562,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     if (rv) { const i = +rv.dataset.rev; i <= rev ? showPaper(i) : reveal(i); return; }
     const pk = t.closest('[data-peek]');
     if (pk) { showPaper(+pk.dataset.peek); return; }
-    if (tab === 'goals') return;
+    if (tab === 'goals' || tab === 'ai') return;
     if (tab === 'state') { const j = t.closest('[data-jump]'); if (j) jump(j.dataset.jump); return; }
     if (tab === 'research') { if (t.closest('#view-research')) researchStep(1); return; }
     if (tab === 'revised') { rclick(t); return; }
@@ -2474,7 +2582,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   stage.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) { e.preventDefault(); e.target.click(); }
   });
-  const step = d => (tab === 'state' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
+  const step = d => (tab === 'state' || tab === 'ai' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
   $('prev').addEventListener('click', () => step(-1));
   $('next').addEventListener('click', () => step(1));
   addEventListener('keydown', e => {
@@ -2858,6 +2966,12 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
   function syncNav() {
     xsync();
+    if (tab === 'ai') {
+      $('prev').disabled = $('next').disabled = true;
+      $('next').classList.remove('hint');
+      $('now').innerHTML = 'AI-native<span class="now-beat">The agent proposes, code verifies</span>';
+      return;
+    }
     if (tab === 'state') {
       $('prev').disabled = $('next').disabled = true;
       $('next').classList.remove('hint');
@@ -2879,10 +2993,11 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         (f.beats.length > 1 ? `<span class="now-beat">${beat.id} · ${beat.name}</span>` : '');
     }
   }
-  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state' };
+  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state', ai: 'view-ai' };
   function setTab(t) {
     if (t === tab || !VIEWS[t]) return;
     tab = t;
+    stage.dataset.tab = t;
     Object.entries(VIEWS).forEach(([k, id]) => {
       $(id).hidden = k !== t;
       $('tab-' + k).setAttribute('aria-selected', String(k === t));
@@ -2894,7 +3009,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     pinned = [];
     light(pinned);
     if (t === 'research') reveal(rev); else { syncNav(); layout(); rlayout(); }
-    try { history.replaceState(null, '', '#' + ({ arch: 'architecture', state: 'trip-state' }[t] || t)); } catch (err) { /* not allowed here */ }
+    try { history.replaceState(null, '', '#' + ({ arch: 'architecture', state: 'trip-state', ai: 'ai-native' }[t] || t)); } catch (err) { /* not allowed here */ }
   }
 
   // ---------- Revised architecture: one component in focus, the rest minimized ----------
@@ -3894,7 +4009,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
 
   go(0);
   ggo(0);
-  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state' };
+  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state', '#ai-native': 'ai' };
   if (HASH[location.hash]) setTab(HASH[location.hash]);
   fit();
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); if (tab === 'arch') flow(BEATS[cur].id); });
