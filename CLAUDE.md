@@ -64,7 +64,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 ### Tab 0: Goals (two steps)
 
 Built from the user's goal slide. Each → reveals one section; earlier ones stay.
-- **Step 1, the goal:** "Turn user intent into a personalised, feasible and bookable trip." plus a short supporting paragraph (`.g-sub`). User inputs → AI trip planner → a bookable itinerary.
+- **Step 1, the goal:** "Turn user intent into a personalised and bookable trip." plus a short supporting paragraph (`.g-sub`). User inputs → AI trip planner → a bookable itinerary.
 - **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. Beside them: a valid output must be Real, Feasible, Consistent, Measurable.
 - The "Why plan the itinerary before flights and hotels?" section was removed on request.
 - Takeaway: "The output is not a suggestion. It is a trip that can be booked as is."
