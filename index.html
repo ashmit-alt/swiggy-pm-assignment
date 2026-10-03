@@ -1193,7 +1193,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .ai-map .lane { opacity: 1; visibility: visible; }
 .ai-map .elabel { z-index: 3; }
 .elabel.lside { transform: translate(-100%, -50%); }
-.stage[data-view="research"] .tab-long { display: none; }
+.stage[data-view="research"] .tab-long, .stage[data-view="research"] .tab .ic { display: none; }
 .ai-n {
   position: absolute; z-index: 2; margin: 0; display: flex; flex-direction: column; gap: 6px; padding: 10px 14px 12px; overflow: hidden;
   border-radius: 12px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow);
@@ -1232,6 +1232,41 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .ai-steps li { display: flex; gap: 10px; }
 .ai-steps b { font-size: 13.5px; font-weight: 700; }
 .ai-steps p { margin-top: 2px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+
+/* ---------- Success ---------- */
+.sc-star {
+  flex: none; display: grid; grid-template-columns: auto minmax(0, 1fr) 360px; align-items: center; gap: 20px;
+  padding: 20px 24px; border-radius: 16px; background: var(--accent); color: var(--accent-ink);
+}
+.sc-star-ic { width: 56px; height: 56px; border-radius: 15px; display: grid; place-items: center; background: var(--accent-ink); color: var(--accent); }
+.sc-star-ic .ic { width: 28px; height: 28px; }
+.sc-star .label { color: var(--accent-ink); opacity: .8; margin-bottom: 4px; }
+.sc-star h2 { font: 760 30px/1.1 var(--f-display); font-stretch: 112%; }
+.sc-star div > p:last-child { margin-top: 6px; font-size: 15px; line-height: 1.45; opacity: .92; }
+.sc-why { font-size: 13.5px; line-height: 1.45; opacity: .9; padding-left: 18px; border-left: 1px solid color-mix(in srgb, var(--accent-ink) 35%, transparent); }
+.sc-cols { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sc-col { --c: var(--accent); --cs: var(--accent-soft); display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--c); box-shadow: var(--shadow); }
+.sc-q { --c: var(--green); --cs: var(--green-soft); }
+.sc-v { --c: var(--t-stay); --cs: var(--t-stay-soft); }
+.sc-e { --c: var(--t-transit); --cs: var(--t-transit-soft); }
+.sc-col header { display: flex; align-items: center; gap: 11px; }
+.sc-ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--cs); color: var(--c); }
+.sc-ic .ic { width: 18px; height: 18px; }
+.sc-col h3 { margin: 0; font: 700 17px/1.2 var(--f-display); font-stretch: 108%; }
+.sc-col header p { font-size: 12.5px; color: var(--ink-2); }
+.sc-col ul { flex: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-auto-rows: 1fr; gap: 10px; }
+.sm { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 14px 16px; border-radius: 12px; background: var(--sunk); }
+.sm-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.sm-h b { font: 700 17px/1.2 var(--f-display); font-stretch: 104%; }
+.sm-t { flex: none; font: 600 11.5px/1 var(--f-mono); color: var(--c); padding: 3px 6px; border-radius: 5px; background: var(--cs); }
+.sm p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.sc-guard { flex: none; display: flex; align-items: center; gap: 18px; padding: 12px 16px; border-radius: 12px; background: var(--red-soft); border: 1px solid var(--red-line); }
+.sc-guard .label { flex: none; margin: 0; color: var(--red); }
+.sc-guard ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.sc-guard li { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
+.sc-guard .ic { width: 14px; height: 14px; stroke-width: 2.4; color: var(--red); }
+.sc-how { flex: none; font-size: 13px; color: var(--ink-2); }
+.sc-how b { color: var(--ink); }
 
 /* ---------- Trip State ---------- */
 .xbtn {
@@ -1344,6 +1379,10 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .ai-legend { position: static; }
   .ai-crits, .ai-steps { grid-template-columns: minmax(0, 1fr); }
   .ts-head { flex-direction: column; gap: 4px; }
+  .sc-star, .sc-cols { grid-template-columns: minmax(0, 1fr); }
+  .sc-why { padding-left: 0; border-left: 0; }
+  .sc-guard { flex-direction: column; align-items: flex-start; }
+  .sc-col ul { grid-auto-rows: auto; }
   .ts-grid { grid-template-columns: minmax(0, 1fr); }
   .ts-json { max-height: 70vh; }
   .xbtn { order: 2; margin-left: 0; }
@@ -1478,6 +1517,9 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 <symbol id="i-file-json" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"/><path d="M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"/></symbol>
 <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
 <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"/><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"/><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"/></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-smile" viewBox="0 0 24 24"><path d="M15 10V9"/><path d="M16.472 15a6 6 0 01-8.943 0"/><path d="M9 10V9"/><circle cx="12" cy="12" r="10"/></symbol>
 </defs></svg>
 
 <div class="viewport">
@@ -1496,6 +1538,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg><span>Revised<span class="tab-long"> Architecture</span></span></button>
           <button type="button" class="tab" role="tab" id="tab-ai" aria-selected="false" aria-controls="view-ai" data-tab="ai"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>AI-native</button>
           <button type="button" class="tab" role="tab" id="tab-state" aria-selected="false" aria-controls="view-state" data-tab="state"><svg class="ic" aria-hidden="true"><use href="#i-file-json"/></svg>Trip State</button>
+          <button type="button" class="tab" role="tab" id="tab-success" aria-selected="false" aria-controls="view-success" data-tab="success"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg>Success</button>
         </div>
         <ol class="rail" id="rail-r" aria-label="Papers" hidden></ol>
         <button type="button" class="xbtn" id="expand" hidden><svg class="ic" aria-hidden="true"><use href="#i-maximize-2"/></svg>Expand all</button>
@@ -2091,6 +2134,42 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </section>
       </div>
 
+      <!-- ===== Success: what we measure ===== -->
+      <div class="view" id="view-success" role="tabpanel" aria-labelledby="tab-success" hidden>
+        <section class="sc-star">
+          <span class="sc-star-ic"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg></span>
+          <div>
+            <p class="label">North Star</p>
+            <h2>Bookable trip rate</h2>
+            <p>The share of planning sessions that end with the traveller booking at least one item from the itinerary.</p>
+          </div>
+          <p class="sc-why">It only goes up when the plan is real, fits the traveller and can actually be booked: the goal from the Goals tab.</p>
+        </section>
+        <div class="sc-cols">
+            <section class="sc-col sc-q">
+              <header><span class="sc-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span><div><h3>Plan quality</h3><p>Is it correct?</p></div></header>
+              <ul><li class="sm"><div class="sm-h"><b>Hard-rule pass rate</b><span class="sm-t">↑ Target 100%</span></div><p>Plans shown with zero broken hard rules: dates, diet, walking, budget.</p></li><li class="sm"><div class="sm-h"><b>Fact accuracy</b><span class="sm-t">↑ Target ≥ 99%</span></div><p>Places, prices and times that still match live data at booking.</p></li><li class="sm"><div class="sm-h"><b>Price drift</b><span class="sm-t">↓ Target < 2%</span></div><p>Gap between the price we quoted and the price at booking.</p></li></ul>
+            </section>
+            <section class="sc-col sc-v">
+              <header><span class="sc-ic"><svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg></span><div><h3>Traveller value</h3><p>Do they like it?</p></div></header>
+              <ul><li class="sm"><div class="sm-h"><b>Plan acceptance</b><span class="sm-t">↑ Higher is better</span></div><p>Sessions where the first plan shown is kept, with few or no edits.</p></li><li class="sm"><div class="sm-h"><b>Edits per plan</b><span class="sm-t">↓ Fewer is better</span></div><p>Changes the traveller asks for before booking.</p></li><li class="sm"><div class="sm-h"><b>Rating / NPS</b><span class="sm-t">↑ Higher is better</span></div><p>How travellers rate the plan after the trip.</p></li></ul>
+            </section>
+            <section class="sc-col sc-e">
+              <header><span class="sc-ic"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg></span><div><h3>Efficiency</h3><p>Can we run it?</p></div></header>
+              <ul><li class="sm"><div class="sm-h"><b>Time to first plan</b><span class="sm-t">↓ Target < 10 s</span></div><p>Seconds from the request to a full itinerary.</p></li><li class="sm"><div class="sm-h"><b>Cost per plan</b><span class="sm-t">↓ Lower is better</span></div><p>Model and API cost for each itinerary.</p></li><li class="sm"><div class="sm-h"><b>Questions asked</b><span class="sm-t">↓ Target 1–2</span></div><p>Clarifying questions per session: low, but not zero.</p></li></ul>
+            </section>
+        </div>
+        <section class="sc-guard">
+          <p class="label">Guardrails · must never get worse</p>
+          <ul>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>No booking fails because of availability we got wrong</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Hard constraints like diet and mobility are never broken</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Re-plans change only what they must</li>
+          </ul>
+        </section>
+        <p class="sc-how"><b>How we measure it:</b> about 20 hand-built test trips re-run offline on every change, plus live tracking in production with A/B tests for big changes.</p>
+      </div>
+
       <!-- ===== Trip State: the trip state and the final itinerary, as data ===== -->
       <div class="view" id="view-state" role="tabpanel" aria-labelledby="tab-state" hidden>
         <div class="ts-head">
@@ -2563,7 +2642,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     if (rv) { const i = +rv.dataset.rev; i <= rev ? showPaper(i) : reveal(i); return; }
     const pk = t.closest('[data-peek]');
     if (pk) { showPaper(+pk.dataset.peek); return; }
-    if (tab === 'goals' || tab === 'ai') return;
+    if (tab === 'goals' || tab === 'ai' || tab === 'success') return;
     if (tab === 'state') { const j = t.closest('[data-jump]'); if (j) jump(j.dataset.jump); return; }
     if (tab === 'research') { if (t.closest('#view-research')) researchStep(1); return; }
     if (tab === 'revised') { rclick(t); return; }
@@ -2583,7 +2662,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   stage.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) { e.preventDefault(); e.target.click(); }
   });
-  const step = d => (tab === 'state' || tab === 'ai' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
+  const step = d => (tab === 'state' || tab === 'ai' || tab === 'success' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
   $('prev').addEventListener('click', () => step(-1));
   $('next').addEventListener('click', () => step(1));
   addEventListener('keydown', e => {
@@ -2966,6 +3045,12 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
   function syncNav() {
     xsync();
+    if (tab === 'success') {
+      $('prev').disabled = $('next').disabled = true;
+      $('next').classList.remove('hint');
+      $('now').innerHTML = 'Success<span class="now-beat">What we measure</span>';
+      return;
+    }
     if (tab === 'ai') {
       $('prev').disabled = $('next').disabled = true;
       $('next').classList.remove('hint');
@@ -2993,7 +3078,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         (f.beats.length > 1 ? `<span class="now-beat">${beat.id} · ${beat.name}</span>` : '');
     }
   }
-  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state', ai: 'view-ai' };
+  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state', ai: 'view-ai', success: 'view-success' };
   function setTab(t) {
     if (t === tab || !VIEWS[t]) return;
     tab = t;
@@ -4004,7 +4089,7 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
 
   go(0);
   ggo(0);
-  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state', '#ai-native': 'ai' };
+  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state', '#ai-native': 'ai', '#success': 'success' };
   if (HASH[location.hash]) setTab(HASH[location.hash]);
   fit();
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); if (tab === 'arch') flow(BEATS[cur].id); });
