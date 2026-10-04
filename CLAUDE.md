@@ -48,7 +48,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Icons are Lucide `<symbol>`s in the sprite at the top of `<body>`. Use them as `<svg class="ic"><use href="#i-NAME"/></svg>`, or `ic('NAME')` in the revised-tab content. Add new ones with `tools/sprite.py`.
 
 **Navigation**
-- Seven tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#ai-native`, `#trip-state`, `#success`. On the Research tab the Revised tab shows a short label so the paper timeline fits (`.stage[data-view]`; never use `data-tab` on a container, the click handler treats any `[data-tab]` ancestor as a tab button).
+- Eight tabs with deep links: Goals (default, no hash or `#goals`), `#architecture`, `#research`, `#revised` (label "Revised Architecture"), `#evals`, `#ai-native`, `#trip-state`, `#success`. On the Research tab the Revised tab shows a short label so the paper timeline fits (`.stage[data-view]`; never use `data-tab` on a container, the click handler treats any `[data-tab]` ancestor as a tab button).
 - **Expand all** button in the top bar, after the tabs, shown only on Architecture and Revised Architecture: jumps straight to the final state (last beat / spread-out map). Disabled once there (`xsync`).
 - ← → keys (or PageUp/PageDown, or the round buttons top right) step through the current tab. Each tab remembers its position.
 - `#now` is the step label, shown in narrow mode only.
@@ -75,6 +75,13 @@ Answer to "what if the interviewer thinks AI can do most of the planning?". The 
 - Hand-placed diagram (`.ai-map`, fixed coordinates in the HTML, wires as SVG paths, labels as `.elabel`): Traveller ↔ Conversational agent (was C1 + C9) → Trip state (C2) → Planner agent (was C3, C5, C6, C10: draft → critique → revise, at most 3 rounds, city sub-agents) ⇄ Critics (was C8: hard, soft, fact, LLM judge) → Itinerary. Both call a typed Tool layer (searches plus solvers, with today's optimizer as a fallback), which reads Data feeds (C4) and Booking search & pricing (C7).
 - A strip below runs the Japan trip in 5 steps: Understand, Draft, Critique, Revise or ask, Present.
 - Talking points (not on the page): latency and cost caps, replayable runs for G9, an eval set of ~20 trips, and the dial from code-plans to agent-plans as critic pass rates hold.
+
+### Tab: Evals (after Revised Architecture)
+
+One row per place the LLM decides (10 rows, `EVALS`), with details on the right: what can go wrong, test set, metrics and targets, production signal, and a test case with the expected output. ←/→ or clicking moves through them.
+1–3 C1 (understand input, update trip state, clarify) · 4–7 C5 (semantic judge, failure interpreter, fix or ask, change writer) · 8–9 C9 (grounded narration, trade-off explainer) · 10 C10 (change interpreter).
+"Fix or ask" is flagged as the release blocker: quiet fixes that touch a hard rule must be 0. A strip at the bottom covers system-wide evals: end-to-end set (~50 trips), adversarial set, calibrated judges (≥ 0.8 agreement with humans), model-change regression, cost and latency.
+Note: a revised-map redesign (reading-order numbering, bold main path, hover, playable scenarios) was built and then reverted at the user's request; the numbering here is the current one.
 
 ### Tab: Success (static, last)
 

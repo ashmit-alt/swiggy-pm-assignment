@@ -1233,6 +1233,55 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .ai-steps b { font-size: 13.5px; font-weight: 700; }
 .ai-steps p { margin-top: 2px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
 
+/* ---------- Evals ---------- */
+.ev-head { flex: none; display: flex; align-items: baseline; gap: 18px; }
+.ev-head h2 { flex: none; font: 740 22px/1.2 var(--f-display); font-stretch: 110%; }
+.ev-head p { font-size: 14px; color: var(--ink-2); }
+.ev-main { flex: 1; min-height: 0; display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 18px; }
+.ev-list { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-rows: 1fr; gap: 6px; min-height: 0; }
+.ev-item {
+  appearance: none; width: 100%; height: 100%; cursor: pointer; text-align: left; display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; align-items: center; gap: 10px;
+  padding: 6px 12px; border-radius: 11px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+.ev-item:hover { border-color: var(--edge); }
+.ev-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ev-item.on { border-color: var(--llm); background: var(--llm-soft); box-shadow: 0 0 0 3px var(--llm-soft); }
+.ev-n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 11.5px/1 var(--f-mono); color: var(--ink-2); background: var(--sunk); }
+.ev-item.on .ev-n { color: var(--llm-ink); background: var(--llm); }
+.ev-item b { display: block; font-size: 13.5px; font-weight: 650; line-height: 1.25; }
+.ev-item small { display: block; font: 500 10.5px/1.3 var(--f-mono); color: var(--ink-3); }
+.ev-flag { font: 600 10px/1 var(--f-mono); padding: 3px 6px; border-radius: 5px; color: var(--red); background: var(--red-soft); border: 1px solid var(--red-line); white-space: nowrap; }
+.ev-detail { min-height: 0; display: flex; flex-direction: column; gap: 14px; padding: 20px 24px; overflow: auto; }
+.ev-detail.enter { animation: enter .35s ease-out both; }
+.ev-dh { display: flex; align-items: flex-start; gap: 14px; }
+.ev-dh .rk-code { background: var(--llm); color: var(--llm-ink); }
+.ev-dh h3 { margin: 0; font: 740 22px/1.15 var(--f-display); font-stretch: 110%; }
+.ev-dh p { margin-top: 4px; font-size: 14px; color: var(--ink-2); }
+.ev-dh .ev-flag { margin-left: auto; }
+.ev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.ev-box { display: flex; flex-direction: column; gap: 8px; padding: 13px 15px; border-radius: 12px; background: var(--sunk); }
+.ev-detail .label { margin: 0; font: 500 10.5px/1.2 var(--f-mono); letter-spacing: .09em; color: var(--ink-3); }
+.ev-box.bad .label { color: var(--red); }
+.ev-box ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14.5px; line-height: 1.45; }
+.ev-box ul li { position: relative; padding-left: 15px; }
+.ev-box ul li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 6px; height: 6px; border-radius: 2px; background: var(--c, var(--accent)); }
+.ev-box.bad { --c: var(--red); }
+.ev-box p:not(.label) { font-size: 14.5px; line-height: 1.5; }
+.ev-metrics { display: flex; flex-direction: column; gap: 6px; }
+.ev-metric { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 8px 11px; border-radius: 8px; background: var(--surface); font-size: 14px; }
+.ev-metric b { flex: none; font: 600 11.5px/1 var(--f-mono); color: var(--green); }
+.ev-metric.block b { color: var(--red); }
+.ev-case { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr); align-items: center; gap: 10px; }
+.ev-case > div { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 10px; background: var(--surface); font-size: 14px; line-height: 1.45; }
+.ev-case code { font: 500 12.5px/1.55 var(--f-mono); color: var(--ink); white-space: pre-wrap; }
+.ev-case i { font-style: normal; text-align: center; color: var(--ink-3); font: 600 16px/1 var(--f-mono); }
+.ev-sys { flex: none; display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.ev-sys .label { margin: 0; }
+.ev-sys ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.ev-sys li { display: flex; flex-direction: column; gap: 3px; }
+.ev-sys b { font-size: 13.5px; font-weight: 700; }
+.ev-sys span { font-size: 12px; line-height: 1.4; color: var(--ink-2); }
+
 /* ---------- Success ---------- */
 .sc-star {
   flex: none; display: grid; grid-template-columns: auto minmax(0, 1fr) 360px; align-items: center; gap: 20px;
@@ -1380,6 +1429,11 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .ai-crits, .ai-steps { grid-template-columns: minmax(0, 1fr); }
   .ts-head { flex-direction: column; gap: 4px; }
   .sc-star, .sc-cols { grid-template-columns: minmax(0, 1fr); }
+  .ev-head { flex-direction: column; gap: 4px; }
+  .ev-main, .ev-grid, .ev-sys ul { grid-template-columns: minmax(0, 1fr); }
+  .ev-list { grid-auto-rows: auto; }
+  .ev-case { grid-template-columns: minmax(0, 1fr); }
+  .ev-case i { transform: rotate(90deg); }
   .sc-why { padding-left: 0; border-left: 0; }
   .sc-guard { flex-direction: column; align-items: flex-start; }
   .sc-col ul { grid-auto-rows: auto; }
@@ -1520,6 +1574,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"/><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"/><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"/></symbol>
 <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
 <symbol id="i-smile" viewBox="0 0 24 24"><path d="M15 10V9"/><path d="M16.472 15a6 6 0 01-8.943 0"/><path d="M9 10V9"/><circle cx="12" cy="12" r="10"/></symbol>
+<symbol id="i-flask-conical" viewBox="0 0 24 24"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></symbol>
 </defs></svg>
 
 <div class="viewport">
@@ -1536,6 +1591,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <button type="button" class="tab" role="tab" id="tab-arch" aria-selected="false" aria-controls="view-arch" data-tab="arch"><svg class="ic" aria-hidden="true"><use href="#i-workflow"/></svg>Architecture</button>
           <button type="button" class="tab" role="tab" id="tab-research" aria-selected="false" aria-controls="view-research" data-tab="research"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg>Research</button>
           <button type="button" class="tab" role="tab" id="tab-revised" aria-selected="false" aria-controls="view-revised" data-tab="revised"><svg class="ic" aria-hidden="true"><use href="#i-drafting-compass"/></svg><span>Revised<span class="tab-long"> Architecture</span></span></button>
+          <button type="button" class="tab" role="tab" id="tab-evals" aria-selected="false" aria-controls="view-evals" data-tab="evals"><svg class="ic" aria-hidden="true"><use href="#i-flask-conical"/></svg>Evals</button>
           <button type="button" class="tab" role="tab" id="tab-ai" aria-selected="false" aria-controls="view-ai" data-tab="ai"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>AI-native</button>
           <button type="button" class="tab" role="tab" id="tab-state" aria-selected="false" aria-controls="view-state" data-tab="state"><svg class="ic" aria-hidden="true"><use href="#i-file-json"/></svg>Trip State</button>
           <button type="button" class="tab" role="tab" id="tab-success" aria-selected="false" aria-controls="view-success" data-tab="success"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg>Success</button>
@@ -2077,6 +2133,22 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 
           <!-- Chips for the input, C1–C8 and the itinerary are added by the script, before the focus card -->
           <div class="fk off" id="fk" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <!-- ===== Evals: one test set, metric and production signal per LLM decision ===== -->
+      <div class="view" id="view-evals" role="tabpanel" aria-labelledby="tab-evals" hidden>
+        <div class="ev-head">
+          <h2>Evals where the LLM decides</h2>
+          <p>Every LLM decision gets its own test set, metric and production signal. A good-looking plan can hide a quietly broken rule.</p>
+        </div>
+        <div class="ev-main">
+          <ol class="ev-list" id="ev-list" aria-label="LLM decisions"></ol>
+          <article class="card ev-detail" id="ev-detail" aria-live="polite"></article>
+        </div>
+        <section class="ev-sys">
+          <p class="label">Across the whole system</p>
+          <ul><li><b>End-to-end set</b><span>~50 full trips (Japan, Goa weekend, Kerala family, backpacker, wheelchair user) with expected hard rules and a human-rated good plan. Gates every release.</span></li><li><b>Adversarial set</b><span>Contradictions (“cheap luxury”), injected instructions in reviews, impossible asks, mixed languages. Pass = asks or refuses correctly.</span></li><li><b>Calibrated judges</b><span>Any LLM grader is first checked against 3 human raters on 100 items. Used only at ≥ 0.8 agreement; re-checked monthly.</span></li><li><b>Model-change regression</b><span>Swapping or upgrading a model re-runs all 10 evals, with a diff of anything that got worse.</span></li><li><b>Cost and latency</b><span>Tokens, p95 latency and retries per decision. Shows where a smaller model is enough, and where it is not.</span></li></ul>
         </section>
       </div>
 
@@ -2642,6 +2714,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     if (rv) { const i = +rv.dataset.rev; i <= rev ? showPaper(i) : reveal(i); return; }
     const pk = t.closest('[data-peek]');
     if (pk) { showPaper(+pk.dataset.peek); return; }
+    if (tab === 'evals') { const ev = t.closest('[data-ev]'); if (ev) evShow(+ev.dataset.ev); return; }
     if (tab === 'goals' || tab === 'ai' || tab === 'success') return;
     if (tab === 'state') { const j = t.closest('[data-jump]'); if (j) jump(j.dataset.jump); return; }
     if (tab === 'research') { if (t.closest('#view-research')) researchStep(1); return; }
@@ -2662,7 +2735,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   stage.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) { e.preventDefault(); e.target.click(); }
   });
-  const step = d => (tab === 'state' || tab === 'ai' || tab === 'success' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
+  const step = d => (tab === 'evals' ? evShow(ecur + d) : tab === 'state' || tab === 'ai' || tab === 'success' ? null : tab === 'goals' ? ggo(gcur + d) : tab === 'research' ? researchStep(d) : tab === 'arch' ? go(cur + d) : rstep(d));
   $('prev').addEventListener('click', () => step(-1));
   $('next').addEventListener('click', () => step(1));
   addEventListener('keydown', e => {
@@ -2930,6 +3003,304 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     if (tab === 'arch') { closePop(); go(BEATS.length - 1); }
   });
 
+  // ---------- Evals tab: one row per LLM decision, details on the right ----------
+  const EVALS = [
+ {
+  "c": "C1",
+  "cn": "Dialogue manager",
+  "t": "Understand input",
+  "d": "Reads each message: what the traveller wants, and the details in it.",
+  "bad": [
+   "A change read as a new trip",
+   "Details missed, or invented"
+  ],
+  "set_": "About 300 labelled messages, including Hinglish, typos and half sentences.",
+  "m": [
+   [
+    "Intent accuracy",
+    "≥ 95%"
+   ],
+   [
+    "Field-level precision and recall",
+    "≥ 0.9"
+   ],
+   [
+    "Invented fields",
+    "0",
+    1
+   ]
+  ],
+  "ci": "“Can day 6 be lighter?”",
+  "co": "intent: change\npatch: days[6].pace = lower",
+  "prod": "Share of messages the traveller corrects (“no, I meant…”)"
+ },
+ {
+  "c": "C1",
+  "cn": "Dialogue manager",
+  "t": "Update trip state",
+  "d": "Decides which field each detail goes into, and whether it is a hard rule or a soft preference.",
+  "bad": [
+   "A guess written as a hard rule (“hate crowds” → no crowds at all)",
+   "A real rule left soft (“vegetarian” → just a preference)"
+  ],
+  "set_": "Phrases with the expected field, value and strictness. Hard-rule errors count double.",
+  "m": [
+   [
+    "Strictness accuracy on hard fields",
+    "≥ 98%"
+   ],
+   [
+    "Field and value accuracy",
+    "≥ 95%"
+   ]
+  ],
+  "ci": "“we hate crowds”",
+  "co": "dials.crowd_tolerance = 0.14\nstrictness: soft (not a filter)",
+  "prod": "Hard rules the traveller later loosens or contradicts"
+ },
+ {
+  "c": "C1",
+  "cn": "Dialogue manager",
+  "t": "Clarify",
+  "d": "Chooses which question, if any, to ask before planning.",
+  "bad": [
+   "Asks too much",
+   "Asks the wrong thing",
+   "Guesses when it should ask"
+  ],
+  "set_": "Incomplete requests, each with a known “most useful question”.",
+  "m": [
+   [
+    "Right question first",
+    "≥ 80%"
+   ],
+   [
+    "Questions per session",
+    "≤ 2"
+   ],
+   [
+    "Guessed when it should have asked",
+    "≤ 2%"
+   ]
+  ],
+  "ci": "“Japan in May, two of us, vegetarian”",
+  "co": "First question: total budget?\n(the answer changes the plan most)",
+  "prod": "Drop-off after a question; plans rejected because of a guessed detail"
+ },
+ {
+  "c": "C5",
+  "cn": "Judgement LLM",
+  "t": "Semantic judge",
+  "d": "Scores fuzzy wishes like “feels like old Japan” for each place.",
+  "bad": [
+   "Swayed by wording or fame",
+   "Different score on every run"
+  ],
+  "set_": "200 place–wish pairs, each rated by 3 people.",
+  "m": [
+   [
+    "Rank correlation with humans",
+    "≥ 0.75"
+   ],
+   [
+    "Spread over 5 identical runs",
+    "< 0.05"
+   ],
+   [
+    "Score change when wording is shuffled",
+    "< 0.05"
+   ]
+  ],
+  "ci": "Nishi Chaya teahouses × “old Japan”",
+  "co": "Humans: 0.85 · model: 0.86 ± 0.02\nreason cites the Edo-era street",
+  "prod": "Keep rate of high-scored places in final plans"
+ },
+ {
+  "c": "C5",
+  "cn": "Judgement LLM",
+  "t": "Failure interpreter",
+  "d": "Reads why code failed and traces it to the trip state field behind it.",
+  "bad": [
+   "Misreads the cause",
+   "Blames the wrong field",
+   "Misses the obvious fix"
+  ],
+  "set_": "Synthetic failure reports from C6, C7 and C8, each with a known cause.",
+  "m": [
+   [
+    "Root-cause accuracy",
+    "≥ 90%"
+   ],
+   [
+    "Right fix in the list",
+    "≥ 95%"
+   ]
+  ],
+  "ci": "C6: no plan ≤ ₹2.5 L, cheapest ₹3.15 L",
+  "co": "Cause: budget ↔ Golden Week dates\nFixes: raise to ₹3.2 L · travel 10–16 May",
+  "prod": "Share of fixes that solve the failure on the next run"
+ },
+ {
+  "c": "C5",
+  "cn": "Judgement LLM",
+  "t": "Fix or ask",
+  "d": "Decides whether to fix a problem quietly, ask the traveller, or drop an option.",
+  "flag": "Release blocker",
+  "bad": [
+   "Quietly loosens a hard rule (dangerous)",
+   "Bothers the traveller with trivia (annoying)"
+  ],
+  "set_": "About 100 scenarios labelled fix, ask or drop. Read as a confusion matrix.",
+  "m": [
+   [
+    "Quiet fixes that touch a hard rule",
+    "0",
+    1
+   ],
+   [
+    "Unnecessary questions",
+    "≤ 10%"
+   ],
+   [
+    "Correct decision overall",
+    "≥ 92%"
+   ]
+  ],
+  "ci": "Lunch full at 10:45 · budget clash · Plan C has no rooms",
+  "co": "fix (move to 11:30) · ask (₹3.2 L or new dates) · drop (A and B remain)",
+  "prod": "Traveller undoes a quiet fix; “doesn’t matter” replies to questions"
+ },
+ {
+  "c": "C5",
+  "cn": "Judgement LLM",
+  "t": "Change writer",
+  "d": "Turns each decision into a typed patch that code checks before applying.",
+  "bad": [
+   "Invalid patch",
+   "Wrong field",
+   "Missing approval"
+  ],
+  "set_": "Every decision from the fix-or-ask set, run through the code checks.",
+  "m": [
+   [
+    "Schema-valid patches",
+    "100%",
+    1
+   ],
+   [
+    "Pass code checks first time",
+    "≥ 95%"
+   ],
+   [
+    "Retries per patch",
+    "≤ 0.1"
+   ]
+  ],
+  "ci": "Decision: raise the budget",
+  "co": "{ op: set, path: hard.budget_max,\n  value: 320000, approved: traveller }",
+  "prod": "Patches rejected by the code checks"
+ },
+ {
+  "c": "C9",
+  "cn": "Plan presenter",
+  "t": "Grounded narration",
+  "d": "Writes the itinerary story from the plan data only.",
+  "bad": [
+   "Claims not in the plan",
+   "Wrong numbers, names or times"
+  ],
+  "set_": "Narration for 50 validated plans. Every claim is matched to a plan field automatically.",
+  "m": [
+   [
+    "Unsupported claims",
+    "0",
+    1
+   ],
+   [
+    "Readability (rated 1–5)",
+    "≥ 4"
+   ]
+  ],
+  "ci": "Plan A, day 6",
+  "co": "“Fushimi Inari at 07:00, before the crowds”\n→ days[6].stops[0].start = 07:00 ✓",
+  "prod": "“That’s not right” reports; claim-check rejections"
+ },
+ {
+  "c": "C9",
+  "cn": "Plan presenter",
+  "t": "Trade-off explainer",
+  "d": "Explains what was left out of the plan, and why.",
+  "bad": [
+   "Explains the wrong item",
+   "States the wrong reason"
+  ],
+  "set_": "Trade-off logs with the expected explanations.",
+  "m": [
+   [
+    "Reason faithful to the log (calibrated judge)",
+    "≥ 95%"
+   ],
+   [
+    "Most noticeable item explained first",
+    "≥ 90%"
+   ]
+  ],
+  "ci": "Log: Kinkaku-ji dropped, Golden Week crowds",
+  "co": "“Kinkaku-ji is packed all day in Golden Week.\nShoren-in takes its place.”",
+  "prod": "“Why isn’t X in my plan?” follow-ups (should fall)"
+ },
+ {
+  "c": "C10",
+  "cn": "Re-planning loop",
+  "t": "Change interpreter",
+  "d": "Turns a change into a typed edit, via the Judgement LLM.",
+  "bad": [
+   "Edits the wrong day or scope",
+   "Applies a costly change without asking"
+  ],
+  "set_": "Change requests, each with the expected typed edit and whether it needs a yes.",
+  "m": [
+   [
+    "Exact-match edits",
+    "≥ 90%"
+   ],
+   [
+    "Asks before edits that lose a day or cost money",
+    "100%",
+    1
+   ]
+  ],
+  "ci": "“Day 6 is too much for my knee.” · flight cancelled",
+  "co": "days[6].active_hours_max = 4 (apply)\narrival → 29 Apr (confirm first)",
+  "prod": "Undo rate after a re-plan"
+ }
+];
+  let ecur = 0;
+  $('ev-list').innerHTML = EVALS.map((e, i) => `<li><button type="button" class="ev-item" data-ev="${i}">
+      <span class="ev-n">${i + 1}</span><span><b>${e.t}</b><small>${e.c} · ${e.cn}</small></span>${e.flag ? `<span class="ev-flag">${e.flag}</span>` : '<span></span>'}
+    </button></li>`).join('');
+  function evShow(i) {
+    ecur = (i + EVALS.length) % EVALS.length;
+    const e = EVALS[ecur], esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    document.querySelectorAll('.ev-item').forEach((b, k) => b.classList.toggle('on', k === ecur));
+    const d = $('ev-detail');
+    d.innerHTML = `<header class="ev-dh"><span class="rk-code">${e.c}</span><div><h3>${e.t}</h3><p>${e.d}</p></div>${e.flag ? `<span class="ev-flag">${e.flag}</span>` : ''}</header>
+      <div class="ev-grid">
+        <section class="ev-box bad"><p class="label">What can go wrong</p><ul>${e.bad.map(b => `<li>${b}</li>`).join('')}</ul></section>
+        <section class="ev-box"><p class="label">Test set</p><p>${e.set_}</p></section>
+        <section class="ev-box"><p class="label">Metrics and targets</p><div class="ev-metrics">${e.m.map(([n, v, blk]) => `<div class="ev-metric${blk ? ' block' : ''}"><span>${n}</span><b>${v}</b></div>`).join('')}</div></section>
+        <section class="ev-box"><p class="label">In production we watch</p><p>${e.prod}</p></section>
+        <section class="ev-box ev-case"><div><p class="label">Test case</p>${e.ci}</div><i>→</i><div><p class="label">Expected</p><code>${esc(e.co)}</code></div></section>
+      </div>`;
+    restart(d, 'enter');
+    syncNav();
+  }
+  function evSync() {
+    $('prev').disabled = $('next').disabled = false;
+    $('next').classList.remove('hint');
+    $('now').innerHTML = `Evals · ${ecur + 1} of ${EVALS.length}<span class="now-beat">${EVALS[ecur].t}</span>`;
+  }
+
   // ---------- Research tab ----------
   const railR = $('rail-r');
   railR.innerHTML = PAPERS.map((pp, i) => `<li class="st">
@@ -3045,6 +3416,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
   function syncNav() {
     xsync();
+    if (tab === 'evals') { evSync(); return; }
     if (tab === 'success') {
       $('prev').disabled = $('next').disabled = true;
       $('next').classList.remove('hint');
@@ -3078,7 +3450,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         (f.beats.length > 1 ? `<span class="now-beat">${beat.id} · ${beat.name}</span>` : '');
     }
   }
-  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state', ai: 'view-ai', success: 'view-success' };
+  const VIEWS = { goals: 'view-goals', arch: 'view-arch', research: 'view-research', revised: 'view-revised', state: 'view-state', ai: 'view-ai', success: 'view-success', evals: 'view-evals' };
   function setTab(t) {
     if (t === tab || !VIEWS[t]) return;
     tab = t;
@@ -4089,7 +4461,8 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
 
   go(0);
   ggo(0);
-  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state', '#ai-native': 'ai', '#success': 'success' };
+  evShow(0);
+  const HASH = { '#architecture': 'arch', '#research': 'research', '#revised': 'revised', '#trip-state': 'state', '#ai-native': 'ai', '#success': 'success', '#evals': 'evals' };
   if (HASH[location.hash]) setTab(HASH[location.hash]);
   fit();
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); if (tab === 'arch') flow(BEATS[cur].id); });
