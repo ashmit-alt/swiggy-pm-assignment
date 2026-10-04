@@ -668,7 +668,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .rk-feeds b:first-child { margin-left: 0; }
 .rmap.is-over .rk-more { opacity: 1; transition: opacity .4s .35s; }
 .rmap.is-band .rk-h { height: 38px; }
-#rk-5 .rk-more { max-width: 270px; }
+#rk-5 .rk-more { max-width: 330px; }
 .rlegend {
   position: absolute; z-index: 3; margin: 0; padding: 0; list-style: none; display: flex; gap: 6px 14px;
   font: 500 10.5px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2);
@@ -678,9 +678,9 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .rlegend i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); }
 .rlegend .lg-llm { background: var(--llm-soft); border-color: var(--llm-line); }
 .rlegend .lg-data { background: var(--sunk); }
-.rlegend .lg-tip { margin-top: 6px; text-transform: none; letter-spacing: 0; font: 600 11.5px/1.35 var(--f-body); color: var(--accent); }
-.rmap.is-band .rlegend { left: 0; top: 64px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
-.rmap.is-over .rlegend { left: 0; top: 520px; flex-direction: column; align-items: flex-start; opacity: 1; visibility: visible; }
+.rlegend .lg-tip { margin-top: 4px; text-transform: none; letter-spacing: 0; font: 600 11.5px/1.35 var(--f-body); color: var(--accent); }
+.rmap.is-band .rlegend { left: 0; top: 64px; flex-direction: column; align-items: flex-start; gap: 3px; opacity: 1; visibility: visible; }
+.rmap.is-over .rlegend { left: 0; top: 490px; flex-direction: column; align-items: flex-start; gap: 3px; opacity: 1; visibility: visible; }
 .rk.is-focus { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow); }
 .rk.is-focus .rk-code { color: var(--accent); background: var(--accent-ink); }
 
@@ -691,6 +691,49 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .lane-rule { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed var(--line); opacity: 0; transition: opacity .3s; }
 .rmap.is-over .lane, .rmap.is-over .lane-rule { opacity: 1; visibility: visible; transition: opacity .4s .35s, visibility .4s .35s; }
 .rmap .elabel { white-space: nowrap; pointer-events: none; }
+.elabel.lside { transform: translate(-100%, -50%); }
+.rmap .elabel.cpl { font-weight: 600; color: var(--ink); }
+.wire.cpw { stroke-width: 1.6; }
+.wire.cpw.ask, .wire.askw { stroke: var(--amber); }
+.wire.cpw.fix { stroke: var(--green); }
+.rk.is-group { justify-content: flex-end; background: var(--surface); }
+.rk.is-group .rk-h { gap: 10px; }
+.rk-sub { font-size: 12px; color: var(--ink-2); white-space: nowrap; }
+.rmap.is-band .rk.is-group .rk-name, .rmap.is-band .rk.is-group .rk-sub { display: none; }
+.rk.is-group.is-focus .rk-sub { color: var(--accent-ink); }
+.rk.is-sub {
+  z-index: 3; justify-content: center; gap: 2px; padding: 0 10px; border-radius: 10px; background: var(--sunk); box-shadow: none; border-color: var(--line);
+}
+.rk.is-sub .sb-code { font: 700 10px/1 var(--f-mono); color: var(--ink-3); }
+.rk.is-sub b { font: 680 15px/1.15 var(--f-display); font-stretch: 106%; }
+.rk.is-sub em { font-style: normal; font-size: 11.5px; line-height: 1.3; color: var(--ink-2); }
+.rmap.is-band .rk.is-sub .sb-code, .rmap.is-band .rk.is-sub em { display: none; }
+.rmap.is-band .rk.is-sub b { font-size: 13px; }
+.rk.is-sub.is-focus { color: var(--ink); background: var(--surface); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.rk.is-sub.is-focus .sb-code { color: var(--accent); }
+.rk.is-group.is-focus { background: var(--accent); }
+.cpd {
+  position: absolute; z-index: 6; width: 20px; height: 20px; margin: -10px 0 0 -10px; padding: 0; border: 0; cursor: pointer;
+  display: grid; place-items: center; font: 700 10.5px/1 var(--f-mono); color: #fff; background: none; transition: opacity .3s;
+}
+.cpd::before { content: ""; position: absolute; inset: 2px; z-index: -1; transform: rotate(45deg); border-radius: 3px; background: var(--k); box-shadow: 0 0 0 2px var(--surface); }
+.cpd.ask { --k: var(--amber); } .cpd.fix { --k: var(--green); } .cpd.drop { --k: var(--edge); }
+.cpd.off { opacity: 0; visibility: hidden; pointer-events: none; }
+.cpd.small { transform: scale(.75); }
+.cpd:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.cp-tip {
+  position: absolute; left: 50%; bottom: calc(100% + 10px); width: 260px; transform: translateX(-50%); display: none; flex-direction: column; gap: 4px;
+  padding: 10px 12px; border-radius: 10px; text-align: left; background: var(--ink); color: var(--bg); box-shadow: var(--pop-shadow);
+  font: 400 12.5px/1.45 var(--f-body); white-space: normal; pointer-events: none;
+}
+.cp-tip b { font-weight: 700; }
+.cp-tip em { font-style: normal; font: 600 10.5px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--k); filter: brightness(1.4); }
+.rmap.is-over .cpd:hover .cp-tip, .rmap.is-over .cpd:focus-visible .cp-tip { display: flex; }
+.cp-pill { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 4px 9px 4px 5px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--sunk); }
+.cp-pill .cpd { position: relative; margin: 0; width: 18px; height: 18px; cursor: default; }
+.lg-cp { gap: 6px !important; }
+.lg-cp .cpd { position: relative; margin: 0; width: 14px; height: 14px; font-size: 0; cursor: default; }
+
 
 /* Focus card */
 .fk {
@@ -2039,7 +2082,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <p class="lane" style="top:436px"><b>Planning</b><span>Guarantees: code and solvers</span></p>
           <i class="lane-rule" style="top:648px"></i>
           <p class="lane" style="top:656px"><b>Data</b><span>Facts with a source and a time</span></p>
-          <ul class="rlegend" aria-label="Legend"><li><i class="lg-llm"></i>Uses the LLM</li><li><i></i>Code</li><li><i class="lg-data"></i>Data and state</li><li class="lg-tip">Click a component<br>for its details</li></ul>
+          <ul class="rlegend" aria-label="Legend"><li><i class="lg-llm"></i>Uses the LLM</li><li><i></i>Code</li><li><i class="lg-data"></i>Data and state</li><li class="lg-cp"><i class="cpd ask">◆</i>Asks traveller</li><li class="lg-cp"><i class="cpd fix">◆</i>Fixes quietly</li><li class="lg-cp"><i class="cpd drop">◆</i>Drops option</li><li class="lg-tip">Click a component<br>for its details</li></ul>
 
           <article class="node card" id="r-input">
             <header class="node-h">
@@ -3268,7 +3311,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             ])}${note('C10 compares version 4 with the plan to find what to re-plan. Nothing else writes to the trip state.')}` },
       ] },
 
-    { id: 3, code: 'C3', name: 'Candidate generator', short: 'Candidate generator', seq: true,
+    { id: 3, code: 'C3', name: 'Candidate generator', short: 'Candidates', seq: true,
       role: 'Turns the trip state into short ranked lists of cities and places.',
       in: 'Trip state from C2 · places and cities from C4 · judgements from C5',
       out: 'Ranked shortlists of cities and places → C6',
@@ -3320,7 +3363,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             ])}${note('Crowd is judged for the trip dates. Golden Week sinks Kinkaku-ji.')}</div>
             <div>${eh('Old Japan scores, from the semantic match')}${rbars([['Nishi Chaya teahouses', .86], ['Yanaka walk', .83], ['Kinkaku-ji', .65], ['Shibuya Sky deck', .21, 1]])}
               ${note('This match is the Old Japan column. It re-ranks places; it never removes one.')}</div></div>` },
-        { n: 'Shortlist builder', d: 'Variety, then hand-off to C6', t: 'Shortlist', kind: 'code',
+        { n: 'Shortlist builder', cp: 1, d: 'Variety, then hand-off to C6', t: 'Shortlist', kind: 'code',
           lead: 'Turns the ranking into short, varied lists for the planner.',
           how: [
             '<b>Keep variety</b>: skip near-duplicates',
@@ -3381,10 +3424,27 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       ] },
 
     { id: 5, code: 'C5', name: 'Judgement LLM', short: 'Judgement LLM', cls: 'is-llm', seq: true,
-      role: 'Makes the calls code can’t. Code reports, it decides, code checks.',
-      in: 'Fuzzy questions from C3 · failure reports from C6, C7, C8 · changes from C10',
+      role: 'Reviews every stage at ◆ checkpoints: passes, fixes, or asks the traveller. When nothing fits, it always asks.',
+      in: 'Every stage’s output, at six checkpoints · fuzzy questions from C3 · changes from C10',
       out: 'Scores → C3 · questions → C1 · approved changes → C2',
       subs: [
+        { n: 'Checkpoint review', d: 'Checks every stage', t: 'Review', kind: 'llm',
+          lead: 'Reviews the output of every stage before it moves on, at six ◆ checkpoints.',
+          how: [
+            '<b>After each stage</b>, look for what the traveller would care about',
+            '<b>Pass</b> quietly when nothing stands out',
+            '<b>Fix</b> small issues inside the traveller’s dials',
+            '<b>Ask</b> via C1 for major exclusions, or when nothing fits',
+          ],
+          ex: `${tb(['◆', 'After', 'Checks', 'Japan example', 'Outcome'], [
+              { c: ['1', 'Candidates', 'Major exclusions?', 'The knee rules out the Fushimi Inari summit and the Kiyomizu slope, both famous', pl('Ask', 'warn')], cls: 'hi' },
+              ['2', 'Legs', 'Any city combination?', 'No 4-city route fits 6 nights with ≤ 2 moves; Takayama dropped', pl('Fix', 'ok')],
+              ['3', 'POIs', 'Interests covered?', 'Kanazawa days have 1 temple against temples = 0.8', pl('Fix', 'ok')],
+              ['4', 'Route', 'Is each day doable?', 'Day 6 is 4.6 km of walking against a 4 km limit', pl('Fix', 'ok')],
+              ['5', 'Booking', 'Anything unavailable?', 'Shojin lunch full at 10:45', pl('Fix', 'ok')],
+              ['6', 'Validator', 'Any rejections?', 'Plan C has no Takayama rooms', pl('Drop', 'mute')],
+              { c: ['!', 'Any stage', 'Nothing fits at all', 'No plan under ₹2.5 L in Golden Week', pl('Always ask', 'warn')], cls: 'hi' },
+            ])}${note('Checkpoint 2 asks instead of fixing when the dropped city is one the traveller named.')}` },
         { n: 'Semantic judge', d: 'Meaning, not keywords', t: 'Judge', kind: 'llm',
           lead: 'Scores fuzzy wishes that no field can hold.',
           how: [
@@ -3467,7 +3527,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ['Fit', 0, .88, 'fit', '+0.88'], ['Cost', .88, .74, 'cost', '−0.14'], ['Transit', .74, .59, 'transit', '−0.15'],
               ['Stay', .59, .47, 'stay', '−0.12'], ['Trip score', 0, .47, 'score', '0.47']])
             + calc('Cost 0.15 × 0.91 · Transit 0.016 × 9.5 h · Stay 0.02 × 6 (two hotel changes)') },
-        { n: 'City & leg planner', d: 'Cities, order, nights', t: 'Cities', kind: 'code', terms: ['fit', 'transit', 'stay'],
+        { n: 'City & leg planner', cp: 2, d: 'Cities, order, nights', t: 'Cities', kind: 'code', terms: ['fit', 'transit', 'stay'],
           lead: 'Chooses the cities, their order and the nights in each. Each move is a leg.',
           how: [
             '<b>Try</b> every order of 2 to 4 of the top cities',
@@ -3492,7 +3552,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               { c: ['B · Tokyo 3 · Kyoto 3', '3.6 h', '1', '<b>0.91</b>', yes], cls: 'hi' },
               ['Tokyo 2 · Kyoto 4', '3.6 h', '1', '0.89', ''],
             ])}${note('Kept: the best plan with 2, 3 and 4 cities, so the traveller sees real choices.')}</div></div>` },
-        { n: 'Activity selector', d: 'Places that fit the hours', t: 'Activities', kind: 'code', terms: ['fit', 'transit'],
+        { n: 'Activity selector', cp: 3, d: 'Places that fit the hours', t: 'Activities', kind: 'code', terms: ['fit', 'transit'],
           lead: 'Fills each city’s hours with the best places that fit.',
           how: [
             '<b>Budget</b> about 6 active hours a day',
@@ -3529,7 +3589,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
             ])}${note('The lowest penalty wins: travel time and room price, minus a small bonus for a ryokan.')}</div>
             <div>${eh('Why not the Gion ryokan?')}<ul class="whynot"><li>25 minutes to the station, with bags and a bad knee</li><li>₹16k more for the two nights</li><li>The old-Japan bonus does not cover the gap</li></ul>
               ${note('The miss goes to the trade-off log, so C9 can offer it back.')}</div></div>` },
-        { n: 'Day scheduler', d: 'Order, timing, crowds', t: 'Schedule', kind: 'code', terms: ['fit', 'transit'],
+        { n: 'Day scheduler', cp: 4, d: 'Order, timing, crowds', t: 'Schedule', kind: 'code', terms: ['fit', 'transit'],
           lead: 'Orders and times each day around opening hours, crowds and the knee.',
           how: [
             '<b>Keep</b> arrival and departure days light',
@@ -3640,7 +3700,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               <i style="flex:115;background:var(--accent)"></i><i style="flex:88;background:var(--accent-2)"></i><i style="flex:29;background:var(--t-transit)"></i><i style="flex:6;background:var(--amber)"></i></div>
               <div class="stack-l"><span style="--k:var(--accent)">Flights <b>₹1.15 L</b></span><span style="--k:var(--accent-2)">Hotels <b>₹0.88 L</b></span><span style="--k:var(--t-transit)">Rail <b>₹0.29 L</b></span><span style="--k:var(--amber)">Tickets <b>₹0.06 L</b></span></div>
               ${note('Add ₹0.77 L of daily spend and the trip comes to ₹3.15 L, just inside the ₹3.2 L budget.')}</div></div>` },
-        { n: 'No-inventory report', d: 'Empty slots, nearest options', t: 'Report', kind: 'code',
+        { n: 'No-inventory report', cp: 5, d: 'Empty slots, nearest options', t: 'Report', kind: 'code',
           lead: 'When a slot has nothing that fits, it reports the nearest options.',
           how: [
             '<b>Flag</b> the empty slot and its window',
@@ -3653,7 +3713,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
               ${note('A small fix inside the traveller’s dials, so no question is asked. C9 mentions it.')}</div></div>` },
       ] },
 
-    { id: 8, code: 'C8', name: 'Feasibility validator', short: 'Feasibility validator', seq: true,
+    { id: 8, code: 'C8', name: 'Feasibility validator', short: 'Validator', seq: true,
       role: 'Re-checks every plan on live data, then scores it again.',
       in: 'Bundles from C7 · fresh facts from C4',
       out: 'Scored plans → C9 · repairs → C6 · rejections → C5',
@@ -3685,7 +3745,7 @@ buffer(leg)        ≥ 30 min
 total(plan)        ≤ ₹3.2 L
 age(fact)          ≤ freshness limit
 rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard constraints, so a new constraint needs no new prompt.')}</div></div>` },
-        { n: 'Repair or reject', d: 'Fix locally, or drop', t: 'Repair', kind: 'code',
+        { n: 'Repair or reject', cp: 6, d: 'Fix locally, or drop', t: 'Repair', kind: 'code',
           lead: 'Fixes small failures locally and drops the rest, with a reason.',
           how: [
             '<b>One bad day</b>: back to C6 to fix it',
@@ -3848,34 +3908,52 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   // Chip boxes [left, top, width, height]: a band above the open component, a spread-out map at the end.
   const RPOS = {
     band: { in: [0, 0, 150, 40], 1: [186, 0, 210, 40], 2: [424, 0, 210, 40], 10: [662, 0, 210, 40], out: [900, 0, 210, 40], 9: [1138, 0, 210, 40],
-            5: [186, 54, 1162, 40], 3: [424, 108, 210, 40], 6: [662, 108, 210, 40], 7: [900, 108, 210, 40], 8: [1138, 108, 210, 40], 4: [186, 162, 1162, 40] },
+            5: [186, 54, 1162, 40], 3: [186, 108, 190, 40], 6: [396, 108, 580, 40], 7: [994, 108, 168, 40], 8: [1180, 108, 168, 40], 4: [186, 162, 1162, 40],
+            's1': [460, 112, 92, 32], 's2': [562, 112, 92, 32], 's3': [664, 112, 92, 32], 's4': [766, 112, 92, 32], 's5': [868, 112, 92, 32] },
     over: { in: [0, 36, 150, 150], 1: [186, 36, 210, 150], 2: [424, 36, 210, 150], 10: [662, 36, 210, 150], out: [900, 36, 210, 150], 9: [1138, 36, 210, 150],
-            5: [186, 262, 1162, 128], 3: [424, 466, 210, 150], 6: [662, 466, 210, 150], 7: [900, 466, 210, 150], 8: [1138, 466, 210, 150], 4: [186, 680, 1162, 100] },
+            5: [186, 262, 1162, 128], 3: [186, 466, 190, 150], 6: [396, 466, 580, 150], 7: [994, 466, 168, 150], 8: [1180, 466, 168, 150], 4: [186, 680, 1162, 100],
+            's1': [408, 474, 100, 96], 's2': [522, 474, 100, 96], 's3': [636, 474, 100, 96], 's4': [750, 474, 100, 96], 's5': [864, 474, 100, 96] },
   };
+  // The optimizer's sub-components, drawn inside it. `s` is the part they open.
+  const SUBS = [
+    { key: 's1', code: 'C6.1', n: 'Legs', d: 'Cities, order, nights', s: 1 },
+    { key: 's2', code: 'C6.2', n: 'POIs', d: 'What to do in each city', s: 2 },
+    { key: 's3', code: 'C6.3', n: 'Stays', d: 'Where to sleep', s: 3 },
+    { key: 's4', code: 'C6.4', n: 'Route', d: 'Order and timing of each day', s: 4 },
+    { key: 's5', code: 'C6.5', n: 'Top-K', d: 'Best 3 plans, trade-offs', s: 5 },
+  ];
+  // Judgement LLM checkpoints: o = usual outcome (ask, fix, drop).
+  const CPS = [
+    { at: 3, dx: 40, q: 'major exclusions?', l: 'exclusions?', o: 'ask', ex: 'The knee rules out the Fushimi Inari summit and the Kiyomizu slope. Both are famous, so C1 asks: keep them out?' },
+    { at: 's1', q: 'any city combination?', l: 'combos?', o: 'fix', ex: 'No 4-city route fits 6 nights with at most 2 moves. Takayama is dropped quietly; it would ask if the traveller had named it.' },
+    { at: 's2', q: 'interests covered?', l: 'interests?', o: 'fix', ex: 'Kanazawa days have 1 temple against temples = 0.8, so a temple garden is swapped in.' },
+    { at: 's4', q: 'is each day doable?', l: 'day doable?', o: 'fix', ex: 'Day 6 is 4.6 km of walking against a 4 km limit, so a short taxi is added.' },
+    { at: 7, q: 'anything unavailable?', l: 'available?', o: 'fix', ex: 'Shojin lunch is full at 10:45, so it moves to 11:30, still inside day 6’s pace.' },
+    { at: 8, dx: 10, q: 'any rejections?', l: 'rejected?', o: 'drop', ex: 'Plan C has no Takayama rooms on 1 May. A and B remain, so C is dropped without a question.' },
+  ];
   // Wires: `n` is the component that reveals them; `over` ones only show on the spread-out map, as do all labels.
   const RW = [
     { a: 'in', b: 1, n: 1 },
     { a: 1, b: 2, n: 2, label: 'updates' },
-    { a: 2, b: 3, n: 3, dx: -40, label: 'trip state' },
+    { a: 2, b: 3, n: 3, dl: 1, label: 'trip state', lt: .15 },
     { a: 4, b: 3, n: 4, label: 'places, cities' },
-    { a: 3, b: 5, n: 5, both: 1, dashed: 1, label: 'semantic match' },
-    { a: 5, b: 1, n: 5, label: 'ask the traveller' },
+    { a: 3, b: 5, n: 5, dx: -40, both: 1, dashed: 1, label: 'semantic match', lt: .2 },
+    { a: 5, b: 1, n: 5, ask: 1, label: 'ask the traveller' },
     { a: 5, b: 2, n: 5, dx: 40, label: 'approved changes' },
     { a: 3, b: 6, n: 6, label: 'shortlists' },
     { a: 4, b: 6, n: 6, label: 'travel times' },
-    { a: 6, b: 5, n: 6, both: 1, dashed: 1, label: 'no solution' },
+    { a: 's1', b: 's2', n: 6, sub: 1 }, { a: 's2', b: 's3', n: 6, sub: 1 }, { a: 's3', b: 's4', n: 6, sub: 1 }, { a: 's4', b: 's5', n: 6, sub: 1 },
     { a: 6, b: 7, n: 7, label: 'top-K plans' },
     { a: 4, b: 7, n: 7, label: 'live fares, rooms' },
-    { a: 7, b: 5, n: 7, both: 1, dashed: 1, label: 'no inventory' },
     { a: 7, b: 8, n: 8, label: 'bundles' },
     { a: 4, b: 8, n: 8, label: 'fresh facts' },
-    { a: 8, b: 5, n: 8, dx: 40, both: 1, dashed: 1, label: 'rejections' },
-    { a: 8, b: 9, n: 9, dx: -40, label: 'valid, scored' },
+    { a: 8, b: 9, n: 9, dx: -50, label: 'valid, scored' },
     { a: 9, b: 'out', n: 9 },
     { a: 9, b: 1, n: 9, over: 1, arc: 1, both: 1, dashed: 1, label: 'follow-ups' },
     { a: 2, b: 10, n: 10, label: 'changes' },
     { a: 10, b: 5, n: 10, dx: 40, both: 1, dashed: 1, label: 'interpret change' },
-    { a: 10, b: 6, n: 10, dx: -40, label: 'partial re-plan' },
+    { a: 10, b: 6, n: 10, dx: -24, label: 'partial re-plan' },
+    ...CPS.map((c, i) => ({ a: c.at, b: 5, n: 5, dx: c.dx || 0, both: 1, dashed: 1, cp: i + 1, o: c.o, label: c.l, lt: .62, lside: c.side === 'l' })),
   ];
   const rmap = $('rmap'), rlayer = $('wire-layer-r'), fk = $('fk');
   let rcur = 0, rpeek = null;
@@ -3894,27 +3972,42 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     `<i>${x.t}</i>${i < a.length - 1 && c.seq ? '<b>→</b>' : ''}`).join('')}</span>`;
   addChip('in', 0, '', `<span class="rk-h">${ic('user')}<span class="rk-name">Trip request</span></span>
     <span class="rk-more"><span class="rk-role">Japan · 2 adults · 7 days · vegetarian · bad knee · no crowds</span></span>`);
-  RK.forEach(c => addChip(c.id, c.id, c.cls || '', `<span class="rk-h"><span class="rk-code">${c.code}</span><span class="rk-name">${c.short}</span></span>
+  RK.forEach(c => c.id === 6 ? addChip(6, 6, 'is-group', `<span class="rk-h"><span class="rk-code">C6</span><span class="rk-name">Itinerary optimizer</span><span class="rk-sub">maximises the trip score</span></span>`)
+    : addChip(c.id, c.id, c.cls || '', `<span class="rk-h"><span class="rk-code">${c.code}</span><span class="rk-name">${c.short}</span></span>
     <span class="rk-more"><span class="rk-role">${c.role}</span>${c.id === 4
       ? '<span class="rk-feeds"><b>Real-time</b><i>Flights</i><i>Hotels</i><i>Weather</i><b>Periodic</b><i>POIs</i><i>Maps</i><i>Festivals</i></span>'
       : subTags(c)}</span>`));
+  SUBS.forEach(x => {
+    addChip(x.key, 6, 'is-sub', `<span class="sb-code">${x.code}</span><b>${x.n}</b><em>${x.d}</em>`);
+    chips[x.key].el.dataset.rs = x.s;
+  });
   addChip('out', 0, 'is-out', `<span class="rk-h">${ic('scroll-text')}<span class="rk-name">Itinerary</span></span>
     <span class="rk-more"><span class="rk-role">Top plans with narration, from C9</span></span>`);
 
   const rwires = RW.map(w => {
     const p = document.createElementNS(SVG, 'path');
-    p.setAttribute('class', 'wire off' + (w.dashed ? ' dashed' : ''));
+    p.setAttribute('class', 'wire off' + (w.dashed ? ' dashed' : '') + (w.cp ? ' cpw ' + w.o : '') + (w.ask ? ' askw' : ''));
     p.setAttribute('marker-end', 'url(#arrow-r)');
     if (w.both) p.setAttribute('marker-start', 'url(#arrow-r)');
     rlayer.appendChild(p);
     let l = null;
     if (w.label) {
       l = document.createElement('span');
-      l.className = 'elabel off';
+      l.className = 'elabel off' + (w.cp ? ' cpl' : '');
       l.textContent = w.label;
       rmap.insertBefore(l, fk);
     }
-    return { w, p, l };
+    let d = null;
+    if (w.cp) {                                           // a diamond on the Judgement LLM bar, with its example on hover
+      d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'cpd ' + w.o + ' off';
+      d.dataset.cp = w.cp;
+      d.innerHTML = `${w.cp}<span class="cp-tip"><b>Checkpoint ${w.cp} · ${CPS[w.cp - 1].q}</b>${CPS[w.cp - 1].ex}<em>${{ ask: 'Asks the traveller', fix: 'Fixes it quietly', drop: 'Drops the option' }[w.o]}</em></span>`;
+      d.setAttribute('aria-label', `Checkpoint ${w.cp}: ${CPS[w.cp - 1].q}`);
+      rmap.insertBefore(d, fk);
+    }
+    return { w, p, l, d };
   });
   function rgeom(w) {
     const A = box(chips[w.a].el, rmap), B = box(chips[w.b].el, rmap), g = 3;
@@ -3922,6 +4015,10 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
       const x1 = A.x + 28, x2 = B.x + B.w - 28, top = Math.min(A.y, B.y) - 26, r = 10;
       return { d: `M${x1} ${A.y - g}L${x1} ${top + r}Q${x1} ${top} ${x1 - r} ${top}L${x2 + r} ${top}Q${x2} ${top} ${x2} ${top + r}L${x2} ${B.y - g - 1}`,
         lx: (x1 + x2) / 2, ly: top, side: false };
+    }
+    if (w.dl) {                                           // down and to the left, between lanes
+      const x1 = A.x + 16, y1 = A.y + A.h + g, x2 = B.x + B.w - 16, y2 = B.y - g - 1, t = w.lt || .5;
+      return { d: `M${x1} ${y1}L${x2} ${y2}`, lx: x1 + (x2 - x1) * t + 8, ly: y1 + (y2 - y1) * t, side: true };
     }
     if (w.diag) {                                         // corner to corner, between lanes
       const x1 = A.x + 16, y1 = A.y - g, x2 = B.x + B.w - 16, y2 = B.y + B.h + g + 1;
@@ -3935,7 +4032,8 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     const down = A.y + A.h <= B.y;                        // stacked: label beside the wire
     const x = (Math.max(A.x, B.x) + Math.min(A.x + A.w, B.x + B.w)) / 2 + (w.dx || 0);
     const y1 = down ? A.y + A.h + g : A.y - g, y2 = down ? B.y - g - 1 : B.y + B.h + g + 1;
-    return { d: `M${x} ${y1}L${x} ${y2}`, lx: x + 10, ly: (y1 + y2) / 2, side: true };
+    const t = w.lt || .5;
+    return { d: `M${x} ${y1}L${x} ${y2}`, lx: x + (w.lside ? -10 : 10), ly: y1 + (y2 - y1) * t, side: true, x, yb: down ? y2 : y1, ytop: Math.min(y1, y2) };
   }
   function rstate() {
     const st = RSTEPS[rcur];
@@ -3947,14 +4045,16 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   function rlayout() {
     if (narrow.matches || tab !== 'revised') return;
     const S = rstate();
-    rwires.forEach(({ w, p, l }) => {
+    rwires.forEach(({ w, p, l, d }) => {
       const on = S.mode !== 'start' && S.shown >= w.n && (!w.over || S.mode === 'over');
       p.classList.toggle('off', !on);
       if (l) l.classList.toggle('off', !on || S.mode !== 'over');
+      if (d) d.classList.toggle('off', !on);
       if (!on) return;
       const g = rgeom(w);
       p.setAttribute('d', g.d);
-      if (l) { l.classList.toggle('side', g.side); l.style.left = g.lx + 'px'; l.style.top = g.ly + 'px'; }
+      if (d) { d.style.left = g.x + 'px'; d.style.top = g.ytop + 'px'; d.classList.toggle('small', S.mode !== 'over'); }
+      if (l) { l.classList.toggle('side', g.side && !w.lside); l.classList.toggle('lside', !!w.lside); l.style.left = g.lx + 'px'; l.style.top = g.ly + 'px'; }
     });
   }
   let rUntil = 0;
@@ -3975,7 +4075,8 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
   }
   function subView(x) {
     const terms = x.terms ? `<span class="terms"><span class="label">Optimizes</span>${x.terms.map(k => T(k)).join('')}</span>` : '';
-    return `<div class="sv-h"><p>${x.lead}</p>${terms}</div>
+    const cpp = x.cp ? `<span class="cp-pill"><i class="cpd ${CPS[x.cp - 1].o}">${x.cp}</i>Checked by checkpoint ${x.cp} · ${CPS[x.cp - 1].q}</span>` : '';
+    return `<div class="sv-h"><p>${x.lead}</p>${cpp}${terms}</div>
       <div class="sv-g${x.math ? ' has-math' : ''}">
         <section class="sv-col"><p class="label">How it works</p><ol class="how">${x.how.map(h => `<li><span>${h}</span></li>`).join('')}</ol></section>
         ${x.math ? `<section class="sv-col"><p class="label">The maths</p>${x.math}</section>` : ''}
@@ -4018,7 +4119,8 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     Object.entries(chips).forEach(([key, { k, el }]) => {
       const on = S.mode !== 'start' && (!k || k <= S.shown), was = !el.classList.contains('off');
       el.classList.toggle('off', !on);
-      el.classList.toggle('is-focus', S.mode === 'band' && k === S.k);
+      const sub = el.dataset.rs !== undefined;
+      el.classList.toggle('is-focus', S.mode === 'band' && k === S.k && (!sub || +el.dataset.rs === S.s));
       if (k) el.setAttribute('aria-pressed', String(S.mode === 'band' && k === S.k));
       const [x, y, w, h] = P[key];
       Object.assign(el.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px' });
@@ -4038,6 +4140,10 @@ rooms_left(night)  ≥ 1</pre>${note('Rules come from the trip state’s hard co
     rrender();
   }
   function rclick(t) {
+    const cpd = t.closest('[data-cp]');
+    if (cpd) { rpeek = { k: 5, s: 0 }; rrender(); return; }
+    const sc = t.closest('[data-rs]');
+    if (sc) { rpeek = { k: 6, s: +sc.dataset.rs }; rrender(); return; }
     const ch = t.closest('[data-rk]');
     if (ch) {
       const k = +ch.dataset.rk, S = rstate(), st = RSTEPS[rcur];

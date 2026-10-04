@@ -161,6 +161,11 @@ Kept deliberately simple, on request. North Star: **Bookable trip rate** (sessio
 | C9 | Plan presenter & narrator (Plan presenter) | LLM | Grounded narration · Trade-off explainer · Plan comparison |
 | C10 | Re-planning loop (kept as is, on request) | Code | Change triggers → Change interpreter (uses C5) → Impact analyzer → Partial re-planner |
 
+**Judgement LLM checkpoints and the optimizer's sub-components (on the map)**
+- The Judgement LLM reviews every stage at six numbered ◆ checkpoints on the bar's bottom edge, each with a dashed line down to the stage and a short label: 1 Candidates "exclusions?" (ask), 2 Legs "combos?" (fix; asks if the traveller named the dropped city), 3 POIs "interests?" (fix), 4 Route "day doable?" (fix), 5 Booking "available?" (fix), 6 Validator "rejected?" (drop). Colour = usual outcome: amber ask, green fix, grey drop; the "ask the traveller" wire is amber. Hover a diamond for its Japan example; click opens C5 › Checkpoint review (a new first part with the full table, plus "! nothing fits at all → always ask"). Config: `CPS`.
+- C6 is drawn as a wide group with its sub-components inside as real boxes: C6.1 Legs, C6.2 POIs, C6.3 Stays, C6.4 Route, C6.5 Top-K (`SUBS`); header line "maximises the trip score". Each opens its own part. Parts with a checkpoint show "Checked by checkpoint N" (`cp` on the part).
+- Planning row re-balanced: C3 (chip label "Candidates") moved to the left column, C6 is ~580 px wide, C7 and C8 (chip label "Validator") are narrower. The old no-solution and rejections wires are replaced by the checkpoint lines.
+
 **How the Judgement LLM works (the story to tell)**
 - Code reports, the LLM decides, code applies and checks. The LLM never edits anything directly; it writes typed patches that code validates (C5 › Change writer).
 - Fix quietly when inside what the traveller allowed (shojin lunch full at 10:45 → 11:30). Ask via C1 when a hard rule or real trade-off is involved (budget clash → "raise to ₹3.2 L or travel 10–16 May"). Drop when alternatives remain (plan C, no Takayama rooms).
