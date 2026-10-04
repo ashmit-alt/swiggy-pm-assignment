@@ -33,7 +33,7 @@ want "some changes", without saying which yet. **Ask them what to change next. D
   - No mention of the ladder labels L1, L2, L3 in the Research tab ("do not talk about our L1, L2, L3 anywhere").
   - The Architecture tab has no progress bar at the top (removed on request).
   - Revised architecture: one component in focus, the others minimized; the final step shows all of them minimized.
-  - Maths appears **only** in C6 › Trip score. Everywhere else it's "How it works" plus examples.
+  - Maths appears **only** in C7 › Trip score. Everywhere else it's "How it works" plus examples.
   - The Research synthesis uses the user's exact wording (quoted in the Research section below), highlighted.
 
 ## The page
@@ -72,7 +72,7 @@ Built from the user's goal slide. Each → reveals one section; earlier ones sta
 ### Tab: AI-native (static, no steps)
 
 Answer to "what if the interviewer thinks AI can do most of the planning?". The agent proposes, code verifies (LLM-Modulo).
-- Hand-placed diagram (`.ai-map`, fixed coordinates in the HTML, wires as SVG paths, labels as `.elabel`): Traveller ↔ Conversational agent (was C1 + C9) → Trip state (C2) → Planner agent (was C3, C5, C6, C10: draft → critique → revise, at most 3 rounds, city sub-agents) ⇄ Critics (was C8: hard, soft, fact, LLM judge) → Itinerary. Both call a typed Tool layer (searches plus solvers, with today's optimizer as a fallback), which reads Data feeds (C4) and Booking search & pricing (C7).
+- Hand-placed diagram (`.ai-map`, fixed coordinates in the HTML, wires as SVG paths, labels as `.elabel`): Traveller ↔ Conversational agent (was C1 + C3) → Trip state (C2) → Planner agent (was C6, C4, C7, C5: draft → critique → revise, at most 3 rounds, city sub-agents) ⇄ Critics (was C9: hard, soft, fact, LLM judge) → Itinerary. Both call a typed Tool layer (searches plus solvers, with today's optimizer as a fallback), which reads Data feeds (C10) and Booking search & pricing (C8).
 - A strip below runs the Japan trip in 5 steps: Understand, Draft, Critique, Revise or ask, Present.
 - Talking points (not on the page): latency and cost caps, replayable runs for G9, an eval set of ~20 trips, and the dial from code-plans to agent-plans as critic pass rates hold.
 
@@ -84,7 +84,7 @@ Kept deliberately simple, on request. North Star: **Bookable trip rate** (sessio
 
 - Two cards side by side, each a scrollable, syntax-coloured JSON block with jump chips for the top-level keys (`data-jump`).
 - **Trip state** (`TRIP_STATE`): C2 at version 2, after the budget was raised to ₹3.2 L. Traveller, hard constraints, dials (value, source, phrase, confidence), residual text, derived weights, open questions, decision D1, versions, writers.
-- **Final itinerary** (`ITINERARY`): Plan A, bundle 1, score 0.46, ₹3.15 L of ₹3.2 L. Cities, legs, all 7 days with timed stops, bookings with prices, rail choice, validator checks, trade-offs, C5's fix (lunch 10:45 → 11:30), alternatives (B, rejected C), narration, provenance.
+- **Final itinerary** (`ITINERARY`): Plan A, bundle 1, score 0.46, ₹3.15 L of ₹3.2 L. Cities, legs, all 7 days with timed stops, bookings with prices, rail choice, validator checks, trade-offs, C4's fix (lunch 10:45 → 11:30), alternatives (B, rejected C), narration, provenance.
 - Every number matches the running example below; change both together.
 
 ### Tab 1: Architecture (two flows, beats 1 and 2.1–2.4)
@@ -139,32 +139,39 @@ Kept deliberately simple, on request. North Star: **Bookable trip rate** (sessio
 - `RSTEPS` is just the overview. → from the overview opens C1 part 1; ←/→ then walk every part of every component in order (crossing into the next component), and past the last part go back to the map. Esc or "Back to all components" also returns.
 - Expand all is shown only on the Architecture tab now.
 - No LLM / Code / Data badges anywhere (removed on request). Instead chips are tinted: LLM components violet (`--llm*` tokens, `is-llm`), data and state grey (`is-data`), code white. The focus card's code square turns violet for LLM components.
-- Components with more than 6 parts (C6) show compact part chips (`.stabs.many`).
+- Components with more than 6 parts (C7) show compact part chips (`.stabs.many`).
 - Wire labels are `pointer-events: none` so they never block clicks on the Judgement LLM bar.
 
 **Interaction**
 - Click any revealed chip to open that component ("peek"). ←/→ move through its parts; Esc or "Back to …" returns.
 - Click a part chip to jump to that part.
 
-**Components and parts** (→ means the parts run in order). Restructured on request: the dialogue manager and the trip state are separate, and a horizontal Judgement LLM handles every judgement call.
+**Components and parts** (→ means the parts run in order). Numbered in reading order on the map: top row, the Judgement LLM bar, the planning row, data.
 
-| | Component (chip label) | Tint | Parts |
-|---|---|---|---|
-| C1 | Dialogue manager | LLM | Understand input → Update trip state → Clarify & offer options |
-| C2 | Trip state | Data | Hard constraints · Dials & residual text · Versions |
-| C3 | Candidate generator | Code | Hard-constraint filter → Semantic match (asks C5) → Preference ranker → Shortlist builder |
-| C4 | Data feeds & knowledge repository (Data feeds & repository) | Data | Real-time & periodic feeds → Knowledge repository |
-| C5 | Judgement LLM (full-width bar) | LLM | Semantic judge → Failure interpreter → Fix or ask → Change writer |
-| C6 | Itinerary optimizer | Code | Trip score (objective, the only part with maths), then City & leg planner → Activity selector → Base locator → Day scheduler → Top-K & trade-off log → No-solution report |
-| C7 | Booking option search (Booking search) | Code | Slot builder → Option ranker → Bundle assembler → No-inventory report |
-| C8 | Feasibility validator | Code | Constraint checks → Repair or reject → Final scorer |
-| C9 | Plan presenter & narrator (Plan presenter) | LLM | Grounded narration · Trade-off explainer · Plan comparison |
-| C10 | Re-planning loop (kept as is, on request) | Code | Change triggers → Change interpreter (uses C5) → Impact analyzer → Partial re-planner |
+| | Component (chip label) | Where on the map | Tint | Parts |
+|---|---|---|---|---|
+| C1 | Dialogue manager | Top row | LLM | Understand input → Update trip state → Clarify & offer options |
+| C2 | Trip state | Top row | Data | Hard constraints · Dials & residual text · Versions |
+| C3 | Plan presenter & narrator (Plan presenter) | Top row, right | LLM | Grounded narration · Trade-off explainer · Plan comparison |
+| C4 | Judgement LLM | Bar between the top and planning rows (x 520–1110) | LLM | Semantic judge → Failure interpreter → Fix or ask → Change writer |
+| C5 | Re-planning loop (kept as is, on request) | Planning row, left | Code | Change triggers → Change interpreter (uses C4) → Impact analyzer → Partial re-planner |
+| C6 | Candidate generator | Planning row | Code | Hard-constraint filter → Semantic match (asks C4) → Preference ranker → Shortlist builder |
+| C7 | Itinerary optimizer | Planning row | Code | Trip score (objective, the only part with maths), then City & leg planner → Activity selector → Base locator → Day scheduler → Top-K & trade-off log → No-solution report |
+| C8 | Booking option search (Booking search) | Planning row | Code | Slot builder → Option ranker → Bundle assembler → No-inventory report |
+| C9 | Feasibility validator | Planning row, right | Code | Constraint checks → Repair or reject → Final scorer |
+| C10 | Data feeds & knowledge repository | Bottom bar | Data | Real-time & periodic feeds → Knowledge repository |
+
+**Map reading aids (added on request)**
+- **Main path**, bold indigo with numbered badges 1–8: Trip request → C1 → C2 → C6 → C7 → C8 → C9 → C3 → Itinerary (`m` on the wire in `RW`). Every other wire (loops, inputs) is lighter until highlighted.
+- **Hover** a chip on the map: everything else dims; its wires, labels and neighbours stay lit (`is-focusing`, `.lit`).
+- **Play a scenario** (buttons in the left column, `SCEN`): a dot runs along the wires with a dark caption at each stop. Happy path, Budget clash (C7 no solution → C4 asks → C1 offers ₹3.2 L or 10–16 May → C2 v2 → C7 again), Lunch is full (C8 → C4 fixes 10:45 → 11:30 quietly), Flight cancelled (C10 alert → C5 → C4 → C1 confirms → C2 v4 → partial re-plan → C3). Esc, a chip click, a tab change or clicking the same button again stops it.
+- **No wire passes under the Judgement LLM bar**: the bar is narrower; the trip-state wire runs left of it, valid/scored right of it, rejections is an elbow into its right end. Remaining crossings are wire over wire only ("ask the traveller", "changes").
+- Wire route types in `rgeom`: side by side, stacked, `diag`, `dl` (down-left), `elbow`, `arc`. `lpos` pins a label on the full map.
 
 **How the Judgement LLM works (the story to tell)**
-- Code reports, the LLM decides, code applies and checks. The LLM never edits anything directly; it writes typed patches that code validates (C5 › Change writer).
+- Code reports, the LLM decides, code applies and checks. The LLM never edits anything directly; it writes typed patches that code validates (C4 › Change writer).
 - Fix quietly when inside what the traveller allowed (shojin lunch full at 10:45 → 11:30). Ask via C1 when a hard rule or real trade-off is involved (budget clash → "raise to ₹3.2 L or travel 10–16 May"). Drop when alternatives remain (plan C, no Takayama rooms).
-- Only C1 (with the traveller) and C5 (approved changes) write to C2. Changes to C2 trigger C10.
+- Only C1 (with the traveller) and C4 (approved changes) write to C2. Changes to C2 trigger C5.
 
 **Data structures**
 - **`RK`**: one entry per component with these fields:
@@ -178,7 +185,7 @@ Kept deliberately simple, on request. North Star: **Bookable trip rate** (sessio
     - `kind`, `lead`
     - `terms`: trip-score terms it optimizes (`fit`, `cost`, `transit`, `stay`, `score`)
     - `how`: short lines
-    - `math`: C6 Trip score only
+    - `math`: C7 Trip score only
     - `ex`: example HTML
 - **`RSTEPS`** is derived from `RK` (start, every part, then the spread-out map at `OVER = RK.length + 1`), so adding a part needs no other change.
 - **`RPOS.band` and `RPOS.over`**: chip boxes `[left, top, width, height]` in the 1376×788 view, for the band and the spread-out map. The focus card starts at `top: 226px` (`.fk` in the CSS). Lane labels and dashed rules are positioned inline in the HTML.
@@ -204,17 +211,17 @@ ones that depend on it.
 
 **C2 trip state**
 - Hard constraints: dates; vegetarian with no dashi; walking ≤ 4 km a day; stairs low; budget ≤ ₹3.2 L.
-- How the budget got there: the traveller said ₹2.5 L, C6 found that Golden Week fares don't fit, C5 decided to ask, and C1 offered "raise to ₹3.2 L" or "travel 10–16 May".
+- How the budget got there: the traveller said ₹2.5 L, C7 found that Golden Week fares don't fit, C4 decided to ask, and C1 offered "raise to ₹3.2 L" or "travel 10–16 May".
 - Dials: crowd_tolerance 0.14, pace 0.30, temples 0.80, food 0.80, photography 0.70, hidden_gem_share 0.30.
 - Residual text: "feel like old Japan".
 
-**C3**
+**C6**
 - Places: 100k → 38k (open on the dates) → 14k (knee-safe) → 5k (veg-safe). Cities: 46 → 11.
 - Weights: interests .30, old Japan .15, quality .20, price .10, crowd .20, distance .05.
 - Scores: Nishi Chaya 0.86, Yanaka walk 0.83, Kinkaku-ji 0.61 (crowd .06 in Golden Week).
-- Cities: Kanazawa .81, Kyoto .77, Tokyo .72, Takayama .70, Nara .66. The top 4 go to C6.
+- Cities: Kanazawa .81, Kyoto .77, Tokyo .72, Takayama .70, Nara .66. The top 4 go to C7.
 
-**C6 trip score**
+**C7 trip score**
 - S = Fit − 0.15·(cost ÷ budget) − 0.016·(transit hours) − 0.02·Stay
 - Stay = Σ max(0, nights − ideal)² + 0.5 per one-night stop + 3 per hotel change
 - The transit weight is doubled for the knee.
@@ -227,7 +234,7 @@ ones that depend on it.
 | B, Fewer moves | Tokyo 3 · Kyoto 3 | .76 | .88 | 7.5 h | 4 | 0.43 |
 | C, Mountain towns | Tokyo 1 · Kanazawa 2 · Takayama 1 · Kyoto 2 | .90 | .95 | 13.3 h | 10 | 0.35 |
 
-**C6 City & leg planner**
+**C7 City & leg planner**
 - City score = Σ city·(1 − e^(−nights/τ)) − 0.016·(leg hours) − 0.02·Stay, with τ = Tokyo 2, Kanazawa 2, Kyoto 3, Takayama 2.
 - Ranking: A 1.13, C 1.09, Tokyo 1·Kanazawa 2·Kyoto 3 1.06, Tokyo 2·Kanazawa 1·Kyoto 3 1.04, Tokyo 2·Takayama 2·Kyoto 2 1.00, B 0.91, Tokyo 2·Kyoto 4 0.89.
 - Kept: the best plan with 2, 3 and 4 cities (B, A, C).
@@ -237,21 +244,21 @@ ones that depend on it.
   - Haruka to KIX, 1 h 20 (day 7, 08:40)
 - Day 6 is 3 May in Kyoto: Fushimi Inari at 07:00 (crowd 0.16, against 0.96 at 11:00).
 
-**C7**
+**C8**
 - Flights BLR → Tokyo (price / generalized cost): Singapore ₹82k / ₹115.0k, Delhi ₹68k / ₹112.2k, Bangkok ₹71k / ₹106.0k (chosen).
 - Time is valued at ₹1,200 an hour per person, and each connection adds ₹5k.
 - JR Pass ¥50,000 against single tickets ≈ ¥25,800.
 - Bundle 1: ₹2.38 L bookable + ₹0.77 L daily spend = ₹3.15 L.
 
-**C8**
+**C9**
 - B is repaired on day 5: walking 4.6 → 3.4 km with a taxi. C is rejected: no Takayama rooms on 1 May.
 - Final scores: A·1 0.46 (sent on), A·2 0.45, A·3 rejected (₹3.26 L, over budget), B·1 0.43 (sent on), B·2 0.42.
 
-**C9**
+**C3**
 - A against B: A's fit is 0.12 higher; B is ₹45k cheaper, with 2 h less transit and one move fewer.
 - Explained trade-offs: Kinkaku-ji, the Inari summit, the Gion ryokan.
 
-**C10**
+**C5**
 - The flight via Bangkok is cancelled; the next seat lands 29 Apr at 07:40.
 - Days 1–2 and the Tokyo hotel are impacted.
 - A partial re-plan changes 6 things (score 0.46 → 0.43); a full re-plan changes 25 (score 0.44).
@@ -282,7 +289,7 @@ python3 tools/build_artifact.py /tmp/ai-trip-planner.html
 
 ## Open items
 
-- **The itinerary card on the revised tab stays empty.** The user was asked whether C7 should fill it with the top plans; no answer yet.
+- **The itinerary card on the revised tab stays empty.** The user was asked whether C8 should fill it with the top plans; no answer yet.
 - **The Research tab's bottom takeaway** may be kept or dropped; no answer yet.
 - **Architecture tab leftovers:** `FLOWS` still has placeholder flows "Step 3/4/5", and the codes `L0` and `L1–L2` appear in the narrow-mode step label (`#now`). These are probably worth removing, but check with the user first.
 - **Approximate facts to verify before presenting:** train times, the JR Pass price, and the paper figures.
@@ -296,12 +303,12 @@ python3 tools/build_artifact.py /tmp/ai-trip-planner.html
 
   | Revised components | Ladder level |
   |---|---|
-  | C4 | L1 |
-  | C1, C2, C3 | L2 |
-  | C6–C8 | L3 |
-  | C10 | L4 |
+  | C10 | L1 |
+  | C1, C2, C6 | L2 |
+  | C7–C9 | L3 |
+  | C5 | L4 |
 
-  C5 (Judgement LLM) and C9 (presenter) cut across levels.
+  C4 (Judgement LLM) and C3 (presenter) cut across levels.
 
 **Gaps at L0**
 
