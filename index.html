@@ -1169,6 +1169,41 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .syn-jobs li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; font-size: 16px; line-height: 1.45; }
 .syn-jobs b { display: block; font-weight: 700; }
 .syn-jobs .ic { width: 19px; height: 19px; margin-top: 2px; color: var(--accent); stroke-width: 2.2; }
+.minis li.mini-part { padding: 6px 0 0; font: 600 10.5px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--accent); }
+.minis li.mini-part::before, .minis li.mini-part::after { display: none; }
+.minis li.mini-part:first-child { padding-top: 0; }
+.mini-take { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.minis { gap: 6px; }
+.mini { padding: 6px 12px 7px; }
+.minis li::after { top: 13px; }
+.mini.sum .mini-year { color: var(--accent); }
+.pp-badge { padding: 4px 8px; border-radius: 6px; font: 600 10.5px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--llm); background: var(--llm-soft); box-shadow: inset 0 0 0 1px var(--llm-line); }
+.pp-badge.pick { color: var(--accent-ink); background: var(--accent); box-shadow: none; }
+.v-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.v-col { display: flex; flex-direction: column; gap: 14px; padding: 22px 24px; border-radius: 16px; }
+.v-ok { background: var(--green-soft); } .v-bad { background: var(--red-soft); }
+.v-h { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; font: 720 22px/1.2 var(--f-display); font-stretch: 106%; }
+.v-ok .v-h { color: var(--green); } .v-bad .v-h { color: var(--red); }
+.v-h .ic { width: 20px; height: 20px; stroke-width: 2.4; }
+.v-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.v-col li { position: relative; padding-left: 20px; font-size: 18px; line-height: 1.5; }
+.v-col li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 7px; height: 7px; border-radius: 2px; }
+.v-ok li::before { background: var(--green); } .v-bad li::before { background: var(--red); }
+.v-next { display: flex; align-items: center; gap: 10px; padding: 13px 16px; border-radius: 12px; background: var(--accent-soft); font: 650 16px/1.4 var(--f-display); }
+.v-next .ic { flex: none; width: 18px; height: 18px; color: var(--accent); }
+.ev2 { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.evb { display: flex; flex-direction: column; gap: 14px; padding: 20px 22px; border-radius: 16px; background: var(--sunk); }
+.evb h4 { margin: 0; font: 740 24px/1.15 var(--f-display); font-stretch: 110%; }
+.evb h4 span { margin-left: 6px; font: 500 14px var(--f-body); color: var(--ink-2); }
+.fork { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.fork section { display: flex; flex-direction: column; gap: 18px; padding: 22px 24px; border-radius: 16px; background: var(--sunk); }
+.fork .fk-b { background: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
+.fk-l { font: 600 11px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); }
+.fk-l em { margin-left: 8px; padding: 3px 7px; border-radius: 5px; font-style: normal; color: var(--accent-ink); background: var(--accent); }
+.fork h4 { margin: 0; font: 740 24px/1.2 var(--f-display); font-stretch: 110%; }
+.fork p:not(.fk-l) { font-size: 18px; line-height: 1.5; }
+.fork .fk-p { margin-top: auto; font-size: 14px; color: var(--ink-2); }
+.fork .fk-p b { color: var(--ink); font-weight: 650; }
 .takeaway.is-hidden { visibility: hidden; }
 
 /* ---------- Goals ---------- */
@@ -1410,7 +1445,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .fcard { padding: 18px 16px 20px; }
   .fc-name { font-size: 23px; }
   .fc-sec > p:not(.label), .fc-design p:not(.label), .fc-points li, .syn-jobs li { font-size: 14px; }
-  .syn-body { grid-template-columns: 1fr; }
+  .syn-body, .v-body, .ev2, .fork { grid-template-columns: 1fr; }
   .fc-take p:not(.label) { font-size: 17px; }
   .fc-body { grid-template-columns: 1fr; gap: 18px; }
   .stat b { font-size: 40px; }
@@ -2059,7 +2094,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </div>
         <footer class="takeaway is-hidden" id="takeaway-r">
           <span class="label">Takeaway</span>
-          <p>The LLM handles meaning. Data, solvers and validators handle guarantees.</p>
+          <p>Code plans for guarantees, the LLM brings meaning. Valid is not enough: the trip has to be good.</p>
         </footer>
 
       </div>
@@ -2336,6 +2371,8 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         <circle class="v-skip" cx="176" cy="6" r="4"/><circle class="v-skip" cx="176" cy="39" r="4"/><circle class="v-skip" cx="176" cy="55" r="4"/>
         <circle class="v-pick" cx="10" cy="30" r="5"/><circle class="v-pick" cx="92" cy="30" r="4.5"/><circle class="v-pick" cx="176" cy="22" r="4.5"/><circle class="v-pick" cx="262" cy="22" r="6"/>
       </svg>`,
+    pal: `<div class="chain"><span>LLM: places, utility, durations</span><i>→</i><span>PDDL</span><i>→</i><span>Planner</span><i>→</i><span>Valid, best plan</span></div>
+      <span class="label">100% valid plans vs 14% for the LLM alone</span>`,
     split: `<div class="split" role="img" aria-label="1,100 tasks: 500 single-turn, 500 multi-turn, 100 unsolvable"><i class="s1" style="flex:500"></i><i class="s2" style="flex:500"></i><i class="s3" style="flex:100"></i></div>
       <div class="split-l"><span style="--k:var(--accent)"><b>500</b>single-turn</span><span style="--k:var(--accent-2)"><b>500</b>multi-turn</span><span style="--k:var(--red)"><b>100</b>unsolvable</span></div>`,
   };
@@ -2368,20 +2405,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       take: 'Real travel is a multi-objective, highly constrained and interconnected planning problem, not simply a shortest-path problem.',
       design: 'Plan hierarchically with feedback: city, then days, then POIs, then base hotel, then daily routes, rather than one ranking model.',
       vis: 'chain' },
-    { year: '2024', venue: 'ICML', short: 'TravelPlanner', name: 'TravelPlanner', by: 'Xie et al.',
-      title: 'TravelPlanner: A Benchmark for Real-World Planning with Language Agents',
-      mini: 'Plausible is not valid: GPT-4 at 0.6%',
-      problem: 'Can language agents build valid travel plans when they must satisfy many constraints and retrieve real-world information?',
-      approach: '1,225 curated planning intents with reference plans and nearly 4 million records in a sandbox. Agents must use tools and reason over many travel constraints instead of writing free text.',
-      points: [
-        'Exposes the gap between sounding plausible and actually satisfying constraints.',
-        'Naive LLM agents lose track of constraints as the itinerary grows.',
-        'Retrieving the right information does not by itself make the plan feasible.',
-        'It scores whether the whole plan is valid, not whether it sounds reasonable.',
-      ],
-      take: 'A plausible itinerary is not necessarily a valid one. LLM-only planning struggles when many constraints and tools interact.',
-      design: 'Separate LLM reasoning from deterministic verification. The LLM proposes; code retrieves facts, calculates travel times and checks hard constraints.',
-      vis: 'stat' },
     { year: '2024', short: 'LLM-Modulo', name: 'LLM-Modulo', by: 'Kambhampati et al.',
       title: 'LLMs Can’t Plan, But Can Help Planning in LLM-Modulo Frameworks',
       mini: 'An LLM and verifier loop, not either alone',
@@ -2389,9 +2412,9 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       approach: 'A position paper proposing the LLM-Modulo framework: the LLM produces candidate plans, external model-based components check them, and their feedback goes back to the LLM for revision.',
       points: [
         'Rejects both extremes: the LLM as a fully autonomous planner, or as a passive parser.',
-        'External components can verify, check constraints, plan or give domain feedback.',
-        'The loop is proposal, verification, feedback, revision.',
-        'A position paper: cite it as an architectural argument, not as benchmark proof.',
+        'Correctness critics are sound code, not another LLM: the same group showed LLMs cannot reliably verify plans, even their own.',
+        'Follow-up on TravelPlanner (Gundawar et al., 2024): GPT-4-Turbo 4.4% alone, about 6× better with code critics.',
+        { caveat: true, text: 'A position paper: cite the architecture from it, the travel numbers from the follow-up.' },
       ],
       take: 'The useful architecture is not “LLM versus planner”. It is an iterative loop between the LLM and a planner or verifier.',
       design: 'An orchestrator keeps the trip state, calls specialized services, sends candidate plans to validators and feeds violations back for re-planning.',
@@ -2411,20 +2434,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       take: 'Let the LLM translate fuzzy intent into a formal problem, and let a rigorous solver decide whether a valid solution exists.',
       design: 'Intent parser, constraint model, solver, verifier, explanation. Ask a clarifying question before optimizing when the intent is ambiguous.',
       vis: 'formal' },
-    { year: '2025', venue: 'ICLR', short: 'AoT+', name: 'AoT+ structured search', by: 'Sel, Jia & Jin',
-      title: 'LLMs Can Plan Only If We Tell Them',
-      mini: 'Some failures are search failures',
-      problem: 'Are LLMs inherently unable to plan, or do some failures come from how inference-time search is structured?',
-      approach: 'Introduces AoT+ (Algorithm-of-Thoughts+), a structured inference-time search that improves planning, and reports strong results across planning benchmarks.',
-      points: [
-        'Challenges the blanket claim that LLMs cannot plan.',
-        'The search procedure and inference structure materially change planning performance.',
-        'Structured reasoning explores alternatives instead of committing to the first plausible sequence.',
-        'Verification still matters: better search improves candidates, deterministic checks give guarantees.',
-      ],
-      take: 'Some LLM planning failures may be search failures rather than a fundamental inability to plan.',
-      design: 'Use structured LLM search to generate candidates and explore strategies, but keep deterministic checks for production-critical constraints.',
-      vis: 'tree' },
     { year: '2026', venue: 'ACL', short: 'TravelBench', name: 'TravelBench', by: 'Cheng et al.',
       title: 'Beyond Itinerary Planning: A Real-World Benchmark for Multi-Turn and Tool-Using Travel Tasks',
       mini: 'Ask, use tools, know when you can’t',
@@ -2438,10 +2447,65 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         'Most relevant for vague preferences like “I hate early mornings”.',
       ],
       take: 'A production travel agent needs conversation, preference elicitation, tool use, planning, and the sense to say when it cannot fulfill a request.',
-      design: 'Make clarification and capability checks first-class. User changes and outside disruptions feed the same re-planning engine instead of restarting the conversation.',
-      vis: 'split' },
+      design: 'This shaped our design directly: C1 clarifies only what changes the plan, Judgement LLM checkpoints ask about major exclusions, “nothing fits” always asks instead of inventing, and C10 feeds changes and disruptions into the same re-planning engine.',
+      vis: 'split', badge: 'What shaped our design' },
+    { year: '2024', venue: 'arXiv', short: 'TRIP-PAL', name: 'TRIP-PAL', by: 'de la Rosa et al., J.P. Morgan AI Research',
+      title: 'TRIP-PAL: Travel Planning with Guarantees by Combining Large Language Models and Automated Planners',
+      mini: 'The LLM supplies the data, a planner guarantees the plan',
+      problem: 'LLMs know a lot about travel, but their plans lack coherence, miss constraints and are not optimal. Can that knowledge feed a planner that guarantees the result?',
+      approach: 'GPT-4 identifies the points of interest, gives each a utility score and estimates visit durations. That data becomes a formal planning task (PDDL), and an automated planner builds the plan that meets every constraint and maximises total utility.',
+      points: [
+        'Evaluated across 20 cities.',
+        'The LLM alone produced invalid plans 86% of the time. TRIP-PAL’s plans were 100% valid.',
+        'TRIP-PAL’s plans also scored significantly higher on utility: better, not just valid.',
+        { caveat: true, text: 'The gap we close: utility came from popularity, the same for every traveller. We score each place against this traveller’s wishes.' },
+      ],
+      take: 'Let code plan with guarantees, and let the LLM supply what code cannot know: which places exist, how long they take, and how much they are worth.',
+      design: 'This is our architecture. C3 and the Judgement LLM turn preferences into per-place scores, C6 maximises the trip score within the hard rules, and C8 validates. We add personal scores and the checkpoints.',
+      vis: 'pal', badge: 'School B · the architecture we pick', pick: true },
   ];
-  const PAPERS = [...PAPER_DATA.map(d => ({ year: d.year, name: d.short })), { year: '', name: 'Our design' }];
+  // Research tab as a story: before LLMs, then with LLMs (LLMs alone fail, two schools, our pick).
+  const PD = Object.fromEntries(PAPER_DATA.map(d => [d.short, d]));
+  const RSTORY = [
+    { k: 'paper', part: 1, d: PD['TTDP survey'] },
+    { k: 'paper', part: 1, d: PD['TTDP review'] },
+    { k: 'verdict', part: 1, rail: '✓ ✗', name: 'Verdict', mini: 'Solid maths, blind to taste',
+      head: 'Before LLMs', title: 'Solid maths, blind to taste',
+      right: [
+        'Travel planning is a combinatorial optimisation problem: choose places and order them under time, money and opening hours.',
+        'Mature algorithms solve it well: team orienteering with time windows for multi-day trips, and hierarchical optimisation from cities to days to places to routes.',
+        'Hard rules are guaranteed. A solver never returns a plan that breaks them.',
+      ],
+      wrong: [
+        'Subjective preferences have no place in the model: “feels like old Japan”, “hate crowds”, “romantic”.',
+        'Each place’s value is a fixed, hand-made score, the same for everyone.',
+        'No conversation: it cannot ask, clarify or handle a vague request.',
+      ],
+      next: 'LLMs understand exactly these fuzzy wishes. Can they plan on their own?' },
+    { k: 'evidence', part: 2, rail: 'Alone', name: 'LLMs alone fall short', mini: 'Even with tools and data: 0.6%, then 46.2% at best' },
+    { k: 'fork', part: 2, rail: 'A | B', name: 'Two schools of thought', mini: 'LLM plans and code checks, or code plans and the LLM guides' },
+    { k: 'paper', part: 2, d: PD['LLM-Modulo'], school: 'A' },
+    { k: 'paper', part: 2, d: PD['Formal checks'], school: 'A' },
+    { k: 'verdict', part: 2, rail: '✓ ✗', name: 'Verdict on school A', mini: 'Valid, but not necessarily good',
+      head: 'School A · the LLM plans, code checks', title: 'Valid, but not necessarily good',
+      right: [
+        'LLMs can produce valid travel plans once code checks their output: TravelPlanner success rises from under 1% to about 94% with a solver (Hao et al., their setup).',
+        'Correctness lives outside the LLM, in sound checkers, not in self-critique.',
+        'Impossible requests are caught and explained: which rules clash, and what to relax.',
+      ],
+      wrong: [
+        'The checker only answers pass or fail. It confirms a plan is valid, not that it is good.',
+        'The plan is checked against real data, but nothing asks whether it is the best trip for this traveller, or whether it feels like old Japan.',
+        'The benchmarks score only validity, so quality was never measured.',
+        'The LLM still does the hard combinatorial search, so it can take many rounds.',
+      ],
+      next: 'What if code does the search, and the LLM supplies what code cannot read?' },
+    { k: 'paper', part: 2, d: PD['TRIP-PAL'], school: 'B' },
+    { k: 'paper', part: 2, d: PD['TravelBench'] },
+    { k: 'synth', part: 3, rail: 'Ours', name: 'Our design', mini: 'Code plans, the LLM understands, values and checks' },
+  ];
+  const PAPERS = RSTORY.map(st => st.d ? { year: st.d.year, name: st.d.short } : { year: '', name: st.name });
+  const PART_NAME = { 1: 'Part 1 · Before LLMs', 2: 'Part 2 · With LLMs', 3: 'Our design' };
   const HINTS = { '2.4': 'n-proc' };
 
   // ---------- Setup ----------
@@ -2978,7 +3042,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   railR.innerHTML = PAPERS.map((pp, i) => `<li class="st">
       <button type="button" class="st-btn" data-rev="${i + 1}" aria-label="${pp.year ? pp.year + ' ' : ''}${pp.name}">
         <span class="st-dot">${i + 1}</span>
-        <span class="st-name">${pp.year || pp.name}</span>
+        <span class="st-name">${pp.year || RSTORY[i].rail}</span>
         <span class="st-beat"></span>
       </button>
       ${i < PAPERS.length - 1 ? '<span class="seg"><span class="seg-fill"></span></span>' : ''}
@@ -2989,7 +3053,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     const pts = d.points.map(p => typeof p === 'string' ? `<li>${p}</li>` : `<li class="caveat">${p.text}</li>`).join('');
     return `<article class="fcard">
       <header>
-        <div class="fc-meta"><span class="pp-year">${d.year}</span>${d.venue ? `<span class="pp-venue">${d.venue}</span>` : ''}<span class="fc-count">${i} of ${PAPER_DATA.length}</span></div>
+        <div class="fc-meta"><span class="pp-year">${d.year}</span>${d.venue ? `<span class="pp-venue">${d.venue}</span>` : ''}${d.badge ? `<span class="pp-badge${d.pick ? ' pick' : ''}">${d.badge}</span>` : ''}<span class="fc-count">${PART_NAME[RSTORY[i - 1].part]}${RSTORY[i - 1].school ? ' · School ' + RSTORY[i - 1].school : ''}</span></div>
         <h3 class="fc-name">${d.name}</h3>
         <p class="fc-title">${d.title} · <b>${d.by}</b></p>
       </header>
@@ -3007,26 +3071,82 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       </div>
     </article>`;
   }
+  function verdictCard(st, i) {
+    const ic = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+    return `<article class="fcard vcard">
+      <header>
+        <div class="fc-meta"><span class="pp-year">${st.head}</span><span class="fc-count">${PART_NAME[st.part]}</span></div>
+        <h3 class="fc-name">${st.title}</h3>
+      </header>
+      <div class="v-body">
+        <section class="v-col v-ok"><p class="v-h">${ic('check')}What they got right</p><ul>${st.right.map(t => `<li>${t}</li>`).join('')}</ul></section>
+        <section class="v-col v-bad"><p class="v-h">${ic('x')}Where they fell short</p><ul>${st.wrong.map(t => `<li>${t}</li>`).join('')}</ul></section>
+      </div>
+      <p class="v-next">${ic('arrow-right')}<span>${st.next}</span></p>
+    </article>`;
+  }
+  function evidenceCard() {
+    return `<article class="fcard">
+      <header>
+        <div class="fc-meta"><span class="pp-year">2024 → 2026</span><span class="fc-count">${PART_NAME[2]}</span></div>
+        <h3 class="fc-name">LLMs alone fall short, even with tools and data</h3>
+      </header>
+      <section class="fc-sec fc-take"><p class="label">Key takeaway</p><p>Both benchmarks hand the agent tools and real data, so the failure is planning, not missing information. Two years of better models later, the best agent still fails more than half the time.</p></section>
+      <div class="ev2">
+        <section class="evb">
+          <div class="fc-meta"><span class="pp-year">2024</span><span class="pp-venue">ICML</span></div>
+          <h4>TravelPlanner <span>Xie et al.</span></h4>
+          <div class="stat"><b>0.6%</b><span><strong>GPT-4 plans meeting every constraint</strong>1,225 tasks · ~4M records in a tool sandbox</span></div>
+          <ul class="fc-points"><li>Agents lose track of constraints as the itinerary grows.</li><li>Retrieving the right facts does not make the plan feasible.</li></ul>
+        </section>
+        <section class="evb">
+          <div class="fc-meta"><span class="pp-year">2026</span><span class="pp-venue">arXiv</span></div>
+          <h4>TREK <span>Travel Reasoning and Evaluation Kit</span></h4>
+          <div class="stat"><b>46.2%</b><span><strong>Best of 15 agents (GPT-5.6), fully feasible plans</strong>Median 6.6% · worst 0.0% · solvable tasks only</span></div>
+          <ul class="fc-points"><li>800 tasks, 267 provably impossible; 212,530 records, 375 cities, 13 personas; strict rule-based scoring, no LLM judge.</li><li>Meeting travellers’ unstated needs is the universal bottleneck, unsolved even at the frontier.</li></ul>
+        </section>
+      </div>
+    </article>`;
+  }
+  function forkCard() {
+    return `<article class="fcard">
+      <header>
+        <div class="fc-meta"><span class="pp-year">Two schools of thought</span><span class="fc-count">${PART_NAME[2]}</span></div>
+        <h3 class="fc-name">Who builds the plan?</h3>
+      </header>
+      <div class="fork">
+        <section class="fk-a"><p class="fk-l">School A</p><h4>The LLM plans, code checks</h4>
+          <div class="chain"><span>LLM drafts a plan</span><i>→</i><span>Checker or solver</span><i>→</i><span>Feedback, revise</span></div>
+          <p>The LLM does the search. Code verifies each draft and sends errors back until it passes.</p>
+          <p class="fk-p"><b>LLM-Modulo</b> 2024 · <b>Formal verification</b> 2025</p></section>
+        <section class="fk-b"><p class="fk-l">School B <em>our pick</em></p><h4>Code plans, the LLM guides</h4>
+          <div class="chain"><span>LLM: places, values, rules</span><i>→</i><span>Optimiser</span><i>→</i><span>Valid, best plan</span></div>
+          <p>The LLM turns language into data. An optimiser does the search, with guarantees.</p>
+          <p class="fk-p"><b>TRIP-PAL</b> 2024</p></section>
+      </div>
+      <p class="v-next"><svg class="ic" aria-hidden="true"><use href="#i-scale"/></svg><span>Both keep hard rules in code. They differ on who does the combinatorial search, and so on whether the plan is merely valid or also good.</span></p>
+    </article>`;
+  }
   function synthesisCard() {
     const ic = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
     const jobs = [
       ['Understand', 'Turns a free-text wish into typed updates to the trip state'],
       ['Clarify', 'Asks only the questions that would change the plan'],
-      ['Judge', 'Scores fuzzy wishes like “old Japan”, with a reason'],
-      ['Resolve', 'Reads why code got stuck, then fixes it or asks the traveller'],
+      ['Value', 'Scores how well each place fits this traveller, with a reason: TRIP-PAL, made personal'],
+      ['Review', 'Checks every stage and asks the traveller when it matters'],
       ['Explain', 'Narrates the chosen plan and its trade-offs from solver output'],
     ];
     const core = [
       ['Ground', 'Places, prices and availability come from verified data with IDs'],
       ['Enforce', 'Dates, budget, diet and walking limits are met exactly, never traded off'],
-      ['Optimize', 'Cities, days and routes are chosen by an explicit trip score'],
+      ['Optimize', 'Code searches the combinations and maximises the trip score'],
       ['Validate', 'Every plan is checked end to end before anyone sees it'],
     ];
     const items = a => `<ul class="syn-jobs">${a.map(([b, t]) => `<li>${ic('check')}<span><b>${b}</b>${t}</span></li>`).join('')}</ul>`;
     return `<article class="fcard">
       <header>
-        <div class="fc-meta"><span class="pp-year">Synthesis</span></div>
-        <h3 class="fc-name">What the seven papers add up to</h3>
+        <div class="fc-meta"><span class="pp-year">Our design</span><span class="fc-count">School B, shaped by TravelBench</span></div>
+        <h3 class="fc-name">Code plans, the LLM understands, values and checks</h3>
       </header>
       <div class="syn-body">
         <section class="syn-llm">
@@ -3046,15 +3166,17 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
   function renderResearch(grow) {
     const minis = $('minis'), focus = $('focus'), f = focusIdx();
-    minis.innerHTML = PAPERS.slice(0, rev).map((pp, k) => {
-      const i = k + 1, d = PAPER_DATA[k];
-      return `<li${grow && i === rev ? ' class="enter"' : ''}><button type="button" class="mini${d ? '' : ' sum'}${i === f ? ' is-focus' : ''}" data-peek="${i}" aria-label="Show ${pp.name}">
-        <span class="mini-year">${d ? d.year : ''}</span>
-        <span class="mini-name">${d ? d.name : 'Synthesis'}</span>
-        <span class="mini-take">${d ? d.mini : 'What the seven papers add up to'}</span>
+    minis.innerHTML = RSTORY.slice(0, rev).map((st, k) => {
+      const i = k + 1, d = st.d, head = st.part < 3 && (!k || RSTORY[k - 1].part !== st.part) ? `<li class="mini-part">${PART_NAME[st.part]}</li>` : '';
+      return `${head}<li${grow && i === rev ? ' class="enter"' : ''}><button type="button" class="mini${d ? '' : ' sum'}${i === f ? ' is-focus' : ''}" data-peek="${i}" aria-label="Show ${d ? d.name : st.name}">
+        <span class="mini-year">${d ? d.year : st.rail}</span>
+        <span class="mini-name">${d ? d.name : st.name}</span>
+        <span class="mini-take">${d ? d.mini : st.mini}</span>
       </button></li>`;
     }).join('');
-    focus.innerHTML = f ? (f <= PAPER_DATA.length ? paperCard(PAPER_DATA[f - 1], f) : synthesisCard()) : '';
+    const st = RSTORY[f - 1];
+    focus.innerHTML = !st ? '' : st.k === 'paper' ? paperCard(st.d, f) : st.k === 'verdict' ? verdictCard(st, f)
+      : st.k === 'evidence' ? evidenceCard() : st.k === 'fork' ? forkCard() : synthesisCard();
     const card = focus.firstElementChild;
     if (card) { card.classList.remove('enter'); void card.offsetWidth; card.classList.add('enter'); }
   }

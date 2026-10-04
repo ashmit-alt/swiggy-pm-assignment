@@ -112,24 +112,19 @@ Kept deliberately simple, on request. North Star: **Bookable trip rate** (sessio
 - `STATES`: classes that hold until a beat.
 - Nodes appear and disappear by beat through `data-in`/`data-out`.
 
-### Tab 2: Research
+### Tab 2: Research (a two-part story, 11 steps)
 
-- Each paper card shows the Key takeaway as a full-width band right under the title (moved to the top on request).
-- The tab is blank at first. Each → brings the next paper in as a large focus card, and earlier papers shrink into a timeline on the left (click one to reopen it).
-- `PAPER_DATA` has seven papers:
-  - 2014 Tourist Trip Design survey (Gavalas et al.)
-  - 2022 Tourist Trip Design review (Ruiz-Meza & Montoya-Torres)
-  - 2024 TravelPlanner (Xie et al.): GPT-4 met every constraint in 0.6% of plans (arXiv 2402.01622)
-  - 2024 LLM-Modulo (Kambhampati et al.)
-  - 2025 Formal verification (Hao et al.): 93.9% on TravelPlanner, in their setup
-  - 2025 AoT+ structured search (Sel, Jia & Jin)
-  - 2026 TravelBench (Cheng et al.): 1,100 tasks
-- The last step is the synthesis card, built by `synthesisCard()`. Two boxes styled the same (no highlighted box, on request), each a list of verb + one line:
-  - **The LLM: semantic interface and search partner.** Pills: not the source of truth, not the constraint solver. Understand, Clarify, Judge, Resolve, Explain.
-  - **What our design depends on: deterministic tools and optimization algorithms.** Pills: same input same answer, every result traceable. Ground, Enforce, Optimize, Validate.
-  - LLM points follow the revised architecture: Understand, Clarify, Judge, Resolve, Explain.
-  - The user asked for these sharper points in place of their original wording; keep them short.
-- A bottom takeaway appears at the end: "The LLM handles meaning. Data, solvers and validators handle guarantees."
+Rebuilt on request as a story. Steps are in `RSTORY` (kinds: paper, verdict, evidence, fork, synth); paper content stays in `PAPER_DATA`. The left timeline groups steps under "Part 1 · Before LLMs" and "Part 2 · With LLMs".
+1. 2014 Tourist Trip Design survey · 2. 2022 Tourist Trip Design review
+3. Verdict "Solid maths, blind to taste": ✓ combinatorial optimisation solves it (team orienteering, hierarchical optimisation, guaranteed hard rules) · ✗ subjective preferences ("feels like old Japan"), fixed hand-made scores, no conversation.
+4. Evidence "LLMs alone fall short, even with tools and data": TravelPlanner (2024, ICML) GPT-4 0.6%; TREK (2026, arXiv 2607.26977) best of 15 agents GPT-5.6 46.2% fully feasible on solvable tasks, median 6.6%, worst 0.0%; 800 tasks (267 provably infeasible), 212,530 records, 375 cities, 13 personas, rule-based evaluator; unstated needs are the universal bottleneck.
+5. Fork "Who builds the plan?": School A (LLM plans, code checks: LLM-Modulo, formal verification) vs School B (code plans, the LLM guides: TRIP-PAL, "our pick").
+6. LLM-Modulo (critics are sound code; follow-up Gundawar et al. 2024: GPT-4-Turbo 4.4% alone, about 6× better with code critics) · 7. Formal verification (93.9%).
+8. Verdict on school A "Valid, but not necessarily good": ✓ valid plans once code checks; ✗ the checker only says pass/fail, never whether the trip is good; benchmarks score only validity.
+9. TRIP-PAL (2024, de la Rosa et al., J.P. Morgan AI Research), badge "School B · the architecture we pick": GPT-4 gives POIs, utility and durations → PDDL → planner; 20 cities; LLM alone invalid 86% of the time, TRIP-PAL 100% valid and higher utility. Gap we close: its utility came from popularity; ours is personal.
+10. TravelBench (2026, ACL), badge "What shaped our design".
+11. Our design: "Code plans, the LLM understands, values and checks" (LLM: Understand, Clarify, Value, Review, Explain; code: Ground, Enforce, Optimize, Validate).
+AoT+ removed. Takeaway: "Code plans for guarantees, the LLM brings meaning. Valid is not enough: the trip has to be good."
 
 ### Tab 3: Revised architecture (where the recent work is)
 
