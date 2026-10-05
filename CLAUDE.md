@@ -68,7 +68,8 @@ Built from the user's goal slide. Each → reveals one section; earlier ones sta
 - **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. The three cards span the full width. The old "A valid output must be" box was replaced by step 3.
 - **Step 3, ten concrete goals (`.g-gaps`):** one goal for each Architecture gap, grouped into 5 columns, each with a red G# chip and a Japan check: Real (G1, G3), Feasible (G6, G8), Bookable (G4, G5), Personal (G7, G2), Reliable (G9, G10). Added because the user asked for more concrete goals.
 - The "Why plan the itinerary before flights and hotels?" section was removed on request.
-- Takeaway: "The output is not a suggestion. It is a trip that can be booked as is."
+- Takeaway: "If the traveller can’t book it as it stands, we haven’t done the job."
+- Copy was rewritten in a plain, human voice on request (5 Oct): title "A personal trip plan, ready to book.", step 2 "What does “bookable” mean?" with layers The route / The days / The bookings, step 3 "What a good plan gets right" with columns Real, Doable, Bookable, Personal, Reliable. Keep this tone; avoid jargon like "user intent", "inventory", "transact".
 
 ### Tab: AI-native (static, no steps)
 
