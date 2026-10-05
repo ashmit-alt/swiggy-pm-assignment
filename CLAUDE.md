@@ -61,11 +61,12 @@ want "some changes", without saying which yet. **Ask them what to change next. D
 - Research: `reveal`, `renderResearch`, `showPaper`.
 - Revised: `rrender`, `renderFocus`, `rlayout`, `rstep`, `rclick`, `rsync`.
 
-### Tab 0: Goals (two steps)
+### Tab 0: Goals (three steps)
 
 Built from the user's goal slide. Each → reveals one section; earlier ones stay.
 - **Step 1, the goal:** "Turn user intent into a personalised and bookable trip." plus a short supporting paragraph (`.g-sub`). User inputs → AI trip planner → a bookable itinerary.
-- **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. Beside them: a valid output must be Real, Feasible, Consistent, Measurable.
+- **Step 2, what a bookable itinerary is:** it resolves where, when, where to stay, what to do and how to move. Three layers: 1 Trip structure, 2 Trip execution, 3 Bookable inventory, each with a Japan example. The three cards span the full width. The old "A valid output must be" box was replaced by step 3.
+- **Step 3, ten concrete goals (`.g-gaps`):** one goal for each Architecture gap, grouped into 5 columns, each with a red G# chip and a Japan check: Real (G1, G3), Feasible (G6, G8), Bookable (G4, G5), Personal (G7, G2), Reliable (G9, G10). Added because the user asked for more concrete goals.
 - The "Why plan the itinerary before flights and hotels?" section was removed on request.
 - Takeaway: "The output is not a suggestion. It is a trip that can be booked as is."
 

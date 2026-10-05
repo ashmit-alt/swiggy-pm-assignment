@@ -1206,7 +1206,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .takeaway.is-hidden { visibility: hidden; }
 
 /* ---------- Goals ---------- */
-.goals { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 48px; padding-bottom: 24px; }
+.goals { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 30px; padding-bottom: 16px; }
 .g-sec { transition: opacity .4s, visibility .4s; }
 .g-sec.g-hide { opacity: 0; visibility: hidden; }
 .g-goal { display: grid; grid-template-columns: 390px minmax(0, 1fr); gap: 32px; align-items: center; }
@@ -1241,7 +1241,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .g-sh h3 { flex: none; font: 720 20px/1.2 var(--f-display); font-stretch: 110%; }
 .g-sh p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
 .g-sh p b { font-weight: 650; color: var(--ink); }
-.g-what-body { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 18px; }
+.g-what-body { display: block; }
 .g-layers { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
 .g-layer { position: relative; display: flex; flex-direction: column; gap: 8px; }
 .g-layer + .g-layer::before {
@@ -1255,13 +1255,15 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   font: 600 12px/1 var(--f-mono); background: var(--accent); color: var(--accent-ink);
 }
 .g-k { font: 500 11.5px/1.4 var(--f-mono); color: var(--accent); }
-.g-ex { margin-top: auto; padding: 9px 11px; border-radius: 9px; background: var(--sunk); font-size: 12.5px; line-height: 1.5; color: var(--ink-2); }
-.g-valid .label { margin-bottom: 10px; }
-.g-vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.g-v { display: flex; align-items: flex-start; gap: 9px; padding: 9px 11px; border-radius: 10px; background: var(--green-soft); }
-.g-v .ic { width: 17px; height: 17px; margin-top: 1px; color: var(--green); }
-.g-v b { display: block; font-size: 13.5px; font-weight: 700; }
-.g-v span { font-size: 12px; line-height: 1.35; color: var(--ink-2); }
+.g-ex { padding: 9px 11px; border-radius: 9px; background: var(--sunk); font-size: 12.5px; line-height: 1.5; color: var(--ink-2); }
+.g-gcols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.g-gcol { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
+.g-gh { display: flex; align-items: center; gap: 7px; font: 680 15px/1.2 var(--f-display); font-stretch: 106%; color: var(--accent); }
+.g-gh .ic { width: 16px; height: 16px; }
+.g-gt { flex: 1; padding: 9px 10px; border-radius: 9px; background: var(--sunk); }
+.g-gt b { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; }
+.g-gt > span { display: block; margin-top: 4px; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
+.g-gc { flex: none; padding: 2px 5px; border-radius: 5px; font: 600 10.5px/1 var(--f-mono); background: var(--red-soft); color: var(--red); }
 
 
 /* ---------- AI-native ---------- */
@@ -1456,7 +1458,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .ts-grid { grid-template-columns: minmax(0, 1fr); }
   .ts-json { max-height: 70vh; }
   .xbtn { order: 2; margin-left: 0; }
-  .g-goal, .g-what-body, .g-flow, .g-layers { grid-template-columns: minmax(0, 1fr); }
+  .g-goal, .g-what-body, .g-flow, .g-layers, .g-gcols { grid-template-columns: minmax(0, 1fr); }
   .g-title { font-size: 26px; }
   .g-arrow { transform: rotate(90deg); }
   .g-layer + .g-layer::before { content: "\2193"; left: 50%; top: -22px; transform: translateX(-50%); }
@@ -1679,14 +1681,39 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
                   <p class="g-ex">BLR → Tokyo via Bangkok · 3 hotels<br>2 trains · KIX transfer, each with a live price</p>
                 </li>
               </ol>
-              <div class="card g-valid">
-                <p class="label">A valid output must be</p>
-                <div class="g-vgrid">
-                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-badge-check"/></svg><div><b>Real</b><span>No made-up places, prices or availability</span></div></div>
-                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg><div><b>Feasible</b><span>Constraints, timings and routes work</span></div></div>
-                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><div><b>Consistent</b><span>Every part of the trip fits together</span></div></div>
-                  <div class="g-v"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg><div><b>Measurable</b><span>Quality can be scored objectively</span></div></div>
-                </div>
+            </div>
+          </section>
+
+          <section class="g-sec g-gaps" data-g="2" aria-label="Ten concrete goals">
+            <div class="g-sh">
+              <h3>Ten concrete goals</h3>
+              <p>One for each gap in a basic AI planner (<b>G1–G10</b> on the Architecture tab), with the check that proves it on the Japan trip.</p>
+            </div>
+            <div class="g-gcols">
+              <div class="card g-gcol">
+                <p class="g-gh"><svg class="ic" aria-hidden="true"><use href="#i-badge-check"/></svg>Real</p>
+                <div class="g-gt"><b><span class="g-gc">G1</span>Only real places</b><span>Every place has an ID and is open on the day it is planned</span></div>
+                <div class="g-gt"><b><span class="g-gc">G3</span>Trusted facts</b><span>Every fact carries its source and when it was checked</span></div>
+              </div>
+              <div class="card g-gcol">
+                <p class="g-gh"><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg>Feasible</p>
+                <div class="g-gt"><b><span class="g-gc">G6</span>Routes that make sense</b><span>No zigzags; train and walking time sit inside each day</span></div>
+                <div class="g-gt"><b><span class="g-gc">G8</span>Every constraint kept</b><span>Vegetarian, the bad knee and the budget hold on every day</span></div>
+              </div>
+              <div class="card g-gcol">
+                <p class="g-gh"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg>Bookable</p>
+                <div class="g-gt"><b><span class="g-gc">G4</span>Ready to book</b><span>Each flight, hotel and train has a live option behind it</span></div>
+                <div class="g-gt"><b><span class="g-gc">G5</span>Real cost</b><span>Live prices add up, and the total stays within ₹3.2 L</span></div>
+              </div>
+              <div class="card g-gcol">
+                <p class="g-gh"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg>Personal</p>
+                <div class="g-gt"><b><span class="g-gc">G7</span>Made for them</b><span>Quiet old Japan, not the same top 10 everyone gets</span></div>
+                <div class="g-gt"><b><span class="g-gc">G2</span>Right for the dates</b><span>Golden Week crowds, closures and hours are planned around</span></div>
+              </div>
+              <div class="card g-gcol">
+                <p class="g-gh"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg>Reliable</p>
+                <div class="g-gt"><b><span class="g-gc">G9</span>Repeatable and structured</b><span>Same request, same plan; every part is data, not prose</span></div>
+                <div class="g-gt"><b><span class="g-gc">G10</span>Fast and affordable</b><span>A plan in seconds, without re-searching the web each time</span></div>
               </div>
             </div>
           </section>
@@ -2803,7 +2830,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   }
 
   // ---------- Goals tab: three sections revealed in turn ----------
-  const GSTEPS = ['The goal', 'Bookable itinerary'];
+  const GSTEPS = ['The goal', 'Bookable itinerary', 'Ten goals'];
   let gcur = -1;
   function ggo(i) {
     i = Math.max(0, Math.min(GSTEPS.length - 1, i));
