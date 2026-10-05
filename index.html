@@ -1195,14 +1195,13 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .evb { display: flex; flex-direction: column; gap: 14px; padding: 20px 22px; border-radius: 16px; background: var(--sunk); }
 .evb h4 { margin: 0; font: 740 24px/1.15 var(--f-display); font-stretch: 110%; }
 .evb h4 span { margin-left: 6px; font: 500 14px var(--f-body); color: var(--ink-2); }
-.fork { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.fork { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
 .fork section { display: flex; flex-direction: column; gap: 18px; padding: 22px 24px; border-radius: 16px; background: var(--sunk); }
-.fork .fk-b { background: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
 .fk-l { font: 600 11px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); }
 .fk-l em { margin-left: 8px; padding: 3px 7px; border-radius: 5px; font-style: normal; color: var(--accent-ink); background: var(--accent); }
 .fork h4 { margin: 0; font: 740 24px/1.2 var(--f-display); font-stretch: 110%; }
 .fork p:not(.fk-l) { font-size: 18px; line-height: 1.5; }
-.fork .fk-p { margin-top: auto; font-size: 14px; color: var(--ink-2); }
+.fork .fk-p { margin-top: 6px; font-size: 14px; color: var(--ink-2); }
 .fork .fk-p b { color: var(--ink); font-weight: 650; }
 .takeaway.is-hidden { visibility: hidden; }
 
@@ -1312,39 +1311,31 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
 .ai-steps p { margin-top: 2px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
 
 /* ---------- Success ---------- */
-.sc-star {
-  flex: none; display: grid; grid-template-columns: auto minmax(0, 1fr) 360px; align-items: center; gap: 20px;
-  padding: 20px 24px; border-radius: 16px; background: var(--accent); color: var(--accent-ink);
-}
-.sc-star-ic { width: 56px; height: 56px; border-radius: 15px; display: grid; place-items: center; background: var(--accent-ink); color: var(--accent); }
-.sc-star-ic .ic { width: 28px; height: 28px; }
-.sc-star .label { color: var(--accent-ink); opacity: .8; margin-bottom: 4px; }
-.sc-star h2 { font: 760 30px/1.1 var(--f-display); font-stretch: 112%; }
-.sc-star div > p:last-child { margin-top: 6px; font-size: 15px; line-height: 1.45; opacity: .92; }
-.sc-why { font-size: 13.5px; line-height: 1.45; opacity: .9; padding-left: 18px; border-left: 1px solid color-mix(in srgb, var(--accent-ink) 35%, transparent); }
-.sc-cols { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.sc-col { --c: var(--accent); --cs: var(--accent-soft); display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--c); box-shadow: var(--shadow); }
-.sc-q { --c: var(--green); --cs: var(--green-soft); }
-.sc-v { --c: var(--t-stay); --cs: var(--t-stay-soft); }
-.sc-e { --c: var(--t-transit); --cs: var(--t-transit-soft); }
-.sc-col header { display: flex; align-items: center; gap: 11px; }
-.sc-ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--cs); color: var(--c); }
-.sc-ic .ic { width: 18px; height: 18px; }
-.sc-col h3 { margin: 0; font: 700 17px/1.2 var(--f-display); font-stretch: 108%; }
-.sc-col header p { font-size: 12.5px; color: var(--ink-2); }
-.sc-col ul { flex: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-auto-rows: 1fr; gap: 10px; }
-.sm { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 14px 16px; border-radius: 12px; background: var(--sunk); }
-.sm-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.sm-h b { font: 700 17px/1.2 var(--f-display); font-stretch: 104%; }
-.sm-t { flex: none; font: 600 11.5px/1 var(--f-mono); color: var(--c); padding: 3px 6px; border-radius: 5px; background: var(--cs); }
-.sm p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
-.sc-guard { flex: none; display: flex; align-items: center; gap: 18px; padding: 12px 16px; border-radius: 12px; background: var(--red-soft); border: 1px solid var(--red-line); }
+#view-success { justify-content: center; gap: 22px; }
+.sc-star { flex: none; display: flex; align-items: center; gap: 20px; padding: 22px 26px; border-radius: 16px; background: var(--accent); color: var(--accent-ink); }
+.sc-star-ic { flex: none; width: 54px; height: 54px; border-radius: 15px; display: grid; place-items: center; background: var(--accent-ink); color: var(--accent); }
+.sc-star-ic .ic { width: 27px; height: 27px; }
+.sc-star .label { color: var(--accent-ink); opacity: .8; margin-bottom: 5px; }
+.sc-star h2 { font: 760 32px/1.1 var(--f-display); font-stretch: 112%; }
+.sc-star div > p:last-child { margin-top: 6px; font-size: 16px; opacity: .92; }
+.sc-cols { flex: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.sc-col { --c: var(--accent); display: flex; flex-direction: column; gap: 6px; padding: 20px 22px 8px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.sc-q { --c: var(--green); } .sc-v { --c: var(--t-stay); } .sc-e { --c: var(--t-transit); }
+.sc-col header { display: flex; align-items: baseline; gap: 10px; padding-bottom: 6px; }
+.sc-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); transform: translateY(-1px); }
+.sc-col h3 { margin: 0; font: 720 19px/1.2 var(--f-display); font-stretch: 108%; }
+.sc-col header p { margin-left: auto; font-size: 13px; color: var(--ink-3); }
+.sc-col ul { list-style: none; margin: 0; padding: 0; }
+.sc-col li { padding: 14px 0; border-top: 1px solid var(--line); }
+.sm-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.sm-h b { font-size: 16px; font-weight: 650; }
+.sm-t { flex: none; font: 600 14px/1 var(--f-mono); color: var(--c); }
+.sc-col li p { margin-top: 4px; font-size: 13.5px; line-height: 1.4; color: var(--ink-2); }
+.sc-guard { flex: none; display: flex; align-items: center; gap: 24px; padding: 14px 4px 0; border-top: 1px solid var(--line); }
 .sc-guard .label { flex: none; margin: 0; color: var(--red); }
-.sc-guard ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; }
-.sc-guard li { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
-.sc-guard .ic { width: 14px; height: 14px; stroke-width: 2.4; color: var(--red); }
-.sc-how { flex: none; font-size: 13px; color: var(--ink-2); }
-.sc-how b { color: var(--ink); }
+.sc-guard ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
+.sc-guard li { position: relative; padding-left: 14px; font-size: 14px; color: var(--ink-2); }
+.sc-guard li::before { content: ""; position: absolute; left: 0; top: .5em; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
 
 /* ---------- Trip State ---------- */
 .xbtn {
@@ -1457,10 +1448,11 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
   .ai-legend { position: static; }
   .ai-crits, .ai-steps { grid-template-columns: minmax(0, 1fr); }
   .ts-head { flex-direction: column; gap: 4px; }
-  .sc-star, .sc-cols { grid-template-columns: minmax(0, 1fr); }
-  .sc-why { padding-left: 0; border-left: 0; }
-  .sc-guard { flex-direction: column; align-items: flex-start; }
-  .sc-col ul { grid-auto-rows: auto; }
+  .sc-cols { grid-template-columns: minmax(0, 1fr); }
+  .sc-star { align-items: flex-start; }
+  .sc-guard { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .sc-col header p { margin-left: 0; }
+  .sc-col header { flex-wrap: wrap; }
   .ts-grid { grid-template-columns: minmax(0, 1fr); }
   .ts-json { max-height: 70vh; }
   .xbtn { order: 2; margin-left: 0; }
@@ -2080,10 +2072,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
         </div>
       </section>
 
-      <footer class="takeaway">
-        <span class="label">Takeaway</span>
-        <p id="takeaway">AI needs factual data to plan and act.</p>
-      </footer>
       </div>
 
       <!-- ===== Research: papers appear one at a time ===== -->
@@ -2092,10 +2080,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <ol class="minis" id="minis" aria-label="Papers so far"></ol>
           <div class="focus" id="focus" aria-live="polite"></div>
         </div>
-        <footer class="takeaway is-hidden" id="takeaway-r">
-          <span class="label">Takeaway</span>
-          <p>Code plans for guarantees, the LLM brings meaning. Valid is not enough: the trip has to be good.</p>
-        </footer>
 
       </div>
 
@@ -2219,33 +2203,31 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
           <div>
             <p class="label">North Star</p>
             <h2>Bookable trip rate</h2>
-            <p>The share of planning sessions that end with the traveller booking at least one item from the itinerary.</p>
+            <p>Share of planning sessions that end with at least one item booked from the itinerary.</p>
           </div>
-          <p class="sc-why">It only goes up when the plan is real, fits the traveller and can actually be booked: the goal from the Goals tab.</p>
         </section>
         <div class="sc-cols">
-            <section class="sc-col sc-q">
-              <header><span class="sc-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span><div><h3>Plan quality</h3><p>Is it correct?</p></div></header>
-              <ul><li class="sm"><div class="sm-h"><b>Hard-rule pass rate</b><span class="sm-t">↑ Target 100%</span></div><p>Plans shown with zero broken hard rules: dates, diet, walking, budget.</p></li><li class="sm"><div class="sm-h"><b>Fact accuracy</b><span class="sm-t">↑ Target ≥ 99%</span></div><p>Places, prices and times that still match live data at booking.</p></li><li class="sm"><div class="sm-h"><b>Price drift</b><span class="sm-t">↓ Target < 2%</span></div><p>Gap between the price we quoted and the price at booking.</p></li></ul>
-            </section>
-            <section class="sc-col sc-v">
-              <header><span class="sc-ic"><svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg></span><div><h3>Traveller value</h3><p>Do they like it?</p></div></header>
-              <ul><li class="sm"><div class="sm-h"><b>Plan acceptance</b><span class="sm-t">↑ Higher is better</span></div><p>Sessions where the first plan shown is kept, with few or no edits.</p></li><li class="sm"><div class="sm-h"><b>Edits per plan</b><span class="sm-t">↓ Fewer is better</span></div><p>Changes the traveller asks for before booking.</p></li><li class="sm"><div class="sm-h"><b>Rating / NPS</b><span class="sm-t">↑ Higher is better</span></div><p>How travellers rate the plan after the trip.</p></li></ul>
-            </section>
-            <section class="sc-col sc-e">
-              <header><span class="sc-ic"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg></span><div><h3>Efficiency</h3><p>Can we run it?</p></div></header>
-              <ul><li class="sm"><div class="sm-h"><b>Time to first plan</b><span class="sm-t">↓ Target < 10 s</span></div><p>Seconds from the request to a full itinerary.</p></li><li class="sm"><div class="sm-h"><b>Cost per plan</b><span class="sm-t">↓ Lower is better</span></div><p>Model and API cost for each itinerary.</p></li><li class="sm"><div class="sm-h"><b>Questions asked</b><span class="sm-t">↓ Target 1–2</span></div><p>Clarifying questions per session: low, but not zero.</p></li></ul>
-            </section>
+          <section class="sc-col sc-q">
+            <header><i class="sc-dot"></i><h3>Plan quality</h3><p>Is it correct?</p></header>
+            <ul><li><div class="sm-h"><b>Hard-rule pass rate</b><span class="sm-t">100%</span></div><p>Plans shown with no broken hard rule</p></li><li><div class="sm-h"><b>Fact accuracy</b><span class="sm-t">≥ 99%</span></div><p>Places, prices and times match live data at booking</p></li><li><div class="sm-h"><b>Price drift</b><span class="sm-t">< 2%</span></div><p>Quoted price vs price at booking</p></li></ul>
+          </section>
+          <section class="sc-col sc-v">
+            <header><i class="sc-dot"></i><h3>Traveller value</h3><p>Do they like it?</p></header>
+            <ul><li><div class="sm-h"><b>Plan acceptance</b><span class="sm-t">↑</span></div><p>First plan kept with few or no edits</p></li><li><div class="sm-h"><b>Edits per plan</b><span class="sm-t">↓</span></div><p>Changes asked for before booking</p></li><li><div class="sm-h"><b>Rating / NPS</b><span class="sm-t">↑</span></div><p>How travellers rate the trip afterwards</p></li></ul>
+          </section>
+          <section class="sc-col sc-e">
+            <header><i class="sc-dot"></i><h3>Efficiency</h3><p>Can we run it?</p></header>
+            <ul><li><div class="sm-h"><b>Time to first plan</b><span class="sm-t">< 10 s</span></div><p>From request to full itinerary</p></li><li><div class="sm-h"><b>Cost per plan</b><span class="sm-t">↓</span></div><p>Model and API cost per itinerary</p></li><li><div class="sm-h"><b>Questions asked</b><span class="sm-t">1–2</span></div><p>Clarifying questions per session</p></li></ul>
+          </section>
         </div>
         <section class="sc-guard">
-          <p class="label">Guardrails · must never get worse</p>
+          <p class="label">Guardrails</p>
           <ul>
-            <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>No booking fails because of availability we got wrong</li>
-            <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Hard constraints like diet and mobility are never broken</li>
-            <li><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>Re-plans change only what they must</li>
+            <li>No booking fails on availability we got wrong</li>
+            <li>Hard constraints are never broken</li>
+            <li>Re-plans change only what they must</li>
           </ul>
         </section>
-        <p class="sc-how"><b>How we measure it:</b> about 20 hand-built test trips re-run offline on every change, plus live tracking in production with A/B tests for big changes.</p>
       </div>
 
       <!-- ===== Trip State: the trip state and the final itinerary, as data ===== -->
@@ -2464,7 +2446,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       design: 'This is our architecture. C3 and the Judgement LLM turn preferences into per-place scores, C6 maximises the trip score within the hard rules, and C8 validates. We add personal scores and the checkpoints.',
       vis: 'pal', badge: 'School B · the architecture we pick', pick: true },
   ];
-  // Research tab as a story: before LLMs, then with LLMs (LLMs alone fail, two schools, our pick).
+  // Research tab as a story: before LLMs, then with LLMs (LLMs alone fail, two ways to use LLMs, TRIP-PAL, TravelBench).
   const PD = Object.fromEntries(PAPER_DATA.map(d => [d.short, d]));
   const RSTORY = [
     { k: 'paper', part: 1, d: PD['TTDP survey'] },
@@ -2483,7 +2465,7 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       ],
       next: 'LLMs understand exactly these fuzzy wishes. Can they plan on their own?' },
     { k: 'evidence', part: 2, rail: 'Alone', name: 'LLMs alone fall short', mini: 'Even with tools and data: 0.6%, then 46.2% at best' },
-    { k: 'fork', part: 2, rail: 'A | B', name: 'Two schools of thought', mini: 'LLM plans and code checks, or code plans and the LLM guides' },
+    { k: 'fork', part: 2, rail: 'A | B', name: 'Two ways to use LLMs', mini: 'LLM plans and code checks, or code plans and the LLM guides' },
     { k: 'paper', part: 2, d: PD['LLM-Modulo'], school: 'A' },
     { k: 'paper', part: 2, d: PD['Formal checks'], school: 'A' },
     { k: 'verdict', part: 2, rail: '✓ ✗', name: 'Verdict on school A', mini: 'Valid, but not necessarily good',
@@ -2809,7 +2791,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     place();
 
     syncNav();
-    $('takeaway').textContent = f.takeaway || '';
 
     paintGaps(prev >= 0);
     pinned = [];
@@ -3112,19 +3093,19 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
     return `<article class="fcard">
       <header>
         <div class="fc-meta"><span class="pp-year">Two schools of thought</span><span class="fc-count">${PART_NAME[2]}</span></div>
-        <h3 class="fc-name">Who builds the plan?</h3>
+        <h3 class="fc-name">Two ways LLMs can be used for travel planning</h3>
       </header>
       <div class="fork">
         <section class="fk-a"><p class="fk-l">School A</p><h4>The LLM plans, code checks</h4>
           <div class="chain"><span>LLM drafts a plan</span><i>→</i><span>Checker or solver</span><i>→</i><span>Feedback, revise</span></div>
           <p>The LLM does the search. Code verifies each draft and sends errors back until it passes.</p>
           <p class="fk-p"><b>LLM-Modulo</b> 2024 · <b>Formal verification</b> 2025</p></section>
-        <section class="fk-b"><p class="fk-l">School B <em>our pick</em></p><h4>Code plans, the LLM guides</h4>
+        <section class="fk-b"><p class="fk-l">School B</p><h4>Code plans, the LLM guides</h4>
           <div class="chain"><span>LLM: places, values, rules</span><i>→</i><span>Optimiser</span><i>→</i><span>Valid, best plan</span></div>
           <p>The LLM turns language into data. An optimiser does the search, with guarantees.</p>
           <p class="fk-p"><b>TRIP-PAL</b> 2024</p></section>
       </div>
-      <p class="v-next"><svg class="ic" aria-hidden="true"><use href="#i-scale"/></svg><span>Both keep hard rules in code. They differ on who does the combinatorial search, and so on whether the plan is merely valid or also good.</span></p>
+      <p class="v-next"><svg class="ic" aria-hidden="true"><use href="#i-scale"/></svg><span>Both keep hard rules in code. They differ on who does the combinatorial search: the LLM, or code.</span></p>
     </article>`;
   }
   function synthesisCard() {
@@ -3193,9 +3174,6 @@ button.rk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
       const fill = li.querySelector('.seg-fill');
       if (fill) fill.style.width = (i + 1 < n ? 100 : 0) + '%';
     });
-    const tk = $('takeaway-r'), show = n === PAPERS.length;
-    if (show && tk.classList.contains('is-hidden')) { tk.classList.remove('enter'); void tk.offsetWidth; tk.classList.add('enter'); }
-    tk.classList.toggle('is-hidden', !show);
     syncNav();
   }
   function showPaper(i) {                                 // bring an earlier paper back into focus

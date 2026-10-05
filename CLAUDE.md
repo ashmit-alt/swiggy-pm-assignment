@@ -78,7 +78,7 @@ Answer to "what if the interviewer thinks AI can do most of the planning?". The 
 
 ### Tab: Success (static, last)
 
-Kept deliberately simple, on request. North Star: **Bookable trip rate** (sessions ending with at least one item booked from the itinerary). Three columns of three metrics: Plan quality (hard-rule pass rate 100%, fact accuracy ≥ 99%, price drift < 2%), Traveller value (plan acceptance, edits per plan, rating/NPS), Efficiency (time to first plan < 10 s, cost per plan, questions asked 1–2). Guardrails strip (no availability-caused booking failures, hard constraints never broken, re-plans change only what they must) and one line on measurement (~20 test trips offline, live tracking and A/B tests).
+Kept deliberately simple and decluttered, on request: North Star band, three white cards listing metrics as divided rows (name, one-line definition, target in the column colour), a one-line guardrails row. No side note, no measurement line. North Star: **Bookable trip rate** (sessions ending with at least one item booked from the itinerary). Three columns of three metrics: Plan quality (hard-rule pass rate 100%, fact accuracy ≥ 99%, price drift < 2%), Traveller value (plan acceptance, edits per plan, rating/NPS), Efficiency (time to first plan < 10 s, cost per plan, questions asked 1–2). Guardrails strip (no availability-caused booking failures, hard constraints never broken, re-plans change only what they must) and one line on measurement (~20 test trips offline, live tracking and A/B tests).
 
 ### Tab 4: Trip State
 
@@ -118,13 +118,13 @@ Rebuilt on request as a story. Steps are in `RSTORY` (kinds: paper, verdict, evi
 1. 2014 Tourist Trip Design survey · 2. 2022 Tourist Trip Design review
 3. Verdict "Solid maths, blind to taste": ✓ combinatorial optimisation solves it (team orienteering, hierarchical optimisation, guaranteed hard rules) · ✗ subjective preferences ("feels like old Japan"), fixed hand-made scores, no conversation.
 4. Evidence "LLMs alone fall short, even with tools and data": TravelPlanner (2024, ICML) GPT-4 0.6%; TREK (2026, arXiv 2607.26977) best of 15 agents GPT-5.6 46.2% fully feasible on solvable tasks, median 6.6%, worst 0.0%; 800 tasks (267 provably infeasible), 212,530 records, 375 cities, 13 personas, rule-based evaluator; unstated needs are the universal bottleneck.
-5. Fork "Who builds the plan?": School A (LLM plans, code checks: LLM-Modulo, formal verification) vs School B (code plans, the LLM guides: TRIP-PAL, "our pick").
+5. Fork "Two ways LLMs can be used for travel planning": School A (LLM plans, code checks: LLM-Modulo, formal verification) and School B (code plans, the LLM guides: TRIP-PAL). Shown neutrally, with no preference for either (on request).
 6. LLM-Modulo (critics are sound code; follow-up Gundawar et al. 2024: GPT-4-Turbo 4.4% alone, about 6× better with code critics) · 7. Formal verification (93.9%).
 8. Verdict on school A "Valid, but not necessarily good": ✓ valid plans once code checks; ✗ the checker only says pass/fail, never whether the trip is good; benchmarks score only validity.
 9. TRIP-PAL (2024, de la Rosa et al., J.P. Morgan AI Research), badge "School B · the architecture we pick": GPT-4 gives POIs, utility and durations → PDDL → planner; 20 cities; LLM alone invalid 86% of the time, TRIP-PAL 100% valid and higher utility. Gap we close: its utility came from popularity; ours is personal.
 10. TravelBench (2026, ACL), badge "What shaped our design".
 11. Our design: "Code plans, the LLM understands, values and checks" (LLM: Understand, Clarify, Value, Review, Explain; code: Ground, Enforce, Optimize, Validate).
-AoT+ removed. Takeaway: "Code plans for guarantees, the LLM brings meaning. Valid is not enough: the trip has to be good."
+AoT+ removed. No bottom takeaway bar on the Research or Architecture tabs (removed on request; the Architecture flows still carry a `takeaway` field in `FLOWS`, now unused).
 
 ### Tab 3: Revised architecture (where the recent work is)
 
